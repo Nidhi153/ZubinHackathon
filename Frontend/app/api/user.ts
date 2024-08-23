@@ -29,3 +29,8 @@ export interface Volunteer extends User {
 export interface Participant extends User {
     // any extra fields we want to store for participants
 }
+
+export interface Admin extends User {
+    // any extra fields we want to store for admins
+}
+
