@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import User from "../../models/User";
 import dotenv from "dotenv";
 import connect from "../../lib/database";
+import jwt from "jsonwebtoken";
+
 const bcrypt = require("bcryptjs");
 dotenv.config();
 
@@ -33,11 +35,10 @@ export async function POST(req: Request) {
     const encryptedPassword = encryptPassword(data.password);
     const isPasswordValid = comparePassword(password, encryptedPassword);
     if (isPasswordValid) {
-      return NextResponse.json({
-        message: "login successful",
-        userId: result._id,
-        loggedIn: true,
+      const token = jwt.sign({ userId: result._id }, process.env.JWT_SECRET, {
+        expiresIn: "1m",
       });
+      return NextResponse.json({ token: token, userId: result._id });
     } else {
       return NextResponse.json({
         message: "Invalid password",

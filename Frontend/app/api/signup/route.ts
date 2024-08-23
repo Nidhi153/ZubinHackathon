@@ -57,9 +57,7 @@ export async function POST(req: Request) {
     const user = await User.create(data);
     return NextResponse.json({
       message: "User created successfully",
-      loggedIn: true,
       userId: user._id,
-      isAdmin: true,
     });
   }
 }

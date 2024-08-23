@@ -8,6 +8,7 @@ const eventSchema = new Schema({
   date: { type: Date, required: true },
   start_datetime: { type: String, required: true },
   end_datetime: { type: String, required: true },
+  created_at: { type: Date, default: Date.now },
   // Add other fields as necessary
 });
 
