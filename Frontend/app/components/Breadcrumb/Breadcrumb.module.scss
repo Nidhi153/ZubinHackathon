@@ -1,0 +1,11 @@
+@import "../../global.module.scss";
+
+.breadcrumb {
+    color: $blue;
+}
+
+.breadcrumbContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
