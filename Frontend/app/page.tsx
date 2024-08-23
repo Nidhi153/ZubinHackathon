@@ -3,7 +3,7 @@ import Chatbot from "./components/Chatbot/Chatbot";
 import styles from "./global.module.scss";
 import { useEffect, useState } from "react";
 import Authentication from "./components/Authentication/Authentication";
-import Event from "./components/Event";
+import Event from "./components/Event/AllEvent";
 import Dashboard from "./components/Dashboard/Dashboard";
 
 export default function Home() {
@@ -18,9 +18,9 @@ export default function Home() {
   }, [userId]);
   return (
     <div>
-      {showLogin && <Authentication setUserId={setUserId}></Authentication>}
+      {/* {showLogin && <Authentication setUserId={setUserId}></Authentication>} */}
 
-      {userId && userId != "" && <Event userId={userId} />}
+      {<Event />}
       {isAdmin && <Dashboard />}
     </div>
   );
