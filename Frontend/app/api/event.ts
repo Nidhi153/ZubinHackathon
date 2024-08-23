@@ -1,13 +1,18 @@
 // import { useMutation, useQueryClient } from "@tanstack/react-query";
 // import { axiosClient } from "./config";
 import { Skills } from "./skills";
+import { User } from "./user";
 
 export interface Event {
   id: string;
-  name: string;
+  title: string;
+  description: string;
   venue: string;
-  dateTime: Date;
+  creator: User;
+  date: Date;
   quota: number;
+  start_datetime: String;
+  end_datetime: String
   required_skills: Skills[];
   created_at: string;
   updated_at: string;
@@ -19,6 +24,7 @@ export interface Registration {
   user_id: string;
   event_id: string;
   role: string; // whether they're a member or a volunteer?
+  created_at: Date;
 }
 
 //I'M CONSIDERING STORING THIS ENTIRELY AS AN ARRAY IN EVENT

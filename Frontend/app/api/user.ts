@@ -15,6 +15,10 @@ export interface User {
   first_name?: string;
   last_name?: string;
 
+  email: string;
+  password: string;
+  created_at: Date;
+
   role: Role;
   contact_number: string; // Check that it's in the right format
 
