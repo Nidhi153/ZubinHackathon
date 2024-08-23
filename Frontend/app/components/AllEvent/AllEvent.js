@@ -1,15 +1,7 @@
 import React from "react";
-import { styled } from "styled-components";
 import Box from '@mui/material/Box';
 
 import EventData from "../data/event.json";
-
-const Container = styled.div``;
-const Description = styled.div``;
-
-const CardWrapper = styled.div``;
-const Card = styled.div``;
-const Data = styled.div``;
 
 const buttonStyle = {
   backgroundColor: '#F0F0F0',
