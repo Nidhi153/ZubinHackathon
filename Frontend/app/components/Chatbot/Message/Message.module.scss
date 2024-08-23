@@ -1,0 +1,27 @@
+@import "../../../global.module.scss";
+
+.wrapper {
+    width: 100%;
+}
+
+.userWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.message {
+    width: fit-content;
+    max-width: 200px;
+    padding: 16px 20px;
+    border-radius: 4px;
+    color: $white;
+}
+
+.botMessage {
+    background-color: $brown;
+}
+
+.userMessage {
+    background-color: $blue;
+}

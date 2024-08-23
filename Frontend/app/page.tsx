@@ -1,4 +1,4 @@
-import Chatbot from "./components/chatbot"
+import Chatbot from "./components/Chatbot/Chatbot"
 import styles from './global.module.scss'
 "use client";
 import { useEffect, useState } from "react";
