@@ -26,40 +26,25 @@ export async function POST(req: Request) {
   } catch (e) {
     console.log("Error connecting to mongodb:", e);
   }
-  // try {
-  //   await User.deleteMany({});
-  // } catch (e) {
-  //   console.log("Error deleting users", e);
-  // }
-
-  //   if (!validateEmail(data.email)) {
-  //     return NextResponse.json({
-  //       message: "Invalid email",
-  //     });
-  //   }
 
   const result = await User.findOne({ email: data.email });
   if (result) {
-    console.log("User already exists, please login");
-    return NextResponse.json({
-      message: "User already exists",
-    });
-  } else {
-    console.log("Creating user");
     const password = data.password;
     const encryptedPassword = encryptPassword(data.password);
-    data.password = encryptedPassword;
-    console.log("Encrypted password:", encryptedPassword);
-    console.log(
-      "Password same as encrpytion:",
-      comparePassword(password, data.password)
-    );
-    const user = await User.create(data);
-    return NextResponse.json({
-      message: "User created successfully",
-      loggedIn: true,
-      userId: user._id,
-      isAdmin: true,
-    });
+    const isPasswordValid = comparePassword(password, encryptedPassword);
+    if (isPasswordValid) {
+      return NextResponse.json({
+        message: "login successful",
+        userId: result._id,
+        loggedIn: true,
+      });
+    } else {
+      return NextResponse.json({
+        message: "Invalid password",
+      });
+    }
   }
+  return NextResponse.json({
+    message: "User does not exist",
+  });
 }

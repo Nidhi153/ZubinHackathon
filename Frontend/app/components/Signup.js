@@ -1,10 +1,11 @@
 "use client";
 import { Button, FloatingLabel } from "flowbite-react";
-import { useState } from "react";
-import "../auth.css";
-export default function Page() {
+import { useState, useEffect } from "react";
+import "./auth.css";
+export default function Signup({ setUserId }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   let signup = async () => {
     let response = await fetch("/api/signup", {
       method: "POST",
@@ -13,15 +14,15 @@ export default function Page() {
       },
       body: JSON.stringify({ email, password }),
     });
-    // if (response.ok) {
-    //   window.location.href = "/dashboard";
-    // } else {
-    //   alert("Failed to signup");
-    // }
+
     const data = await response.json();
 
     console.log(data);
+    if (data.loggedIn) {
+      setUserId(data.userId);
+    }
   };
+
   return (
     <div className="container">
       <h1>Signup</h1>
@@ -40,10 +41,6 @@ export default function Page() {
       />
 
       <Button onClick={() => signup()}>Signup</Button>
-      <p>
-        If you already have an account, you can{" "}
-        <a href="/authentication/login">login</a>
-      </p>
     </div>
   );
 }

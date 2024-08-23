@@ -6,3 +6,30 @@
     bottom: 50px;
     right: 100px;
 }
+$page-heading-font-size: 36px;
+$page-heading-font-weight: bold;
+$section-heading-font-size: 26px;
+$section-heading-font-weight: medium;
+$emphasis-font-size: 16px;
+$emphasis-font-size: medium;
+
+$yellow: #FDED1B;
+$brown: #B23239;
+$blue: #2446A3;
+$sky: #71D3F6;
+$black: #000000;
+$dark: #313131;
+$gray: #8A8A8A;
+$light: #F1F1F1;
+$white: #FFFFFF;
+$error: #E42121;
+$silver: #C0C0C0;
+$bronze: #CD7F32;
+
+// Example usage
+//
+// .test {
+//     font-size: $page-heading-font-size;
+//     font-weight: $page-heading-font-weight;
+//     color: $blue;
+// }
