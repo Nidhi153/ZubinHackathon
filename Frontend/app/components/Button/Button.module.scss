@@ -1,0 +1,17 @@
+@import "../../global.module.scss";
+
+.button {
+    padding: 10px 20px;
+    background-color: $blue;
+    color: $white;
+    border-radius: 6px;
+    width: fit-content;
+}
+
+.button:hover {
+    background-color: $sky;
+}
+
+.buttonBrown {
+    background-color: $brown;
+}
