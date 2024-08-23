@@ -2,7 +2,7 @@ import styles from './Button.module.scss'
 
 interface ButtonProps {
     children: string,
-    background?: 'blue' | 'brown',
+    background?: 'blue' | 'brown' | 'error',
     onClick?: () => void,
 }
 
@@ -14,7 +14,7 @@ const Button = ({ children, background = 'blue', onClick }: ButtonProps) => {
             }
         }} className={[
             styles.button,
-            background === 'brown' ? styles.buttonBrown : '',
+            background === 'brown' ? styles.buttonBrown : (background === 'error' ? styles.buttonError : ''),
         ].join(' ')}>{children}</button>
     )
 }
