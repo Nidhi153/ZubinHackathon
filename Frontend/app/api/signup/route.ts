@@ -59,6 +59,7 @@ export async function POST(req: Request) {
       message: "User created successfully",
       loggedIn: true,
       userId: user._id,
+      isAdmin: true,
     });
   }
 }
