@@ -1,7 +1,7 @@
 import React from "react";
 import Box from '@mui/material/Box';
 
-import EventData from "../data/event.json";
+import EventData from "../../data/event.json";
 
 const buttonStyle = {
   backgroundColor: '#F0F0F0',
