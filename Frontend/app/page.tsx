@@ -1,10 +1,10 @@
-import Chatbot from "./components/Chatbot/Chatbot"
-import styles from './global.module.scss'
 "use client";
+import Chatbot from "./components/Chatbot/Chatbot";
+import styles from "./global.module.scss";
 import { useEffect, useState } from "react";
-import Authentication from "./components/Authentication";
+import Authentication from "./components/Authentication/Authentication";
 import Event from "./components/Event";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 export default function Home() {
   const [userId, setUserId] = useState(null);
@@ -18,7 +18,6 @@ export default function Home() {
   }, [userId]);
   return (
     <div>
-      <a href="/authentication/signup">Sign up</a>
       {showLogin && <Authentication setUserId={setUserId}></Authentication>}
 
       {userId && userId != "" && <Event userId={userId} />}
