@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Authentication from "./components/Authentication";
 import Event from "./components/Event";
 import Dashboard from "./components/Dashboard";
+import Navbar from "./components/Navbar/Navbar";
 
 export default function Home() {
   const [userId, setUserId] = useState(null);
@@ -18,6 +19,7 @@ export default function Home() {
   }, [userId]);
   return (
     <div>
+      <Navbar />
       <a href="/authentication/signup">Sign up</a>
       {showLogin && <Authentication setUserId={setUserId}></Authentication>}
 
