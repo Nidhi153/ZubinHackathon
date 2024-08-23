@@ -22,7 +22,7 @@ export default function Home() {
       {showLogin && <Authentication setUserId={setUserId}></Authentication>}
 
       {userId && userId != "" && <Event userId={userId} />}
-      {isAdmin && <Dashboard />}
+      {/* {isAdmin && <Dashboard />} */}
     </div>
   );
 }
