@@ -3,12 +3,17 @@ div.container {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100vw;
-  min-width: 100vw;
-  height: 100vh;
 }
 
 a {
   color: #007bff;
   text-decoration: underline;
+}
+
+.auth-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  min-width: 100vw;
+  height: 100vh;
 }
