@@ -1,3 +1,4 @@
+"use client";
 import CreateEvent from "./CreateEvent";
 export default function Dashboard({ userId }) {
   return (

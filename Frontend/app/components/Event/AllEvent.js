@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import EventBox from "./EventBox";
 import "./Event.css";
