@@ -40,5 +40,15 @@ request_data = {
     ]
 }
 
+# Read request data from a JSON file
+with open("request.json", "r") as file:
+    request_data = json.load(file)
+
+# Call the recommend_events function
 response = recommend_events(request_data)
-print(json.dumps(response, indent=2))
+
+# Write the output to a JSON file
+with open("response.json", "w") as file:
+    json.dump(response, file, indent=2)
+
+print("Response saved to response.json")
