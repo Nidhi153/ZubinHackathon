@@ -1,3 +1,5 @@
+import Chatbot from "./components/Chatbot/Chatbot"
+import styles from './global.module.scss'
 "use client";
 import { useEffect, useState } from "react";
 import Authentication from "./components/Authentication";
@@ -16,6 +18,7 @@ export default function Home() {
   }, [userId]);
   return (
     <div>
+      <a href="/authentication/signup">Sign up</a>
       {showLogin && <Authentication setUserId={setUserId}></Authentication>}
 
       {userId && userId != "" && <Event userId={userId} />}
