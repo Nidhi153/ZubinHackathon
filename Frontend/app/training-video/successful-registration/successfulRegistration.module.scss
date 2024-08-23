@@ -1,0 +1,13 @@
+@import "../../global.module.scss";
+
+.body {
+    padding: 60px 138px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.heading {
+    font-size: $page-heading-font-size;
+    font-weight: $page-heading-font-weight;
+}
