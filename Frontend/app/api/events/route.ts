@@ -10,7 +10,7 @@ export async function GET() {
     console.log("Error connecting to mongodb:", e);
   }
 
-  const events = await Event.find({});
+  const events = await Event.find({}).sort({ created_at: -1 });
   console.log("events", events);
 
   return NextResponse.json({

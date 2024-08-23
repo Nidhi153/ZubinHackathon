@@ -1,5 +1,4 @@
 import { Datepicker, FloatingLabel } from "flowbite-react";
-
 export default function CreateEvent({ userId }) {
   let handleSubmit = async (e) => {
     e.preventDefault();
