@@ -53,53 +53,9 @@ const arrowStyle = {
   fontSize: '30px'
 };
 
-// export default function EventPage({ userId }) {
-//   return (
-//     <div>
-//       {EventData.map((item, index) => (
-//         <div style={buttonStyle} key={index}>
-//           <Box
-//             height={100}
-//             width={800}
-//             my={3}
-//             display="flex"
-//             alignItems="center"
-//             justifyContent="space-between"
-//             p={2}
-//           >
-//             <div>
-//               <div className="text-center font-textfont font-bold" style={title}>
-//                 {item.EventName}
-//               </div>
-//               <div style={dateStyle}>
-//                 {item.Date}
-//               </div>
-//               <div style={dateStyle}>
-//                 {item.Subtitle}
-//               </div>
-//             </div>
-//             <div style={arrowStyle}>{'>'}</div>
-//           </Box>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
 
 
 const EventPage = () => {
-//   const [events, setEvents] = useState([]);
-//   const [pastEvents, setPastEvents] = useState([]);
-
-//   useEffect(() => {
-//     // Fetch events from the JSON file
-//     setEvents(EventData);
-//     // Filter past events
-//     const past = EventData.filter(event => new Date(event.date) < new Date());
-//     setPastEvents(past);
-//   }, []);
-
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 10px', marginLeft: '5%', marginRight: '5%'}}>
       <div style={{ width: '60%', borderRadius: '5px', padding: '10px' }}>
