@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0</TargetFrameworks>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PreserveCompilationContext>true</PreserveCompilationContext>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="HomeDevice\**" />
+	  <EmbeddedResource Remove="HomeDevice\**" />
+	  <None Remove="HomeDevice\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="*" />-->
+		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="*" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="*" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Zubin.Platform.Ai\Zubin.Platform.Ai.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Ai\Models\SendMessageResponse.cs\" />
+	</ItemGroup>
+	
+</Project>
