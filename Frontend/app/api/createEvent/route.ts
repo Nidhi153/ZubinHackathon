@@ -4,7 +4,7 @@ import User from "../../models/User";
 import Event from "../../models/Event";
 import connect from "../../lib/database";
 export async function POST(req: Request) {
-  console.log("signup post request called");
+  console.log("create event post request called");
   const data = await req.json();
   try {
     await connect();

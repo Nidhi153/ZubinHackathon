@@ -34,6 +34,54 @@ export interface Waitlist {
   signed_up_at: Date; // so we can figure out who moves out the waitlist first
 }
 
+// CREATE EVENT : POST /events
+
+
+// READ EVENT : GET /events/:id
+
+
+// UPDATE EVENT : PATCH /events/:id (in the body, send the fields to update)
+
+
+// DELETE EVENT : DELETE /events/:id
+
+
+// CREATE REGISTRATION : POST /registrations (in the body, send the user_id and event_id)
+
+
+// READ REGISTRATION : GET /registrations/:id
+
+
+// READ REGISTRATIONS FOR EVENT : GET /registrations?event_id=:id
+
+
+// READ REGISTRATIONS FOR USER : GET /registrations?user_id=:id
+
+
+// UPDATE REGISTRATION : PATCH /registrations/:id (in the body, send the fields to update)
+
+
+// DELETE REGISTRATION : DELETE /registrations/:id
+
+
+// CREATE WAITLIST : POST /waitlist (in the body, send the user_id and event_id)
+
+
+// READ WAITLIST : GET /waitlist/:id
+
+
+// READ WAITLIST FOR EVENT : GET /waitlist?event_id=:id
+
+
+// READ WAITLIST FOR USER : GET /waitlist?user_id=:id
+
+
+// UPDATE WAITLIST : PATCH /waitlist/:id (in the body, send the fields to update)
+
+
+// DELETE WAITLIST : DELETE /waitlist/:id
+
+
 // export interface UseEventHookResponse {
 //   create: (params: Event) => Promise<unknown>;
 //   remove: (id: string) => Promise<unknown>;

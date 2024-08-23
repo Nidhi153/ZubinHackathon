@@ -27,7 +27,7 @@ export interface User {
 }
 
 export interface Volunteer extends User {
-  skills: Skills[];
+    skills: Skills[];
 }
 
 export interface Participant extends User {
@@ -38,3 +38,35 @@ export interface Admin extends User {
     // any extra fields we want to store for admins
 }
 
+
+// CREATE USER : POST /users
+
+// READ USER : GET /users/:id
+
+// UPDATE USER : PATCH /users/:id (in the body, send the fields to update)
+
+// DELETE USER : DELETE /users/:id
+
+// CREATE VOLUNTEER : POST /volunteers
+
+// READ VOLUNTEER : GET /volunteers/:id
+
+// UPDATE VOLUNTEER : PATCH /volunteers/:id (in the body, send the fields to update)
+
+// DELETE VOLUNTEER : DELETE /volunteers/:id
+
+// CREATE PARTICIPANT : POST /participants
+
+// READ PARTICIPANT : GET /participants/:id
+
+// UPDATE PARTICIPANT : PATCH /participants/:id (in the body, send the fields to update)
+
+// DELETE PARTICIPANT : DELETE /participants/:id
+
+// CREATE ADMIN : POST /admins
+
+// READ ADMIN : GET /admins/:id
+
+// UPDATE ADMIN : PATCH /admins/:id (in the body, send the fields to update)
+
+// DELETE ADMIN : DELETE /admins/:id
