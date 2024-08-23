@@ -1,12 +1,15 @@
+import { Button, FloatingLabel } from "flowbite-react";
+
+import "../auth.css";
 export default function Page() {
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <form>
-        <input type="text" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <button>Sign Up</button>
-      </form>
+    <div className="container">
+      <h1>Signup</h1>
+
+      <FloatingLabel variant="outlined" label="Email" />
+      <FloatingLabel variant="outlined" label="Password" />
+
+      <Button>Signup</Button>
       <p>
         If you already have an account, you can{" "}
         <a href="/authentication/login">login</a>

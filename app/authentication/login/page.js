@@ -1,12 +1,15 @@
+import { Button, FloatingLabel } from "flowbite-react";
+
+import "../auth.css";
 export default function Page() {
   return (
-    <div>
+    <div className="container">
       <h1>Login</h1>
-      <form>
-        <input type="text" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <button>Login</button>
-      </form>
+
+      <FloatingLabel variant="outlined" label="Email" />
+      <FloatingLabel variant="outlined" label="Password" />
+
+      <Button>Login</Button>
     </div>
   );
 }

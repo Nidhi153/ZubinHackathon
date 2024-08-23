@@ -1,0 +1,14 @@
+div.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  min-width: 100vw;
+  height: 100vh;
+}
+
+a {
+  color: #007bff;
+  text-decoration: underline;
+}
