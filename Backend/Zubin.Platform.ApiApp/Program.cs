@@ -3,7 +3,9 @@ using Zubin.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using PythonAi.Services;
+using PythonAi;
+using Nextjs;
+
 
 namespace Zubin.Platform.ApiApp
 {
@@ -13,13 +15,19 @@ namespace Zubin.Platform.ApiApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddHttpClient<PythonAi.PythonAiApiClient>(client =>
+            builder.Services.AddHttpClient<PythonAiApiClient>(client =>
             {
                 string uri = "https://localhost:7120/";
                 string uri2 = "";
                 client.BaseAddress = new Uri(uri);
             });
-            builder.Services.AddScoped<PythonAiService>();
+
+            builder.Services.AddHttpClient<NextjsClient>(client =>
+            {
+                string uri = "https://localhost:7120/";
+                string uri2 = "";
+                client.BaseAddress = new Uri(uri);
+            });
 
 
             // Add services to the container.
