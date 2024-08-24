@@ -63,6 +63,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       message: "User created successfully",
       userId: user._id,
+      role: user.role,
     });
   }
 }
