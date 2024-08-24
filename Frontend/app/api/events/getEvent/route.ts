@@ -12,7 +12,6 @@ export async function POST(req: Request) {
   const data = await req.json();
   const id = data.id;
   const event = await Event.find({ _id: id });
-  console.log("event", event);
 
   return NextResponse.json({
     message: "Found event",

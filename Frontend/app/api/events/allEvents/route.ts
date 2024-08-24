@@ -11,7 +11,6 @@ export async function GET() {
   }
 
   const events = await Event.find({}).sort({ created_at: -1 });
-  console.log("events", events);
 
   return NextResponse.json({
     message: "Found events",

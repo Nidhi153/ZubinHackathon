@@ -34,7 +34,8 @@ export default function RegisteredEvent() {
   return (
     <div>
       <div className="container">
-        {registeredEvents.length > 0 &&
+        {registeredEvents &&
+          registeredEvents.length > 0 &&
           registeredEvents.map((event) => (
             <RegisteredEventBox key={event._id} event={event} />
           ))}

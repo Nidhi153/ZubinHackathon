@@ -49,9 +49,12 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
     init();
   }, [searchParams]);
 
-  const memberButtonOnClick = useCallback(() => {
-    router.push("/event-registration");
-  }, []);
+  const memberButtonOnClick = () => {
+    console.log("curEvent", curEvent);
+    if (curEvent) {
+      router.push("/event-registration/" + curEvent._id);
+    }
+  };
 
   const volunteerButtonOnClick = useCallback(() => {
     router.push("/training-video");
@@ -73,7 +76,7 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       {/* Member and volunteer only */}
       {role !== "admin" ? (
         <div className={styles.horizontalButtonWrapper}>
-          <Button onClick={memberButtonOnClick}>Register</Button>
+          <Button onClick={() => memberButtonOnClick()}>Register</Button>
           {role === "volunteer" ? (
             <Button background="brown" onClick={volunteerButtonOnClick}>
               Register as volunteer
