@@ -12,14 +12,14 @@
     font-weight: $page-heading-font-weight;
 }
 
-.horizontalButtonWrapper {
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
+.table {
+    border: 1px solid $gray;
+    padding: 20px;
+    border-radius: 20px;
 }
 
-.verticalButtonWrapper {
+.buttonWrapper {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-direction: row;
+    justify-content: space-between;
 }
