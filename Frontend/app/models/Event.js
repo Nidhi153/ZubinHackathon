@@ -13,6 +13,7 @@ const eventSchema = new Schema({
   created_at: { type: Date, default: Date.now },
   required_skills: [{ type: Schema.Types.ObjectId, ref: "Skill" }],
   registered_users: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  registered_volunteers: [{ type: Schema.Types.ObjectId, ref: "User" }],
   // Add other fields as necessary
 });
 
