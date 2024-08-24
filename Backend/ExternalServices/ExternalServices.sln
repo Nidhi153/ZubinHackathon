@@ -5,8 +5,6 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zubin.Platform.ApiApp", "..\Zubin.Platform.ApiApp\Zubin.Platform.ApiApp.csproj", "{528C5D92-256B-4F31-A469-9F8821C83B9C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zubin.Platform.WebApi", "..\Zubin.Platform.WebApi\Zubin.Platform.WebApi.csproj", "{1C94D7BB-B34F-429F-857B-5696D6742866}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zubin.Platform.Ai", "..\Zubin.Platform.Ai\Zubin.Platform.Ai.csproj", "{5FC42DBB-A2AB-4B81-BAD8-BE96A963610E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zubin.Platform.Ai.PythonAi", "..\Zubin.Platform.Ai.Chatbox\Zubin.Platform.Ai.PythonAi.csproj", "{138163C9-B036-4583-BB79-785C8D70B6A7}"
@@ -21,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zubin.Hosting", "..\Zubin.H
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zubin.ConsoleApp", "..\Zubin.ConsoleApp\Zubin.ConsoleApp.csproj", "{0D724E48-402B-4691-B1B9-04CD3C34B832}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zubin.Platform.WebApi2", "..\Zubin.Platform.WebApi2\Zubin.Platform.WebApi2.csproj", "{324F63FD-FC0B-4935-978A-D5D9A69B55BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,10 +31,6 @@ Global
 		{528C5D92-256B-4F31-A469-9F8821C83B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{528C5D92-256B-4F31-A469-9F8821C83B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{528C5D92-256B-4F31-A469-9F8821C83B9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C94D7BB-B34F-429F-857B-5696D6742866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C94D7BB-B34F-429F-857B-5696D6742866}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C94D7BB-B34F-429F-857B-5696D6742866}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C94D7BB-B34F-429F-857B-5696D6742866}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5FC42DBB-A2AB-4B81-BAD8-BE96A963610E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5FC42DBB-A2AB-4B81-BAD8-BE96A963610E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FC42DBB-A2AB-4B81-BAD8-BE96A963610E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,6 +55,10 @@ Global
 		{0D724E48-402B-4691-B1B9-04CD3C34B832}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D724E48-402B-4691-B1B9-04CD3C34B832}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D724E48-402B-4691-B1B9-04CD3C34B832}.Release|Any CPU.Build.0 = Release|Any CPU
+		{324F63FD-FC0B-4935-978A-D5D9A69B55BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{324F63FD-FC0B-4935-978A-D5D9A69B55BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{324F63FD-FC0B-4935-978A-D5D9A69B55BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{324F63FD-FC0B-4935-978A-D5D9A69B55BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

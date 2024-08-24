@@ -1,5 +1,6 @@
 ﻿#pragma warning disable 1591 // Disable "CS1591 Missing XML comment for publicly visible type or member ..."
 using Microsoft.AspNetCore.Mvc;
+using MockServer.SwaggerEditor.Nextjs.Controllers;
 using MockServer.SwaggerEditor.PythonAi.Models;
 using MockServer.SwaggerEditor.PythonAi.ModelsForTesting;
 using MockServer.SwaggerEditor.PythonApi.Controllers;
@@ -13,8 +14,8 @@ namespace MockServer.Controllers;
 
 [Display(Name = "PythonAi API", Description = "")]
 [ApiExplorerSettings(GroupName = "PythonAi")]
-public class PythonAiController : PythonAiApiController
-{
-    public override IActionResult SendMessage([FromBody] SendMessageRequest body)
-            => new ObjectResult(TemporaryClassForTesting.SendMessage(body));
-}
+public class PythonAiController : PythonAiApiController{}
+
+[Display(Name = "Nextjs API", Description = "")]
+[ApiExplorerSettings(GroupName = "Nextjs")]
+public class NextjsController: NextjsApiController{}

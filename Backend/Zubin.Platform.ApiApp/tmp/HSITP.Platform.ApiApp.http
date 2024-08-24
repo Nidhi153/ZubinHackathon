@@ -1,6 +1,0 @@
-@HSITP.Platform.ApiApp_HostAddress = http://localhost:5149
-
-GET {{HSITP.Platform.ApiApp_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

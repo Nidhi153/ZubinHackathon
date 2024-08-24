@@ -25,6 +25,7 @@ namespace Zubin.Platform.ApiApp
             builder.Services.AddScoped<IAiService, AiService>();
             builder.Services.AddScoped<AiManager>();
 
+
             // Add services to the container.
             builder.Services.AddControllers(options =>
             {
