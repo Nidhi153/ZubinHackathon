@@ -11,7 +11,7 @@ export default function CreateEvent({ userId }) {
       start_time: e.target.start_time.value,
       end_time: e.target.end_time.value,
     };
-    const res = await fetch("/api/createEvent", {
+    const res = await fetch("/api/events/createEvent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -6,9 +6,7 @@ export default function Event() {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     let fetchEvents = async () => {
-      // let port = 80;
       const res = await fetch("/api/events/allEvents");
-      // const res = await fetch("http://localhost:" + port + "/api/events");
       const data = await res.json();
       console.log(data);
       if (data) {
