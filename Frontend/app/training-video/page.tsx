@@ -20,7 +20,7 @@ const trainingVideo = () => {
 
     const buttonOnClick = useCallback(() => {
         if (checked) {
-            router.push('/training-video/successful-registration')
+            router.push('/successful-registration')
         } else {
             setShowWarning(true)
         }

@@ -1,23 +1,13 @@
 'use client'
 
 import styles from './successfulRegistration.module.scss'
-import Button from '../../components/Button/Button'
+import Button from '../components/Button/Button'
 import { useTimer } from 'react-timer-hook'
 import { useRouter } from 'next/navigation'
 
 const successfulRegistration = () => {
     const router = useRouter()
-    const {
-        seconds,
-        minutes,
-        hours,
-        days,
-        isRunning,
-        start,
-        pause,
-        resume,
-        restart,
-    } = useTimer({
+    useTimer({
         expiryTimestamp: new Date(Date.now() + 600 * 2), // 2 seconds after starting to count down
         onExpire: () => {
             router.push('/')
