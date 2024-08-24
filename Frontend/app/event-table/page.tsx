@@ -50,7 +50,7 @@ const EventTable = () => {
                     </Thead>
                     <Tbody>
                         {dummyParticipants.map((person, i) => (
-                            <Tr>
+                            <Tr key={person.userID}>
                                 <Td>{i}</Td>
                                 <Td>{person.name}</Td>
                                 <Td>{person.phone}</Td>
