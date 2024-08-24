@@ -3,14 +3,14 @@ import axios, { AxiosResponse } from 'axios';
 export interface WhatsappBroadcast {
     broadcast_id: string;
     message: string;
-    contacts: number[];
+    contacts: string[];
     // Add other fields as necessary
 }
 
 export interface WhatsappResponse {
     response_id: string;
     message: string;
-    contacts: number;
+    contact: string;
     user_id: string;
     tags: string[];
     // Add other fields as necessary
