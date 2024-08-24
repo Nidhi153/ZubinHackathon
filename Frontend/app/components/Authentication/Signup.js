@@ -17,10 +17,17 @@ export default function Signup({ setUserId }) {
     });
 
     const data = await response.json();
-    const token = data.token;
     const userId = data.userId;
-
-    document.cookie = `token=${token}; userId=${userId}; path=/`;
+    if (!userId) {
+      const message = data.message;
+      if (message) {
+        alert(message);
+      } else {
+        alert("Invalid email or password");
+      }
+      return;
+    }
+    document.cookie = `userId=${userId}; path=/`;
     // router.push("/protected");
     router.push("/");
   };
