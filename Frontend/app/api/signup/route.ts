@@ -21,6 +21,11 @@ function validateEmail(email: string) {
 export async function POST(req: Request) {
   console.log("signup post request called");
   const data = await req.json();
+  if (!data.email || !data.password) {
+    return NextResponse.json({
+      message: "Email and password are required",
+    });
+  }
   try {
     await connect();
   } catch (e) {

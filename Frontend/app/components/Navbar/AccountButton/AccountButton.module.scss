@@ -5,7 +5,11 @@
     padding: 10px 20px;
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 20px;
     border-radius: 4px;
     color: $white;
+}
+
+.accountButton:hover {
+    background-color: $sky;
 }

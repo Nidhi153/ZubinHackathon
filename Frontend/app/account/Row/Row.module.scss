@@ -1,0 +1,17 @@
+@import "../../global.module.scss";
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.badges {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.none {
+    color: $light;
+}

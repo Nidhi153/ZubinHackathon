@@ -1,10 +1,10 @@
 @import "./../global.module.scss";
 
 .body {
+    padding: 60px 138px;
     display: flex;
     flex-direction: column;
     gap: 50px;
-    padding: 60px 138px;
 }
 
 .heading {
@@ -12,13 +12,24 @@
     font-weight: $page-heading-font-weight;
 }
 
-.horizontalButtonWrapper {
+.rowWrapper {
+    gap: 20px;
     display: flex;
-    flex-direction: row;
-    gap: 50px;
+    flex-direction: column;
 }
 
-.verticalButtonWrapper {
+.badges {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.subheading {
+    font-size: $section-heading-font-size;
+    font-weight: $section-heading-font-weight;
+}
+
+.badgeRows {
     display: flex;
     flex-direction: column;
     gap: 20px;
