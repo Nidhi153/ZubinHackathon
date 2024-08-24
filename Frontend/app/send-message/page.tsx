@@ -6,6 +6,7 @@ import styles from './sendMessage.module.scss';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { ChangeEvent, FormEvent } from 'react';
+import Button from '../components/Button/Button';
 // import { v4 as uuid } from 'uuid'
 
 // to create a form
@@ -46,7 +47,6 @@ const EventDetails = () => {
 
 
     /* Update the role whenever the link refreshes */
-    // No idea how to resolve this warning
     useEffect(() => {
         const role = searchParams.get('role')
         if (role && ALL_ROLES.includes(role as Roles)) {
@@ -60,14 +60,22 @@ const EventDetails = () => {
             <BreadCrumbContainer role={role} eventName='Gathering Event' eventLink='/event-details/send-message' />
             <div className={styles.heading}>Gathering Event</div>
             <div>10/09/2024</div>
-            <div>Send message to participants</div>
 
             {role === 'admin'
                 ? <div>
                      <form onSubmit={handleSubmit}>
                         <label htmlFor="message">Message:</label><br />
-                        <textarea id="message" name="message" rows={4} cols={50} value={message} onChange={handleMessageChange}></textarea><br />
-                        <button type="submit">Send</button>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            className={styles.messageBox}
+                            rows={4} 
+                            cols={50} 
+                            value={message} 
+                            placeholder='Message'
+                            onChange={handleMessageChange}>
+                        </textarea><br /><br />
+                        <Button>Send Message</Button>
                     </form>
                 </div>
                 : ''}
