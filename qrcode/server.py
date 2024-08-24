@@ -56,19 +56,24 @@ async def start_capture():
 @app.get("/stop")
 def stop_capture():
     global running
+    
+    # cv.destroyAllWindows()
     if running:
         running = False
         return {"message": "Video capture stopped"}
+
     else:
         return {"message": "Video capture is not running"}
 
 @app.get("/data")
 def get_current_data():
     global current_data
-    if current_data:
-        return {"current_data": current_data}
-    else:
-        return {"message": "No data available"}
+
+    return {"current_data": current_data}
+    # if current_data:
+    #     return {"current_data": current_data}
+    # else:
+    #     return {"message": "No data available"}
 
 @app.post("/upload-qrcode/")
 async def upload_qrcode(input: str):
