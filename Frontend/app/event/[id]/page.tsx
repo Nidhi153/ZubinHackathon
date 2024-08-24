@@ -11,6 +11,7 @@ import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { set } from "mongoose";
 /* Planning to migrate this to a type file */
 const ALL_ROLES = ["volunteer", "admin", "member"] as const;
 type Roles = (typeof ALL_ROLES)[number];
@@ -21,12 +22,112 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
   const [curEvent, setCurEvent] = useState(null);
   const router = useRouter();
 
+  const [isTakingAttendance, setIsTakingAttendance] = useState(false);
+  const [startedCamera, setStartedCamera] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      if (!isTakingAttendance) {
+        setStartedCamera(false);
+        await fetch("/api/stop");
+        return;
+      }
+
+      if (!startedCamera) {
+        console.log("Starting camera...");
+
+        await fetch("/api/start");
+        // await fetch("http://localhost:2000/start", {
+        //   mode: "no-cors",
+        // });
+
+        setStartedCamera(true);
+        // console.log(response);
+        // if (response.status === 200) {
+        //   console.log("Camera started");
+
+        // }
+      }
+
+      const fetchData = async () => {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+        try {
+          const response = await fetch("/api/data", {
+            signal: controller.signal,
+          });
+          //   const response = await fetch("http://localhost:2000/data", {
+          //     signal: controller.signal,
+          //     mode: "no-cors",
+          //   });
+
+          if (response.ok) {
+            const data = await response.json();
+            if ("current_data" in data) {
+              if (data.current_data) {
+                // console.log(`Received QR Code data: ${data.current_data}`);
+                const res = await fetch("/api/events/updateAttendance", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    eventId: params.id,
+                    email: data.current_data,
+                  }),
+                });
+                const resData = await res.json();
+                if (resData.added) {
+                  const res = await fetch(`/api/events/getEvent`, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ id: params.id }),
+                  });
+                  const event = await res.json();
+                  console.log(event.event);
+                  setCurEvent(event.event[0]);
+
+                  // const newEvent = {
+                  //   ...curEvent,
+                  //   attendees: [...curEvent.attendees, data.current_data],
+                  // };
+                  // setCurEvent(newEvent);
+                }
+              }
+            } else {
+              console.log("No data available");
+            }
+          } else {
+            console.log("Failed to fetch data");
+          }
+        } catch (error) {
+          if (error.name === "AbortError") {
+            console.log("Request timed out");
+          } else {
+            console.log(`Error fetching data: ${error.message}`);
+          }
+        } finally {
+          clearTimeout(timeoutId);
+        }
+      };
+
+      //   if (startedCamera) await fetchData();
+      await fetchData();
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isTakingAttendance, startedCamera]);
+
   /* Update the role whenever the link refreshes */
   useEffect(() => {
     let init = async () => {
       const eventId = params.id;
 
       console.log("eventId", eventId);
+
       const res = await fetch(`/api/events/getEvent`, {
         method: "POST",
         headers: {
@@ -48,6 +149,18 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
     };
     init();
   }, [searchParams]);
+  useEffect(() => {
+    let init = async () => {
+      await fetch("/api/events/deleteAllAttendance", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ eventId: params.id }),
+      });
+    };
+    init();
+  }, []);
 
   const memberButtonOnClick = () => {
     if (curEvent) {
@@ -94,6 +207,14 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
         <div className={styles.verticalButtonWrapper}>
           <Button>See registration data</Button>
           <Button>Send message to participants</Button>
+          <button onClick={() => setIsTakingAttendance(!isTakingAttendance)}>
+            {isTakingAttendance ? "Stop Attendance" : "Start Attendance"}
+          </button>
+          {curEvent &&
+            curEvent.attendees &&
+            curEvent.attendees.map((attendee) => {
+              return <div>{attendee}</div>;
+            })}
         </div>
       ) : (
         ""
