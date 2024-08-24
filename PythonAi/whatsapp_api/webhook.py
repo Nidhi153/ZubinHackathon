@@ -131,7 +131,6 @@ def keyword_generator(p, top=3) -> list:
     """
 
     prompt=f"""Summarize the following message in {top} keywords separated by ','. 
-    If the paragraph contains html, please only consider the text inside the html tags to generate keywords.
     Please do not give any explanation: """+p
 
     API_TOKEN = "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"
