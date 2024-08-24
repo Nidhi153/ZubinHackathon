@@ -1,13 +1,13 @@
 import axios, { AxiosResponse } from 'axios';
 
-export interface whatsappBroadcast {
+export interface WhatsappBroadcast {
     broadcast_id: string;
     message: string;
     contacts: number[];
     // Add other fields as necessary
 }
 
-export interface whatsappResponse {
+export interface WhatsappResponse {
     response_id: string;
     message: string;
     contacts: number;
@@ -17,9 +17,9 @@ export interface whatsappResponse {
 }
 
 // CREATE BROADCAST : POST /broadcasts
-export async function createWhatsappBroadcast(broadcast: whatsappBroadcast): Promise<whatsappResponse> {
+export async function createWhatsappBroadcast(broadcast: WhatsappBroadcast): Promise<WhatsappResponse> {
     try {
-        const response: AxiosResponse<whatsappResponse> = await axios.post('/broadcasts', broadcast);
+        const response: AxiosResponse<WhatsappResponse> = await axios.post('/broadcasts', broadcast);
         return response.data;
     } catch (error) {
         console.error('Error creating Whatsapp broadcast:', error);
@@ -28,9 +28,9 @@ export async function createWhatsappBroadcast(broadcast: whatsappBroadcast): Pro
 }  
 
 // READ ALL RESPONSES : GET /responses
-export async function getAllWhatsappResponses(): Promise<whatsappResponse[]> {
+export async function getAllWhatsappResponses(): Promise<WhatsappResponse[]> {
     try {
-      const response: AxiosResponse<whatsappResponse[]> = await axios.get('/responses');
+      const response: AxiosResponse<WhatsappResponse[]> = await axios.get('/responses');
       return response.data;
     } catch (error) {
       console.error('Error getting Whatsapp responses:', error);
@@ -39,9 +39,9 @@ export async function getAllWhatsappResponses(): Promise<whatsappResponse[]> {
 }
 
 // READ RESPONSE : GET /responses/:id
-export async function getWhatsappResponse(id: string): Promise<whatsappResponse> {
+export async function getWhatsappResponse(id: string): Promise<WhatsappResponse> {
     try {
-      const response: AxiosResponse<whatsappResponse> = await axios.get(`/responses/${id}`);
+      const response: AxiosResponse<WhatsappResponse> = await axios.get(`/responses/${id}`);
       return response.data;
     } catch (error) {
       console.error('Error getting Whatsapp response:', error);
