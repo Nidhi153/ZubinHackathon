@@ -22,7 +22,7 @@ Constants
 """
 
 #Please update API Token daily!
-ACCESS_TOKEN = "EABycHlgN6cgBO1D27FuGisVJczFuGZCwNIa6UyF7ZBBGJuWoDiMDowZAxqBlZCWHExPLXbakRM84sAAbaOFZC49xCHWpG7oBDAb6Y0dYihKnnkAYmni5yyIjwFtcoWTGRUoT3QVCSHPn0q0saKgYXZCPvisZCPgS2LXTGuau5XHmOdxQYQqzRiyn9rsrRJWik4AAu5TTFWMopOlpIo3cAAZD"
+ACCESS_TOKEN = "EABycHlgN6cgBOxh3AL5VnwML8PxXuS6821KKoUqR2ZAvJ77UwpMZBVGGhROZBvR4obtDuouZBB5iBGEKkHxnqTfZBqtyj8N7QfWy1yk08GgevnBfCW62v2ZAzU6lPZCkEg12dy0ZASZCXGKQnKZCLSb5HETVmR7OIcBZBcMlO6SgZCMvdYkvlLws29p5JuLBs87nWKnIrfhGcJ5XhBVzOQjJV0IZD"
 
 APP_ID = "8052953488157128"
 
@@ -119,7 +119,7 @@ def send_message(data):
         "Content-type": "application/json"
     }
 
-    url = f"http://localhost:port/whatsapp/question" #Ask Kohei to replace with link to endpoint
+    url = f"http://baseurl/zubin-frontend/whatsapp/question" #Ask Kohei to replace with link to endpoint
 
     response = requests.post(
         url, data=data, headers=headers, timeout=10

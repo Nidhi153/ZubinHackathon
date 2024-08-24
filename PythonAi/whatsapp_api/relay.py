@@ -9,7 +9,7 @@ Constants
 """
 
 #Please update API Token daily!
-ACCESS_TOKEN = "EABycHlgN6cgBO1D27FuGisVJczFuGZCwNIa6UyF7ZBBGJuWoDiMDowZAxqBlZCWHExPLXbakRM84sAAbaOFZC49xCHWpG7oBDAb6Y0dYihKnnkAYmni5yyIjwFtcoWTGRUoT3QVCSHPn0q0saKgYXZCPvisZCPgS2LXTGuau5XHmOdxQYQqzRiyn9rsrRJWik4AAu5TTFWMopOlpIo3cAAZD"
+ACCESS_TOKEN = "EABycHlgN6cgBOxh3AL5VnwML8PxXuS6821KKoUqR2ZAvJ77UwpMZBVGGhROZBvR4obtDuouZBB5iBGEKkHxnqTfZBqtyj8N7QfWy1yk08GgevnBfCW62v2ZAzU6lPZCkEg12dy0ZASZCXGKQnKZCLSb5HETVmR7OIcBZBcMlO6SgZCMvdYkvlLws29p5JuLBs87nWKnIrfhGcJ5XhBVzOQjJV0IZD"
 
 APP_ID = "8052953488157128"
 
@@ -25,10 +25,11 @@ class Broadcast(BaseModel):
     phonenumbers: list
     broadcastmessage: str
 
-@app.post("/broadcast/")
+@app.post("/ai/whatsapp/broadcast")
 def relay(item: Broadcast):
     for phone_num in item.phonenumbers:
         send_message(get_text_message_input(phone_num, item.broadcastmessage))
+
     return item
 
 def get_text_message_input(recipient, text):
