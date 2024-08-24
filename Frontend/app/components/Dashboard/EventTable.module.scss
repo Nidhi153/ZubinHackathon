@@ -30,41 +30,17 @@
   }
   
 .messageColumn {
-    width: 25%; /* Adjust the width as needed */
+    width: 20%; /* Adjust the width as needed */
   }
   
 .phoneColumn {
-    width: 15%; /* Adjust the width as needed */
+    width: 20%; /* Adjust the width as needed */
   }
   
 .tagColumn {
-    width: 15%; /* Adjust the width as needed */
+    width: 20%; /* Adjust the width as needed */
   }
 
 .replyColumn {
-    width: 35%;
+    width: 30%;
 }
-
-.buttonWrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: blue; /* Green background */
-    border: 1px solid black; /* Remove default border */
-    color: white; /* White text */
-    padding: 10px 20px; /* Some padding */
-    text-align: center; /* Centered text */
-    text-decoration: none; /* Remove underline */
-    display: inline-block; /* Get it to display inline */
-    font-size: 16px; /* Increase font size */
-    margin: 10px 2px; /* Some margin */
-    cursor: pointer; /* Pointer/hand icon */
-    border-radius: 12px; /* Rounded corners */
-    transition-duration: 0.4s; /* Smooth transition */
-  }
-  
-  .buttonWrapper:hover {
-    background-color: white; /* White background on hover */
-    color: black; /* Black text on hover */
-    border: 1px solid black; /* Green border on hover */
-  }
