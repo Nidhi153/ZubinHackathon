@@ -1,5 +1,9 @@
 import json
 import numpy as np
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+
+app = FastAPI()
 
 def recommend_events(request_data):
     # Extract skills and events from the request data
@@ -29,26 +33,12 @@ def recommend_events(request_data):
     top_events = sorted(similarities, key=lambda x: x[1], reverse=True)[:3]
     return [{"event-id": event_id, "similarity": similarity} for event_id, similarity in top_events]
 
-# Example usage
-request_data = {
-    "skills": ["pottery", "painting"],
-    "events": [
-        {"event-id": "1", "skills": ["public speaking", "painting", "pottery"]},
-        {"event-id": "2", "skills": ["cooking", "yoga", "dancing"]},
-        {"event-id": "3", "skills": ["painting", "singing", "dancing"]},
-        {"event-id": "4", "skills": ["archery", "pottery", "public speaking"]}
-    ]
-}
+@app.post("/recommend-events")
+async def get_recommended_events(request: Request):
+    request_data = await request.json()
+    response = recommend_events(request_data)
+    return JSONResponse(content=response)
 
-# Read request data from a JSON file
-with open("request.json", "r") as file:
-    request_data = json.load(file)
-
-# Call the recommend_events function
-response = recommend_events(request_data)
-
-# Write the output to a JSON file
-with open("response.json", "w") as file:
-    json.dump(response, file, indent=2)
-
-print("Response saved to response.json")
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
