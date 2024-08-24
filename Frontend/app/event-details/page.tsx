@@ -19,11 +19,10 @@ const EventDetails = () => {
     const [role, setRole] = useState<Roles>('member')
 
     /* Update the role whenever the link refreshes */
-    // No idea how to resolve this warning
     useEffect(() => {
         const role = searchParams.get('role')
-        if (role && ALL_ROLES.includes(role)) {
-            setRole(role)
+        if (role && ALL_ROLES.includes(role as Roles)) {
+            setRole(role as Roles)
             console.log('role is ' + role)
         }
     }, [searchParams])
