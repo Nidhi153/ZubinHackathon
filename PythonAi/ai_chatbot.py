@@ -6,7 +6,26 @@ from huggingface_hub import InferenceClient
 import os
 warnings.filterwarnings("ignore")
 import json
+from dotenv import load_dotenv
 
+
+load_dotenv()
+
+
+HF_TOKEN = os.getenv("HF_TOKEN")
+
+def init_chatbot(API_key:str):
+      API_TOKEN = HF_TOKEN
+      repo_id = "meta-llama/Meta-Llama-3-8B-Instruct"
+        
+      
+      client = InferenceClient(
+            repo_id,
+            token = API_TOKEN,
+            timeout = 120
+        )
+      return client
+    
 class Chatbot():
     def __init__(self):
 
@@ -24,17 +43,11 @@ class Chatbot():
         #Might experiment with embedding_function
         self.collection = db.get_or_create_collection(name=collection_name, embedding_function=chromadb.utils.embedding_functions.DefaultEmbeddingFunction())
 
-    def query(self, prompt:str, show_context:bool=False, context_length:int = 1) -> str:
-
-        API_TOKEN = "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"
-        repo_id = "meta-llama/Meta-Llama-3-8B-Instruct"
-
-        client = InferenceClient(
-            repo_id,
-            token = API_TOKEN,
-            timeout = 120
-        )
-
+  
+    
+    def query(self, prompt:dict, client :str, show_context:bool=False, context_length:int = 1) -> str:
+        
+        prompt = prompt.get("message")
         standalone_prompt = prompt
             
         if self.chat_history != []:
@@ -164,32 +177,6 @@ class Chatbot():
         self.chat_history[phone_number] = []
 
 
-# Example usage
-# json_string = """
-# {
-#   "data": [
-#     {
-#       "User Prompt": "Tell me about the Women’s Empowerment event in Yau Tsim Mong"
-#     }
-#   ]
-# }
-# """
-
-#need to fix the api receiving stuff for this
-# def extract_text_from_json(json_data):
-#     text = []
-
-#     # Extract the title
-#     if "data" in json_data:
-#         for item in json_data["data"]:
-#             if "User Prompt" in item:
-#                 text.append(item["User Prompt"])
-
-#     return " ".join(text)
-
-
-# json_data = json.loads(json_string)
-# extracted_text = extract_text_from_json(json_data)
 
 doc_chunks = ["""
 The Zubin Foundation
@@ -243,14 +230,6 @@ Registration Link: https://www.universityapplicationbootcamp.com
 
 doc_ids = ["0"]
 
-# db = chromadb.PersistentClient(path="./chroma", settings=Settings(), tenant=DEFAULT_TENANT, database=DEFAULT_DATABASE)
-
-# collection_name = "zubin-foundation"
-
-# doc_metadatas=[{"About": "Zubin Foundation"}]
-# collection = db.get_or_create_collection(name=collection_name, embedding_function=chromadb.utils.embedding_functions.DefaultEmbeddingFunction())
-# collection.add(documents=doc_chunks, ids=doc_ids, metadatas=doc_metadatas)
-
 def main():
     chatbot_instance = Chatbot()
 
@@ -262,3 +241,16 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
+    
+    
+    
+    
+
+# db = chromadb.PersistentClient(path="./chroma", settings=Settings(), tenant=DEFAULT_TENANT, database=DEFAULT_DATABASE)
+
+# collection_name = "zubin-foundation"
+
+# doc_metadatas=[{"About": "Zubin Foundation"}]
+# collection = db.get_or_create_collection(name=collection_name, embedding_function=chromadb.utils.embedding_functions.DefaultEmbeddingFunction())
+# collection.add(documents=doc_chunks, ids=doc_ids, metadatas=doc_metadatas)
