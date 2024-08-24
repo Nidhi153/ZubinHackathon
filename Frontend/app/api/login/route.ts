@@ -44,7 +44,7 @@ export async function POST(req: Request) {
       const token = jwt.sign({ userId: result._id }, process.env.JWT_SECRET, {
         expiresIn: "1m",
       });
-      return NextResponse.json({ userId: result._id });
+      return NextResponse.json({ userId: result._id, role: result.role });
     } else {
       return NextResponse.json({
         message: "Invalid password",

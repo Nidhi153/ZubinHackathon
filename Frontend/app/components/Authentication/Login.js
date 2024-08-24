@@ -19,7 +19,7 @@ export default function Signup({ setUserId }) {
 
     const data = await response.json();
     const userId = data.userId;
-
+    const role = data.role;
     if (!userId) {
       const message = data.message;
       if (message) {
@@ -29,7 +29,13 @@ export default function Signup({ setUserId }) {
       }
       return;
     }
-    document.cookie = `userId=${userId}; path=/`;
+    if (!role) {
+      alert("Role not found");
+      return;
+    }
+    console.log(role);
+    document.cookie = `userId=${userId};  path=/`;
+    document.cookie = `role=${role}; path=/`;
     // router.push("/protected");
     router.push("/");
   };
