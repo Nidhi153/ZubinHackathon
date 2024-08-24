@@ -1,0 +1,20 @@
+@import "../../global.module.scss";
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    >input {
+        padding: 16px 20px;
+        background-color: $light;
+        border-radius: 4px;
+    }
+
+    >textarea {
+        height: 150px;
+        padding: 16px 20px;
+        background-color: $light;
+        border-radius: 4px;
+    }
+}

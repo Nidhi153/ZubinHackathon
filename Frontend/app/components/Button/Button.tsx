@@ -4,18 +4,16 @@ interface ButtonProps {
     children: string,
     background?: 'blue' | 'brown' | 'error',
     onClick?: () => void,
+    type?: 'button' | 'submit' | 'reset',
 }
 
-const Button = ({ children, background = 'blue', onClick }: ButtonProps) => {
+const Button = ({ children, background = 'blue', onClick = () => { }, type = 'button' }: ButtonProps) => {
     return (
-        <button onClick={(e) => {
-            if (onClick) {
-                onClick()
-            }
-        }} className={[
-            styles.button,
-            background === 'brown' ? styles.buttonBrown : (background === 'error' ? styles.buttonError : ''),
-        ].join(' ')}>{children}</button>
+        <button onClick={(e) => { onClick() }} type={type}
+            className={[
+                styles.button,
+                background === 'brown' ? styles.buttonBrown : (background === 'error' ? styles.buttonError : ''),
+            ].join(' ')}>{children}</button>
     )
 }
 
