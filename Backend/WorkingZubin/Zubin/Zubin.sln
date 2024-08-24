@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zubin", "Zubin.csproj", "{9EDD2CA0-6C0D-4A05-BAF3-A39D618BFF2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventReminder", "..\EventReminder\EventReminder.csproj", "{82C9AECB-2CD8-4922-85A3-2702CF869AB3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9EDD2CA0-6C0D-4A05-BAF3-A39D618BFF2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EDD2CA0-6C0D-4A05-BAF3-A39D618BFF2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EDD2CA0-6C0D-4A05-BAF3-A39D618BFF2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EDD2CA0-6C0D-4A05-BAF3-A39D618BFF2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82C9AECB-2CD8-4922-85A3-2702CF869AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82C9AECB-2CD8-4922-85A3-2702CF869AB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82C9AECB-2CD8-4922-85A3-2702CF869AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82C9AECB-2CD8-4922-85A3-2702CF869AB3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {477E17C1-53EB-4C70-88E5-E59A04A7D9B1}
+	EndGlobalSection
+EndGlobal
