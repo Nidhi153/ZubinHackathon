@@ -92,6 +92,7 @@ const EventPage = ({setUserId}) => {
     {/* //       </div> */}
     {/* //     ))}
     //   </div> */}
+
     </div>
   );
 };

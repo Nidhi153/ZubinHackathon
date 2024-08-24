@@ -1,19 +1,19 @@
-import Image from 'next/image'
-import userIcon from '../../../assets/userIcon.svg'
-import styles from './AccountButton.module.scss'
-import Link from 'next/link'
+import Image from "next/image";
+import userIcon from "../../../assets/userIcon.svg";
+import styles from "./AccountButton.module.scss";
+import Link from "next/link";
 
 interface AccountButtonProps {
-    username: string,
+  username: string;
 }
 
 const AccountButton = ({ username }: AccountButtonProps) => {
-    return (
-        <Link className={styles.accountButton} href='/account'>
-            <Image src={userIcon} alt='User Icon' />
-            <div>{username}</div>
-        </Link>
-    )
-}
+  return (
+    <Link className={styles.accountButton} href="/account">
+      <Image src={userIcon} alt="User Icon" />
+      <div>{username}</div>
+    </Link>
+  );
+};
 
-export default AccountButton
+export default AccountButton;
