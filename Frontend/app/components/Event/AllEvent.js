@@ -18,6 +18,20 @@ export default function Event() {
     fetchEvents();
   }, []);
 
+  useEffect(() => {
+    let fetchEvents = async () => {
+      const res = await fetch("/api/events");
+      const data = await res.json();
+      console.log(data);
+      if (data) {
+        if (data.events) {
+          setEvents(data.events);
+        }
+      }
+    };
+    fetchEvents();
+  }, []);
+
   return (
     <div>
       <div className="container">

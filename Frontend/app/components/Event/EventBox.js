@@ -1,6 +1,6 @@
 import { Card } from "flowbite-react";
 import "./Event.css";
-import Box from '@mui/material/Box';
+import { Box } from '@chakra-ui/react'
 
 const buttonStyle = {
   backgroundColor: '#F0F0F0',
@@ -12,35 +12,30 @@ const buttonStyle = {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  margin: '10px'
+  margin: '10px',
+  height: '150px', width: '750px',
+  justifyContent: 'space-between',
 };
 
 const titleStyle = {
-  fontSize: '40px'
+  fontSize: '40px',
+  textAlign: 'left'
 };
 
 const dateStyle = {
-  fontSize: '14px'
+  fontSize: '14px',
+  textAlign: 'left'
 };
 
 const arrowStyle = {
   fontSize: '30px'
 };
 
-export default function EventBox({ event }) {
+export default function EventBox({ key, event }) {
   return (
-    <div style={buttonStyle} key={index}>
-    <Box
-      height={100}
-      width={800}
-      my={3}
-      display="flex"
-      alignItems="center"
-      justifyContent="space-between"
-      p={2}
-    >
-      <div>
-        <div className="text-center font-textfont font-bold" style={titleStyle}>
+    <Box style={buttonStyle} className="my-3 p-2 flex justify-between items-center">
+      <div className="my-3 p-2 flex flex-col justify-between"> 
+        <div className="font-textfont font-bold" style={titleStyle}>
           {event.title}
         </div>
         <div style={dateStyle}>
@@ -52,16 +47,5 @@ export default function EventBox({ event }) {
       </div>
       <div style={arrowStyle}>{'>'}</div>
     </Box>
-  </div>
-
-
-    // <div className="event-box">
-    //   <Card>
-    //     <h2>{event.title}</h2>
-    //     <hr />
-    //     <p>{event.description}</p>
-    //     <p>Event date: {event.date}</p>
-    //   </Card>
-    // </div>
   );
 }
