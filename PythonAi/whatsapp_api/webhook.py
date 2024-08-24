@@ -105,9 +105,9 @@ def convert_response_to_json(recipient, message, res) -> json:
     """
 
     return json.dumps({
-        "phone_number": recipient,
+        "phonenumber": recipient,
         "message": message,
-        "keywords": res
+        "categories": res
     })
 
 def send_message(data):

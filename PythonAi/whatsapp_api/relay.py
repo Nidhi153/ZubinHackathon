@@ -22,13 +22,13 @@ PHONE_NUMBER_ID="423268137527656"
 app = FastAPI()
 
 class Broadcast(BaseModel):
-    phone_numbers: list
-    broadcast_message: str
+    phonenumbers: list
+    broadcastmessage: str
 
 @app.post("/broadcast/")
 def relay(item: Broadcast):
-    for phone_num in item.phone_numbers:
-        send_message(get_text_message_input(phone_num, item.broadcast_message))
+    for phone_num in item.phonenumbers:
+        send_message(get_text_message_input(phone_num, item.broadcastmessage))
     return item
 
 def get_text_message_input(recipient, text):
