@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import { Skills } from "./skills";
 import { User } from "./user";
@@ -32,6 +33,7 @@ export interface Waitlist {
   event_id: string;
   signed_up_at: Date; // so we can figure out who moves out the waitlist first
 }
+
 
 // CREATE EVENT : POST /events
 export async function createEvent(event: Event): Promise<Event> {
