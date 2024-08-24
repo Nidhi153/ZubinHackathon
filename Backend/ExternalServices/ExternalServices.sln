@@ -7,17 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zubin.Platform.ApiApp", "..
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalServices", "ExternalServices", "{1D2645B8-9D90-49F5-8E04-04C656173D9A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PythonAi", "Kuju\PythonAi.csproj", "{C63E6A88-99BE-48BF-BE4B-DF8C3DC4E0C3}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MockServer", "MockServer\MockServer.csproj", "{105596DA-32F1-46BC-AF1E-5034D9AEC7F0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zubin.Hosting", "..\Zubin.Hosting\Zubin.Hosting.csproj", "{BF7EAEBE-3AC0-4D29-9F50-7263372E60DD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zubin.ConsoleApp", "..\Zubin.ConsoleApp\Zubin.ConsoleApp.csproj", "{0D724E48-402B-4691-B1B9-04CD3C34B832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zubin.Platform.WebApi2", "..\Zubin.Platform.WebApi2\Zubin.Platform.WebApi2.csproj", "{324F63FD-FC0B-4935-978A-D5D9A69B55BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zubin.Platform.WebApi2", "..\Zubin.Platform.WebApi2\Zubin.Platform.WebApi2.csproj", "{324F63FD-FC0B-4935-978A-D5D9A69B55BA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zubin.Platform.Helper", "..\Zubin.Platform.Ai\Zubin.Platform.Helper.csproj", "{9E85FD63-5F23-4F62-BBA0-6C7A40F3969C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PythonAi", "MockServer\PythonAi\PythonAi.csproj", "{69A2F9A5-0BBB-4E42-9D36-AFAD75CB250E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,6 @@ Global
 		{528C5D92-256B-4F31-A469-9F8821C83B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{528C5D92-256B-4F31-A469-9F8821C83B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{528C5D92-256B-4F31-A469-9F8821C83B9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C63E6A88-99BE-48BF-BE4B-DF8C3DC4E0C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C63E6A88-99BE-48BF-BE4B-DF8C3DC4E0C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C63E6A88-99BE-48BF-BE4B-DF8C3DC4E0C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C63E6A88-99BE-48BF-BE4B-DF8C3DC4E0C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{105596DA-32F1-46BC-AF1E-5034D9AEC7F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{105596DA-32F1-46BC-AF1E-5034D9AEC7F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{105596DA-32F1-46BC-AF1E-5034D9AEC7F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,12 +49,15 @@ Global
 		{9E85FD63-5F23-4F62-BBA0-6C7A40F3969C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E85FD63-5F23-4F62-BBA0-6C7A40F3969C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E85FD63-5F23-4F62-BBA0-6C7A40F3969C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69A2F9A5-0BBB-4E42-9D36-AFAD75CB250E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69A2F9A5-0BBB-4E42-9D36-AFAD75CB250E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69A2F9A5-0BBB-4E42-9D36-AFAD75CB250E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69A2F9A5-0BBB-4E42-9D36-AFAD75CB250E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C63E6A88-99BE-48BF-BE4B-DF8C3DC4E0C3} = {1D2645B8-9D90-49F5-8E04-04C656173D9A}
 		{105596DA-32F1-46BC-AF1E-5034D9AEC7F0} = {1D2645B8-9D90-49F5-8E04-04C656173D9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

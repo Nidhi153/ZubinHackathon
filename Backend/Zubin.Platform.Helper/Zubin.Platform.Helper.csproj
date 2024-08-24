@@ -1,10 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
 
 	<ItemGroup>
@@ -14,7 +13,8 @@
 
 
 	<ItemGroup>
-	  <ProjectReference Include="..\InMemoryDataSource\InMemoryDataSource.csproj" />
+	  <ProjectReference Include="..\ExternalServices\Kuju\PythonAi.csproj" />
+	  <ProjectReference Include="..\Zubin.Platform.WebApi2\Zubin.Platform.WebApi2.csproj" />
 	</ItemGroup>
 
 </Project>
