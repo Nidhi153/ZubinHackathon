@@ -2,8 +2,8 @@ import { Schema, model, models } from "mongoose";
 //extending User model: Volunteer, Participant, Admin
 const whatsappResponseSchema = new Schema({
   message: { type: String, required: true },
-  contacts: { type: Number, required: true },
-  tags: { type: [String], required: true },
+  phonenumber: { type: Number, required: true },
+  categories: { type: [String], required: true },
   // Add other fields as necessary
 });
 

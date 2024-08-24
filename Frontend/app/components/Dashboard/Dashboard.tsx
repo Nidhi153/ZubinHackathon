@@ -2,6 +2,7 @@
 import CreateEvent from "./CreateEvent";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import CentralisedMessages from "./CentralisedMessages";
 export default function Dashboard() {
   const [userId, setUserId] = useState("");
   useEffect(() => {
@@ -12,6 +13,7 @@ export default function Dashboard() {
   return (
     <div>
       <CreateEvent userId={userId}></CreateEvent>
+      <CentralisedMessages></CentralisedMessages>
     </div>
   );
 }
