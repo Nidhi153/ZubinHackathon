@@ -29,10 +29,6 @@ export default function Feedback({ userId }) {
     console.log(data);
   };
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     alert(`Message submitted: ${message}`);
-    // };
   return (
 
     <div style={{ padding: '20px' }}>
