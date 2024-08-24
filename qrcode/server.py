@@ -74,34 +74,43 @@ def get_current_data():
 async def upload_qrcode(input: str):
     # Generate QR code
     # img = qrcode.make(input, image_factory=qrcode.image.svg.SvgImage)
-    img = qrcode.make(input)
-    
-    # Save the QR code to a file
-    img_file_path = "/tmp/qrcode.png"
-    with open(img_file_path, "wb") as f:
-        img.save(f)
 
-    # Prepare the file for upload
-    with open(img_file_path, "rb") as f:
-        files = {
-            'file': ("qrcode.svg", f, "image/png")
-        }
-        data = {
-            'type': "image/png",
-            'messaging_product': 'whatsapp'
-        }
-        headers = {
-            'Authorization': 'Bearer EABycHlgN6cgBOxh3AL5VnwML8PxXuS6821KKoUqR2ZAvJ77UwpMZBVGGhROZBvR4obtDuouZBB5iBGEKkHxnqTfZBqtyj8N7QfWy1yk08GgevnBfCW62v2ZAzU6lPZCkEg12dy0ZASZCXGKQnKZCLSb5HETVmR7OIcBZBcMlO6SgZCMvdYkvlLws29p5JuLBs87nWKnIrfhGcJ5XhBVzOQjJV0IZD'
-        }
-        url = 'https://graph.facebook.com/v20.0/423268137527656/media'
+    try:
+        img = qrcode.make(input)
+        # Save the QR code to a file
+        img_file_path = "/tmp/qrcode.png"
+        with open(img_file_path, "wb") as f:
+            img.save(f)
+        
+        # Prepare the file for upload
+        with open(img_file_path, "rb") as f:
+            files = {
+                'file': ("qrcode.png", f, "image/png")
+            }
+            data = {
+                'type': "image/png",
+                'messaging_product': 'whatsapp'
+            }
+            headers = {
+                'Authorization': 'Bearer EABycHlgN6cgBOxh3AL5VnwML8PxXuS6821KKoUqR2ZAvJ77UwpMZBVGGhROZBvR4obtDuouZBB5iBGEKkHxnqTfZBqtyj8N7QfWy1yk08GgevnBfCW62v2ZAzU6lPZCkEg12dy0ZASZCXGKQnKZCLSb5HETVmR7OIcBZBcMlO6SgZCMvdYkvlLws29p5JuLBs87nWKnIrfhGcJ5XhBVzOQjJV0IZD'
+            }
+            url = 'https://graph.facebook.com/v20.0/423268137527656/media'
 
-        # Send the request
-        response = requests.post(url, headers=headers, files=files, data=data)
+            # Send the request
+            response = requests.post(url, headers=headers, files=files, data=data)
 
-    return {
-        "status_code": response.status_code,
-        "response": response.json()
-    }
+        return {
+            "status": response.status_code,
+            "response": response.json()
+        }
+
+    except Exception as e:
+        return {
+            "status": 500,
+            "response": str(e)
+        }
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="localhost", port=2000)
