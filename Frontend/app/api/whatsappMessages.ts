@@ -17,10 +17,10 @@ export interface WhatsappResponse {
 }
 
 // CREATE BROADCAST : POST /broadcasts
-export async function createWhatsappBroadcast(broadcast: WhatsappBroadcast): Promise<WhatsappResponse> {
+export async function createWhatsappBroadcast(broadcast: WhatsappBroadcast): Promise<number> {
     try {
         const response: AxiosResponse<WhatsappResponse> = await axios.post('/broadcasts', broadcast);
-        return response.data;
+        return response.status;
     } catch (error) {
         console.error('Error creating Whatsapp broadcast:', error);
         throw error;
