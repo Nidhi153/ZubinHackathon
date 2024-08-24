@@ -37,11 +37,12 @@ export interface Admin extends User {
     // any extra fields we want to store for admins
 }
 
+const baseUrl = '/internal/users';
 
 // CREATE USER : POST /users
 export async function createUser(user: User): Promise<User> {
   try {
-    const response: AxiosResponse<User> = await axios.post('/users', user);
+    const response: AxiosResponse<User> = await axios.post(baseUrl, user);
     return response.data;
   } catch (error) {
     console.error('Error creating user:', error);
@@ -52,7 +53,7 @@ export async function createUser(user: User): Promise<User> {
 // GET ALL USERS : GET /users
 export async function getAllUsers(): Promise<User[]> {
   try {
-    const response: AxiosResponse<User[]> = await axios.get('/users');
+    const response: AxiosResponse<User[]> = await axios.get(baseUrl);
     return response.data;
   } catch (error) {
     console.error('Error getting users:', error);
@@ -63,7 +64,7 @@ export async function getAllUsers(): Promise<User[]> {
 // READ USER : GET /users/:id
 export async function getUser(id: string): Promise<User> {
   try {
-    const response: AxiosResponse<User> = await axios.get(`/users/${id}`);
+    const response: AxiosResponse<User> = await axios.get(`${baseUrl}/${id}`);
     return response.data;
   } catch (error) {
     console.error('Error getting user:', error);
@@ -75,7 +76,7 @@ export async function getUser(id: string): Promise<User> {
 // UPDATE USER : PATCH /users/:id (in the body, send the fields to update)
 export async function updateUser(id: string, updatedUser: Partial<User>): Promise<User> {
   try {
-    const response: AxiosResponse<User> = await axios.patch(`/users/${id}`, updatedUser);
+    const response: AxiosResponse<User> = await axios.patch(`${baseUrl}/${id}`, updatedUser);
     return response.data;
   } catch (error) {
     console.error('Error updating user:', error);
@@ -96,7 +97,7 @@ export async function deleteUser(id: string): Promise<void> {
 // CREATE VOLUNTEER : POST /volunteers
 export async function createVolunteer(volunteer: Volunteer): Promise<Volunteer> {
   try {
-    const response: AxiosResponse<Volunteer> = await axios.post('/volunteers', volunteer);
+    const response: AxiosResponse<Volunteer> = await axios.post(`${baseUrl}/volunteers`, volunteer);
     return response.data;
   } catch (error) {
     console.error('Error creating volunteer:', error);
@@ -107,7 +108,7 @@ export async function createVolunteer(volunteer: Volunteer): Promise<Volunteer> 
 // GET ALL VOLUNTEERS : GET /volunteers
 export async function getAllVolunteers(): Promise<Volunteer[]> {
   try {
-    const response: AxiosResponse<Volunteer[]> = await axios.get('/volunteers');
+    const response: AxiosResponse<Volunteer[]> = await axios.get(`${baseUrl}/volunteers`);
     return response.data;
   } catch (error) {
     console.error('Error getting volunteers:', error);
@@ -118,7 +119,7 @@ export async function getAllVolunteers(): Promise<Volunteer[]> {
 // READ VOLUNTEER : GET /volunteers/:id
 export async function getVolunteer(id: string): Promise<Volunteer> {
   try {
-    const response: AxiosResponse<Volunteer> = await axios.get(`/volunteers/${id}`);
+    const response: AxiosResponse<Volunteer> = await axios.get(`${baseUrl}/volunteers/${id}`);
     return response.data;
   } catch (error) {
     console.error('Error getting volunteer:', error);
@@ -129,7 +130,7 @@ export async function getVolunteer(id: string): Promise<Volunteer> {
 // UPDATE VOLUNTEER : PATCH /volunteers/:id
 export async function updateVolunteer(id: string, updatedVolunteer: Partial<Volunteer>): Promise<Volunteer> {
   try {
-    const response: AxiosResponse<Volunteer> = await axios.patch(`/volunteers/${id}`, updatedVolunteer);
+    const response: AxiosResponse<Volunteer> = await axios.patch(`${baseUrl}/volunteers/${id}`, updatedVolunteer);
     return response.data;
   } catch (error) {
     console.error('Error updating volunteer:', error);
@@ -140,7 +141,7 @@ export async function updateVolunteer(id: string, updatedVolunteer: Partial<Volu
 // DELETE VOLUNTEER : DELETE /volunteers/:id
 export async function deleteVolunteer(id: string): Promise<void> {
   try {
-    await axios.delete(`/volunteers/${id}`);
+    await axios.delete(`${baseUrl}/volunteers/${id}`);
   } catch (error) {
     console.error('Error deleting volunteer:', error);
     throw error;
@@ -150,7 +151,7 @@ export async function deleteVolunteer(id: string): Promise<void> {
 // CREATE PARTICIPANT : POST /participants
 export async function createParticipant(participant: Participant): Promise<Participant> {
   try {
-    const response: AxiosResponse<Participant> = await axios.post('/participants', participant);
+    const response: AxiosResponse<Participant> = await axios.post('${baseUrl}/participants', participant);
     return response.data;
   } catch (error) {
     console.error('Error creating participant:', error);
@@ -161,7 +162,7 @@ export async function createParticipant(participant: Participant): Promise<Parti
 // GET ALL PARTICIPANTS : GET /participants
 export async function getAllParticipants(): Promise<Participant[]> {
   try {
-    const response: AxiosResponse<Participant[]> = await axios.get('/participants');
+    const response: AxiosResponse<Participant[]> = await axios.get('${baseUrl}/participants');
     return response.data;
   } catch (error) {
     console.error('Error getting participants:', error);
@@ -172,7 +173,7 @@ export async function getAllParticipants(): Promise<Participant[]> {
 // READ PARTICIPANT : GET /participants/:id
 export async function getParticipant(id: string): Promise<Participant> {
   try {
-    const response: AxiosResponse<Participant> = await axios.get(`/participants/${id}`);
+    const response: AxiosResponse<Participant> = await axios.get(`${baseUrl}/participants/${id}`);
     return response.data;
   } catch (error) {
     console.error('Error getting participant:', error);
@@ -183,7 +184,7 @@ export async function getParticipant(id: string): Promise<Participant> {
 // UPDATE PARTICIPANT : PATCH /participants/:id
 export async function updateParticipant(id: string, updatedParticipant: Partial<Participant>): Promise<Participant> {
   try {
-    const response: AxiosResponse<Participant> = await axios.patch(`/participants/${id}`, updatedParticipant);
+    const response: AxiosResponse<Participant> = await axios.patch(`${baseUrl}/participants/${id}`, updatedParticipant);
     return response.data;
   } catch (error) {
     console.error('Error updating participant:', error);
@@ -194,7 +195,7 @@ export async function updateParticipant(id: string, updatedParticipant: Partial<
 // DELETE PARTICIPANT : DELETE /participants/:id
 export async function deleteParticipant(id: string): Promise<void> {
   try {
-    await axios.delete(`/participants/${id}`);
+    await axios.delete(`${baseUrl}/participants/${id}`);
   } catch (error) {
     console.error('Error deleting participant:', error);
     throw error;
@@ -204,7 +205,7 @@ export async function deleteParticipant(id: string): Promise<void> {
 // CREATE ADMIN : POST /admins
 export async function createAdmin(admin: Admin): Promise<Admin> {
   try {
-    const response: AxiosResponse<Admin> = await axios.post('/admins', admin);
+    const response: AxiosResponse<Admin> = await axios.post(`${baseUrl}/admins`, admin);
     return response.data;
   } catch (error) {
     console.error('Error creating admin:', error);
@@ -215,7 +216,7 @@ export async function createAdmin(admin: Admin): Promise<Admin> {
 // GET ALL ADMINS : GET /admins
 export async function getAllAdmins(): Promise<Admin[]> {
   try {
-    const response: AxiosResponse<Admin[]> = await axios.get('/admins');
+    const response: AxiosResponse<Admin[]> = await axios.get(`${baseUrl}/admins`);
     return response.data;
   } catch (error) {
     console.error('Error getting admins:', error);
@@ -226,7 +227,7 @@ export async function getAllAdmins(): Promise<Admin[]> {
 // READ ADMIN : GET /admins/:id
 export async function getAdmin(id: string): Promise<Admin> {
   try {
-    const response: AxiosResponse<Admin> = await axios.get(`/admins/${id}`);
+    const response: AxiosResponse<Admin> = await axios.get(`${baseUrl}/admins/${id}`);
     return response.data;
   } catch (error) {
     console.error('Error getting admin:', error);
@@ -237,7 +238,7 @@ export async function getAdmin(id: string): Promise<Admin> {
 // UPDATE ADMIN : PATCH /admins/:id
 export async function updateAdmin(id: string, updatedAdmin: Partial<Admin>): Promise<Admin> {
   try {
-    const response: AxiosResponse<Admin> = await axios.patch(`/admins/${id}`, updatedAdmin);
+    const response: AxiosResponse<Admin> = await axios.patch(`${baseUrl}/admins/${id}`, updatedAdmin);
     return response.data;
   } catch (error) {
     console.error('Error updating admin:', error);
@@ -248,7 +249,7 @@ export async function updateAdmin(id: string, updatedAdmin: Partial<Admin>): Pro
 // DELETE ADMIN : DELETE /admins/:id
 export async function deleteAdmin(id: string): Promise<void> {
   try {
-    await axios.delete(`/admins/${id}`);
+    await axios.delete(`${baseUrl}/admins/${id}`);
   } catch (error) {
     console.error('Error deleting admin:', error);
     throw error;

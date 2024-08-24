@@ -1,10 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Authentication from "./components/Authentication";
-// import Event from "./components/Event";
-import Dashboard from "./components/Dashboard";
-import Navbar from "./components/Navbar/Navbar";
 import Cookies from "js-cookie";
 import Event from "./components/Event/AllEvent";
 
