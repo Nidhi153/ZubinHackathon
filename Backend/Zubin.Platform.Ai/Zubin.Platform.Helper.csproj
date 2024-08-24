@@ -11,4 +11,10 @@
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
 	</ItemGroup>
 
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ExternalServices\Kuju\PythonAi.csproj" />
+	  <ProjectReference Include="..\Zubin.Platform.WebApi2\Zubin.Platform.WebApi2.csproj" />
+	</ItemGroup>
+
 </Project>

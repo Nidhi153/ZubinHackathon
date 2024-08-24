@@ -1,4 +1,4 @@
-﻿namespace Zubin.Platform.WebApi.PythonAiApi.Models
+﻿namespace Zubin.Platform.WebApi2.PythonAiApi.Models
 {
     public class SendBroadcastResponse
     {

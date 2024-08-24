@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Zubin.Platform.WebApi.Nextjs.Models;
+using Zubin.Platform.WebApi2.Nextjs.Models;
 
-namespace Zubin.Platform.WebApi.Nextjs.Controllers
+namespace Zubin.Platform.WebApi2.Nextjs.Controllers
 {
     [ApiController]
     [Route("/zubin-frontend")]

@@ -16,22 +16,17 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using Microsoft.AspNetCore.SignalR;
 
-namespace Zubin.Platform.WebApi.PythonAiApi.Models
+namespace Zubin.Platform.WebApi2.PythonAiApi.Models
 {
-    /// <summary>
-    /// 
-    /// </summary>
     [DataContract]
-    public class SendToChatbotRequest
+    public class GetRecommendationRequest
     {
         [DataMember]
         [Required]
-        List<string> Skills { get; set; }
+        public List<string> Skills { get; set; }
         [DataMember]
         [Required]
-        List<Event> Events { get; set; }
+        public List<Event> Events { get; set; }
     }
 }

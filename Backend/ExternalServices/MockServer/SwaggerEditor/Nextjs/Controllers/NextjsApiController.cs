@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MockServer.SwaggerEditor.Nextjs.Models;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace MockServer.SwaggerEditor.Nextjs.Controllers
 {
@@ -9,9 +10,11 @@ namespace MockServer.SwaggerEditor.Nextjs.Controllers
     {
         [HttpGet]
         [Route("nextdayevents/")]
-        public GetNextDayEventsResponse GetNextDayEvents()
+        [SwaggerOperation("GetNextDayEvents")]
+        [SwaggerResponse(statusCode: 200, type: typeof(GetNextDayEventsResponse), description: "Success")]
+        public virtual IActionResult GetNextDayEvents()
         {
-            return new ()
+            GetNextDayEventsResponse response =  new ()
             {
                 Events = new()
                 {
@@ -19,14 +22,17 @@ namespace MockServer.SwaggerEditor.Nextjs.Controllers
                     {new Event(){ Phonenumbers=new(){"+85287654321"}, Description = "event 2" } },
                 }
             };
+            return new ObjectResult(response);
         }
 
         [HttpPost]
         [Route("whatsapp/question")]
-        public object InsertQuestion(InsertQuestionRequest body)
+        [SwaggerOperation("InserQuestion")]
+        [SwaggerResponse(statusCode: 200, type: typeof(InserQuestionResponse), description: "Success")]
+        public virtual IActionResult InsertQuestion(InsertQuestionRequest body)
         {
             var request = body;
-            return request;
+            return new ObjectResult("hi");
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Controllers;
 using System.Reflection;
 
-namespace ExternalServicesDoc
+namespace MockServer
 {
     public class IgnoreIoSwaggerControllerFeatureProvider : ControllerFeatureProvider
     {

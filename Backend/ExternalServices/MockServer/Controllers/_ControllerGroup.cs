@@ -1,9 +1,7 @@
 ﻿#pragma warning disable 1591 // Disable "CS1591 Missing XML comment for publicly visible type or member ..."
 using Microsoft.AspNetCore.Mvc;
 using MockServer.SwaggerEditor.Nextjs.Controllers;
-using MockServer.SwaggerEditor.PythonAi.Models;
-using MockServer.SwaggerEditor.PythonAi.ModelsForTesting;
-using MockServer.SwaggerEditor.PythonApi.Controllers;
+using MockServer.SwaggerEditor.PythonAiApi.Controllers;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.Metrics;

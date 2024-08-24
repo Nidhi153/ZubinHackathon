@@ -1,4 +1,6 @@
-﻿namespace Zubin.Platform.WebApi.Nextjs.Models
+﻿using System.Collections.Generic;
+
+namespace Zubin.Platform.WebApi2.Nextjs.Models
 {
     public class GetNextDayEventsResponse
     {
