@@ -8,15 +8,18 @@ import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
 const Navbar = () => {
   const [userId, setUserId] = useState(null);
-  const routes = [
-    { route: "/", name: "Home" },
-    { route: "/dashboard", name: "Dashboard" },
-  ];
+  const [role, setRole] = useState(null);
+  const routes = [{ route: "/", name: "Home" }];
   useEffect(() => {
     const userId = Cookies.get("userId");
-    console.log("userid", userId);
-    setUserId(userId);
-  });
+    if (userId) {
+      console.log("userid", userId);
+      setUserId(userId);
+    }
+    const role = Cookies.get("role");
+    console.log("role", role);
+    setRole(role);
+  }, []);
   return (
     <div className={styles.navbar}>
       <div className={styles.wrapper}>
@@ -28,6 +31,11 @@ const Navbar = () => {
               <a href={route.route}>{route.name} </a>
             </Tab>
           ))}
+          {role && role == "admin" && (
+            <Tab>
+              <a href="/dashboard">Dashboard </a>
+            </Tab>
+          )}
           {userId ? (
             <AccountButton username="Username" />
           ) : (

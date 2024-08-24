@@ -8,7 +8,6 @@ export default function Event() {
     let fetchEvents = async () => {
       const res = await fetch("/api/events/allEvents");
       const data = await res.json();
-      console.log(data);
       if (data) {
         if (data.events) {
           setEvents(data.events);
