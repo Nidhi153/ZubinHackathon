@@ -1,8 +1,8 @@
 import { MongoClient } from "mongodb";
 import { NextResponse } from "next/server";
-import User from "../../models/User";
-import Event from "../../models/Event";
-import connect from "../../lib/database";
+import User from "../../../models/User";
+import Event from "../../../models/Event";
+import connect from "../../../lib/database";
 export async function POST(req: Request) {
   console.log("create event post request called");
   const data = await req.json();
@@ -36,13 +36,16 @@ export async function POST(req: Request) {
   data.start_datetime = startDate;
   data.end_datetime = endDate;
   const newEvent = await Event.create(data);
+  console.log("newEvent", newEvent);
   if (!newEvent) {
     return NextResponse.json({
       message: "Error creating event",
+      status: 404,
     });
   }
 
   return NextResponse.json({
     message: "Event created successfully",
+    status: 200,
   });
 }
