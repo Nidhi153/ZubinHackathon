@@ -59,6 +59,32 @@ export async function POST(req: Request) {
       "Password same as encrpytion:",
       comparePassword(password, data.password)
     );
+
+    const response = await fetch(
+      `http://localhost:${
+        process.env.PY_PORT
+      }/upload-qrcode?input=${encodeURIComponent(data.email)}`,
+      {
+        method: "POST",
+      }
+    );
+
+    if (!response.status === 200) {
+      return NextResponse.json({
+        message: "Error creating user media id",
+        status: 404,
+      });
+    }
+    const res = await response.json();
+    console.log(res); // Use or log the media_id to avoid the unused variable warning
+    if (!res) {
+      return NextResponse.json({
+        message: "Error creating user media id",
+        status: 404,
+      });
+    }
+
+    data.media_id = res.response.id;
     const user = await User.create(data);
     return NextResponse.json({
       message: "User created successfully",
