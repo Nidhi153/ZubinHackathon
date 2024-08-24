@@ -14,7 +14,7 @@ export interface UseSkillHookResponse {
     remove: (id: string) => Promise<unknown>;
 }
 
-const baseUrl = '/api/skills';
+const baseUrl = '/internal/skills';
 
 export const useSkillHook = (): UseSkillHookResponse => {
 

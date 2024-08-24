@@ -35,97 +35,99 @@ export interface Waitlist {
 }
 
 
+const baseUrl = '/internal/events';
+
 // CREATE EVENT : POST /events
 export async function createEvent(event: Event): Promise<Event> {
-  const response = await axios.post('/events', event);
+  const response = await axios.post(baseUrl, event);
   return response.data;
 }
 
 // GET ALL EVENTS : GET /events
 export async function getAllEvents(): Promise<Event[]> {
-  const response = await axios.get('/events');
+  const response = await axios.get(baseUrl);
   return response.data;
 }
 
 // READ EVENT : GET /events/:id
 export async function getEvent(id: string): Promise<Event> {
-  const response = await axios.get(`/events/${id}`);
+  const response = await axios.get(`${baseUrl}/${id}`);
   return response.data;
 }
 
 // UPDATE EVENT : PATCH /events/:id (in the body, send the fields to update)
 export async function updateEvent(id: string, updatedEvent: Partial<Event>): Promise<Event> {
-  const response = await axios.patch(`/events/${id}`, updatedEvent);
+  const response = await axios.patch(`/${baseUrl}/${id}`, updatedEvent);
   return response.data;
 }
 
 // DELETE EVENT : DELETE /events/:id
 export async function deleteEvent(id: string): Promise<void> {
-  await axios.delete(`/events/${id}`);
+  await axios.delete(`/${baseUrl}/${id}`);
 }
 
 // CREATE REGISTRATION : POST /registrations (in the body, send the user_id and event_id)
 export async function createRegistration(registration: Omit<Registration, 'registration_id' | 'created_at'>): Promise<Registration> {
-  const response = await axios.post('/registrations', registration);
+  const response = await axios.post(`${baseUrl}/registrations`, registration);
   return response.data;
 }
 
 // READ REGISTRATION : GET /registrations/:id
 export async function getRegistration(id: string): Promise<Registration> {
-  const response = await axios.get(`/registrations/${id}`);
+  const response = await axios.get(`${baseUrl}/registrations/${id}`);
   return response.data;
 }
 
 // READ REGISTRATIONS FOR EVENT : GET /registrations?event_id=:id
 export async function getRegistrationsForEvent(eventId: string): Promise<Registration[]> {
-  const response = await axios.get(`/registrations?event_id=${eventId}`);
+  const response = await axios.get(`${baseUrl}/registrations?event_id=${eventId}`);
   return response.data;
 }
 
 // READ REGISTRATIONS FOR USER : GET /registrations?user_id=:id
 export async function getRegistrationsForUser(userId: string): Promise<Registration[]> {
-  const response = await axios.get(`/registrations?user_id=${userId}`);
+  const response = await axios.get(`${baseUrl}/registrations?user_id=${userId}`);
   return response.data;
 }
 
 // UPDATE REGISTRATION : PATCH /registrations/:id (in the body, send the fields to update)
 export async function updateRegistration(id: string, updatedRegistration: Partial<Registration>): Promise<Registration> {
-  const response = await axios.patch(`/registrations/${id}`, updatedRegistration);
+  const response = await axios.patch(`${baseUrl}/registrations/${id}`, updatedRegistration);
   return response.data;
 }
 
 // DELETE REGISTRATION : DELETE /registrations/:id
 export async function deleteRegistration(id: string): Promise<void> {
-  await axios.delete(`/registrations/${id}`);
+  await axios.delete(`${baseUrl}/registrations/${id}`);
 }
 
 // CREATE WAITLIST : POST /waitlist (in the body, send the user_id and event_id)
 export async function createWaitlist(waitlist: Omit<Waitlist, 'signed_up_at'>): Promise<Waitlist> {
-  const response = await axios.post('/waitlist', waitlist);
+  const response = await axios.post('${baseUrl}/waitlist', waitlist);
   return response.data;
 }
 
 // READ WAITLIST : GET /waitlist/:id
 export async function getWaitlist(id: string): Promise<Waitlist> {
-  const response = await axios.get(`/waitlist/${id}`);
+  const response = await axios.get(`${baseUrl}/waitlist/${id}`);
   return response.data;
 }
 
 // READ WAITLIST FOR EVENT : GET /waitlist?event_id=:id
 export async function getWaitlistForEvent(eventId: string): Promise<Waitlist[]> {
-  const response = await axios.get(`/waitlist?event_id=${eventId}`);
+  const response = await axios.get(`${baseUrl}/waitlist?event_id=${eventId}`);
   return response.data;
 }
 
 // READ WAITLIST FOR USER : GET /waitlist?user_id=:id
 export async function getWaitlistForUser(userId: string): Promise<Waitlist[]> {
-  const response = await axios.get(`/waitlist?user_id=${userId}`);
+  const response = await axios.get(`${baseUrl}/waitlist?user_id=${userId}`);
   return response.data;
 }
 
 // UPDATE WAITLIST : PATCH /waitlist/:id (in the body, send the fields to update)
 export async function updateWaitlist(id: string, updatedWaitlist: Partial<Waitlist>): Promise<Waitlist> {
-  const response = await axios.patch(`/waitlist/${id}`, updatedWaitlist);
+  const response = await axios.patch(`${baseUrl}/waitlist/${id}`, updatedWaitlist);
   return response.data;
 }
 
