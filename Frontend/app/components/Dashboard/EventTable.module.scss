@@ -1,0 +1,70 @@
+@import "../../global.module.scss";
+
+.messageCell {
+    word-wrap: break-word;
+    white-space: pre-wrap; /* This ensures that the text wraps and preserves whitespace */
+  }
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 60px 138px;
+}
+
+.heading {
+    font-size: $page-heading-font-size;
+    font-weight: $page-heading-font-weight;
+}
+
+.table {
+    border: 1px solid $gray;
+    padding: 20px;
+    border-radius: 20px;
+    table-layout: fixed; 
+    width: 100%; 
+}
+
+.indexColumn {
+    width: 10%; /* Adjust the width as needed */
+  }
+  
+.messageColumn {
+    width: 25%; /* Adjust the width as needed */
+  }
+  
+.phoneColumn {
+    width: 15%; /* Adjust the width as needed */
+  }
+  
+.tagColumn {
+    width: 15%; /* Adjust the width as needed */
+  }
+
+.replyColumn {
+    width: 35%;
+}
+
+.buttonWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: blue; /* Green background */
+    border: 1px solid black; /* Remove default border */
+    color: white; /* White text */
+    padding: 10px 20px; /* Some padding */
+    text-align: center; /* Centered text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Get it to display inline */
+    font-size: 16px; /* Increase font size */
+    margin: 10px 2px; /* Some margin */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 12px; /* Rounded corners */
+    transition-duration: 0.4s; /* Smooth transition */
+  }
+  
+  .buttonWrapper:hover {
+    background-color: white; /* White background on hover */
+    color: black; /* Black text on hover */
+    border: 1px solid black; /* Green border on hover */
+  }
