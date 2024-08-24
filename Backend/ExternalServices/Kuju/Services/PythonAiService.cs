@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using SSendMessageRequest = PythonAi.Models.SendMessageRequest;
 using SSendMessageResponse = PythonAi.Models.SendMessageResponse;
+using PythonAi.Models;
 
 namespace PythonAi.Services
 {
@@ -27,21 +28,21 @@ namespace PythonAi.Services
             _pythonAiApiClient = pythonAiApiClient;
         }
       
-        public async Task<SSendMessageResponse> SendMessageAsync(string userId, string message)
-        {
-            var request = new SendMessageRequest()
-            {
-                UserId = userId,
-                Message = message,
-            };
+        //public async Task<SSendMessageResponse> SendMessageAsync(string userId, string message)
+        //{
+        //    var request = new SendMessageRequest()
+        //    {
+        //        UserId = userId,
+        //        Message = message,
+        //    };
             
-            var response = await _pythonAiApiClient.SendMessageAsync(request);
+        //    var response = await _pythonAiApiClient.SendMessageAsync(request);
 
-            return new SSendMessageResponse()
-            {
-                Message = response.Message,
-            };
-        }
+        //    return new SSendMessageResponse()
+        //    {
+        //        Message = response.Message,
+        //    };
+        //}
 
 
     }

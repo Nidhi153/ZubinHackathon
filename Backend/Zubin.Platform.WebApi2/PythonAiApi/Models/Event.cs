@@ -1,4 +1,7 @@
-﻿namespace Zubin.Platform.WebApi.PythonAiApi.Models
+﻿
+using System.Collections.Generic;
+
+namespace Zubin.Platform.WebApi2.PythonAiApi.Models
 {
     public class Event
     {

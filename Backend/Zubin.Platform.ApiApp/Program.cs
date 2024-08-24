@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using PythonAi.Services;
-using Zubin.Platform.Ai.PythonAi;
-using Zubin.Platform.Ai;
 
 namespace Zubin.Platform.ApiApp
 {
@@ -22,8 +20,6 @@ namespace Zubin.Platform.ApiApp
                 client.BaseAddress = new Uri(uri);
             });
             builder.Services.AddScoped<PythonAiService>();
-            builder.Services.AddScoped<IAiService, AiService>();
-            builder.Services.AddScoped<AiManager>();
 
 
             // Add services to the container.

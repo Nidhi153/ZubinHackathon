@@ -17,13 +17,21 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.SignalR;
 
-namespace Zubin.Platform.WebApi.PythonAiApi.Models
+namespace MockServer.SwaggerEditor.PythonAiApi.Models
 {
     /// <summary>
     /// 
-    public class SendToChatbotResponse
+    /// </summary>
+    [DataContract]
+    public class GetRecommendationRequest
     {
-        public List<Event> Events { get; set; }
+        [DataMember]
+        [Required]
+        List<string> Skills { get; set; }
+        [DataMember]
+        [Required]
+        List<Event> Events { get; set; }
     }
 }

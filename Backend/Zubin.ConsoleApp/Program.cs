@@ -27,7 +27,7 @@ namespace Zubin.ConsoleApp
 
                 services.Configure<AppOptions>(context.Configuration, c => c.BindNonPublicProperties = true);
                 services.AddSingleton<PythonAiService>();
-                services.AddHostedService<PythonAiWorker>();
+                //services.AddHostedService<PythonAiWorker>();
 
             });
 

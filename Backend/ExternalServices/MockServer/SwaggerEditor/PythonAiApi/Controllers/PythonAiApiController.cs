@@ -14,13 +14,11 @@ using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using IO.Swagger.Attributes;
 
 using Microsoft.AspNetCore.Authorization;
-using MockServer.SwaggerEditor.PythonAi.Models;
 using MockServer.SwaggerEditor.PythonAiApi.Models;
 
-namespace MockServer.SwaggerEditor.PythonApi.Controllers
+namespace MockServer.SwaggerEditor.PythonAiApi.Controllers
 {
     /// <summary>
     /// 
@@ -36,12 +34,11 @@ namespace MockServer.SwaggerEditor.PythonApi.Controllers
         /// <response code="200">Success</response>
         [HttpPost]
         [Route("recommendation")]
-        [ValidateModelState]
-        [SwaggerOperation("sendToChatbot")]
-        [SwaggerResponse(statusCode: 200, type: typeof(SendToChatbotResponse), description: "Success")]
-        public virtual IActionResult SendToChatbot([FromBody] SendToChatbotRequest body)
+        [SwaggerOperation("GetRecommendation")]
+        [SwaggerResponse(statusCode: 200, type: typeof(GetRecommendationResponse), description: "Success")]
+        public virtual IActionResult GetRecommendation([FromBody] GetRecommendationRequest body)
         {
-            return new ObjectResult(new SendToChatbotResponse()
+            return new ObjectResult(new GetRecommendationResponse()
             {
                 Events = new List<Event>()
                 {
@@ -61,13 +58,25 @@ namespace MockServer.SwaggerEditor.PythonApi.Controllers
 
         [HttpPost]
         [Route("whatsapp/broadcast")]
-        [ValidateModelState]
         [SwaggerOperation("sendBroadcast")]
         [SwaggerResponse(statusCode: 200, type: typeof(SendBroadcastResponse), description: "Success")]
-        public virtual IActionResult SendBroadcast([FromBody]  SendBroadcastRequest body)
+        public virtual IActionResult SendBroadcast([FromBody] SendBroadcastRequest body)
         {
             return new ObjectResult(new SendBroadcastResponse()
-            { 
+            {
+            });
+        }
+
+        [HttpPost]
+        [Route("chatbot")]
+        [SwaggerOperation("sendToChatbot")]
+        [SwaggerResponse(statusCode: 200, type: typeof(SendToChatbotResponse), description: "Success")]
+        public virtual IActionResult SendToChatbot([FromBody] SendToChatbotRequest body)
+        {
+            return new ObjectResult(new SendToChatbotResponse()
+            {
+                Title = "FAQ",
+                Text = "I think you are right"
             });
         }
     }

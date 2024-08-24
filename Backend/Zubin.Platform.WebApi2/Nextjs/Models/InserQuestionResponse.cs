@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zubin.Platform.Ai.Models
+namespace Zubin.Platform.WebApi2.Nextjs.Models
 {
-    public class SendMessageResponse
+    public class InserQuestionResponse
     {
-        public string Message { get; set; }
+        public string Info { get; set; }
     }
 }

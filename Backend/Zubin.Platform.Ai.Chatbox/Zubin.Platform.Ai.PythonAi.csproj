@@ -7,7 +7,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\ExternalServices\Kuju\PythonAi.csproj" />
-	  <ProjectReference Include="..\Zubin.Platform.Ai\Zubin.Platform.Ai.csproj" />
 	</ItemGroup>
 
 </Project>

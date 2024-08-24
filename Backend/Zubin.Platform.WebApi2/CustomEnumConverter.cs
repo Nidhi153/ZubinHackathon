@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Zubin.Platform.WebApi
+namespace Zubin.Platform.WebApi2
 {
     public class CustomEnumConverter<T> : TypeConverter
     {
