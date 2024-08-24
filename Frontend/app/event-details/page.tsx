@@ -8,7 +8,8 @@ import styles from './eventDetails.module.scss'
 import posterImage from '../assets/poster.png'
 import Button from '../components/Button/Button'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 /* Planning to migrate this to a type file */
 const ALL_ROLES = ['volunteer', 'admin', 'member'] as const
@@ -17,6 +18,7 @@ type Roles = typeof ALL_ROLES[number]
 const EventDetails = () => {
     const searchParams = useSearchParams()
     const [role, setRole] = useState<Roles>('member')
+    const router = useRouter()
 
     /* Update the role whenever the link refreshes */
     useEffect(() => {
@@ -26,6 +28,14 @@ const EventDetails = () => {
             console.log('role is ' + role)
         }
     }, [searchParams])
+
+    const memberButtonOnClick = useCallback(() => {
+        router.push('/event-registration')
+    }, [])
+
+    const volunteerButtonOnClick = useCallback(() => {
+        router.push('/training-video')
+    }, [])
 
     return (
         <div className={styles.body}>
@@ -37,8 +47,10 @@ const EventDetails = () => {
             {/* Member and volunteer only */}
             {role !== 'admin'
                 ? <div className={styles.horizontalButtonWrapper}>
-                    <Button>Register</Button>
-                    {role === 'volunteer' ? <Button background='brown'>Register as volunteer</Button> : ''}
+                    <Button onClick={memberButtonOnClick}>Register</Button>
+                    {role === 'volunteer'
+                        ? <Button background='brown' onClick={volunteerButtonOnClick}>Register as volunteer</Button>
+                        : ''}
                 </div>
                 : ''}
 
