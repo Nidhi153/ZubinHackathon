@@ -14,6 +14,7 @@ dotenv.config();
 export async function POST(req: Request) {
   const data: Message = await req.json();
 
+  console.log(data);
   let port = process.env.CS_PORT || 5000;
   const res = await axios.post(
     `http://localhost:${port}/api/ai/whatsapp/broadcast`,
