@@ -29,6 +29,8 @@ namespace Zubin.Platform.ApiApp
                 client.BaseAddress = new Uri(uri);
             });
 
+            builder.Services.AddScoped<Helper.ExternalHelper>();
+
 
             // Add services to the container.
             builder.Services.AddControllers(options =>

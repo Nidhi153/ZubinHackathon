@@ -18,8 +18,8 @@ namespace MockServer.SwaggerEditor.Nextjs.Controllers
             {
                 Events = new()
                 {
-                    {new Event(){ Phonenumbers=new(){"+85212345678"}, Description="event 1 " } },
-                    {new Event(){ Phonenumbers=new(){"+85287654321"}, Description = "event 2" } },
+                    {new Event(){ Phonenumbers=new(){"+85212345678"}, Description="event final " } },
+                    {new Event(){ Phonenumbers=new(){"+85287654321"}, Description = "event test" } },
                 }
             };
             return new ObjectResult(response);
@@ -32,7 +32,7 @@ namespace MockServer.SwaggerEditor.Nextjs.Controllers
         public virtual IActionResult InsertQuestion(InsertQuestionRequest body)
         {
             var request = body;
-            return new ObjectResult("hi");
+            return new ObjectResult(new InserQuestionResponse() { Info="final testing"});
         }
     }
 }

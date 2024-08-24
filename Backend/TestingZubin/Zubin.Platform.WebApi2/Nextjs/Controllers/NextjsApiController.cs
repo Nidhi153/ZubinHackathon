@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Zubin.Platform.WebApi2.Nextjs.Models;
+using 
 
 namespace Zubin.Platform.WebApi2.Nextjs.Controllers
 {
@@ -7,6 +8,7 @@ namespace Zubin.Platform.WebApi2.Nextjs.Controllers
     [Route("/zubin-frontend")]
     public class NextjsApiController : ControllerBase
     {
+        public NextjsApiController() { }
         [HttpGet]
         [Route("nextdayevents/")]
         public GetNextDayEventsResponse GetNextDayEvents()
