@@ -125,13 +125,15 @@ def send_message(data):
         url, data=data, headers=headers, timeout=10
     ) #10 seconds timeout as an example
 
-def keyword_generator(p, top=3) -> list:
+def keyword_generator(p) -> list:
     """
-    This function generates the top {top} keywords to describe a message.
+    This function generates the top keywords to describe a message.
     """
+    keywords = ["Food", "Location", "Transport", "Emergency", "Feedback", "Volunteer", "Donation", "Jobs", "Training", "Education"]
 
-    prompt=f"""Summarize the following message in {top} keywords separated by ','. 
-    Please do not give any explanation: """+p
+    prompt=f""" Given this list of keywords {keywords} and a message, please choose the
+    keywords that relate the most to the following message separated by ', ', please do not give any
+    explanation: {p}"""
 
     API_TOKEN = "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"
     repo_id = "meta-llama/Meta-Llama-3-8B-Instruct"
