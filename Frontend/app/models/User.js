@@ -9,6 +9,7 @@ const userSchema = new Schema({
   // first_name: { type: String, required: true },
   // last_name: { type: String, required: true },
   created_at: { type: Date, default: Date.now },
+  registered_events: [{ type: Schema.Types.ObjectId, ref: "Event" }],
   // contact_number: { type: String, required: true },
   // Add other fields as necessary
 });
