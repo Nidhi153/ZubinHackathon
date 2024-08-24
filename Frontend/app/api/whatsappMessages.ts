@@ -3,24 +3,24 @@ import axios, { AxiosResponse } from 'axios';
 export interface WhatsappBroadcast {
     broadcast_id: string;
     message: string;
-    contacts: number[];
+    contacts: string[];
     // Add other fields as necessary
 }
 
 export interface WhatsappResponse {
     response_id: string;
     message: string;
-    contacts: number;
+    contact: string;
     user_id: string;
     tags: string[];
     // Add other fields as necessary
 }
 
 // CREATE BROADCAST : POST /broadcasts
-export async function createWhatsappBroadcast(broadcast: WhatsappBroadcast): Promise<WhatsappResponse> {
+export async function createWhatsappBroadcast(broadcast: WhatsappBroadcast): Promise<number> {
     try {
         const response: AxiosResponse<WhatsappResponse> = await axios.post('/broadcasts', broadcast);
-        return response.data;
+        return response.status;
     } catch (error) {
         console.error('Error creating Whatsapp broadcast:', error);
         throw error;
