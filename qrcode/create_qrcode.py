@@ -1,10 +1,8 @@
 import qrcode
 import qrcode.image.svg
-from qrtools.qrtools import QR
 
-img = qrcode.make('123@hotmail.com', image_factory=qrcode.image.svg.SvgImage)
-
-with open('qr.svg', 'wb') as qr:
+img = qrcode.make('c.com')
+with open('3.png', 'wb') as qr:
     img.save(qr)
 
 # my_qr = QR(data=u"123@hotmail.com")
