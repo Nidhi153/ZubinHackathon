@@ -87,7 +87,7 @@ class Chatbot():
                                 stream=False,
                             ).choices[0].message.content
             
-            print("Standalone Question:", standalone_prompt)
+            # print("Standalone Question:", standalone_prompt)
 
         res_db = self.collection.query(query_texts=[standalone_prompt],
                                             n_results=context_length)['documents'][0]
@@ -110,7 +110,8 @@ class Chatbot():
         Source Limitation: If there isn't enough information available in the provided sources, respond with "I don't know." Do not generate answers beyond what is included in the sources.
 
 
-        Your job is to try to give the best possible answer to the query. Try to guide the user to right resources.
+        Your job is to try to give the best possible answer to the query. Try to guide the user to right resources. 
+        If there is a link provided in the source relevant to the context, you MUST include it in your response.
 
         Here is the source:
         {source}
@@ -129,7 +130,12 @@ class Chatbot():
         self.chat_history.append({"role": "user", "content": standalone_prompt})
         self.chat_history.append({"role": "assistant", "content": chatbot_response})
 
-        return chatbot_response
+        words = chatbot_response.split()
+        
+        title = words[0]
+        response_text = ' '.join(words[1:])
+        
+        return {"title": title, "text": response_text}
 
     def delete_database(self):
         '''
@@ -209,7 +215,7 @@ To provide advice on the service protocol and other issues as related to the ser
 When in need, community members can utilize these links for help:
 Call Mira: Helpline for Women and Girls in Crisis https://www.zubinfoundation.org/our-work/call-mira-helpline/
 
-Adult Counselling - Ethnic Minority Well-being Centre
+When in need for counselling, go this page: Adult Counselling - Ethnic Minority Well-being Centre:
 https://api.whatsapp.com/send?phone=85296823100&text=Hello%20from%20The%20Zubin%20Foundation%20Ethnic%20Minority%20Well-being%20Centre.%20%0A%0AOur%20opening%20hours%20are%209-5pm%2C%20Monday%20to%20Friday.%20%0A%0APlease%20message%20us%20if%20you%20have%20any%20questions%20or%20if%20you%20would%20like%20to%20book%20an%20appointment.%20%0A
 
 Upcoming events:
@@ -218,20 +224,21 @@ Event Descriptions: Join us for an exhilarating summer dance festival featuring 
 Event Date: August 30 - September 3, 2024
 Event Venue: Hong Kong Convention and Exhibition Centre
 Food option: Food trucks and refreshment stalls on-site
+Registration Link: https://www.summerdanceevent.com
 
 Event name: Pottery Workshop Series
 Event Descriptions: Unleash your inner artist and learn the art of pottery making. Experienced instructors will guide you through the entire process, from shaping the clay to glazing and firing your unique creations.
 Event Date: September 7 - October 12, 2024 (Every Saturday)
 Event Venue: Hong Kong Arts Centre
 Food option: Light refreshments available
-
-
+Registration Link: https://www.potteryworkshopseries.com
 
 Event name: University Application Bootcamp
 Event Descriptions: Prepare for your university applications with this comprehensive bootcamp. Receive guidance on essay writing, interview skills, and navigating the admissions process from experienced counselors.
 Event Date: November 2 - 16, 2024 (Every Saturday and Sunday)
 Event Venue: Hong Kong University of Science and Technology
 Food option: Snacks and refreshments available
+Registration Link: https://www.universityapplicationbootcamp.com
 """]
 
 doc_ids = ["0"]
@@ -244,10 +251,14 @@ doc_ids = ["0"]
 # collection = db.get_or_create_collection(name=collection_name, embedding_function=chromadb.utils.embedding_functions.DefaultEmbeddingFunction())
 # collection.add(documents=doc_chunks, ids=doc_ids, metadatas=doc_metadatas)
 
-chatbot_instance = Chatbot()
+def main():
+    chatbot_instance = Chatbot()
 
-print(chatbot_instance.query("i wanna do my registration for university bootcamp"))
+    print(chatbot_instance.query("i wanna do my registration for an event on pottery"))
 
-print()
+    print()
 
-print(chatbot_instance.query("Where is the bootcamp located in?"))
+    print(chatbot_instance.query("i need adult counselling"))
+
+if __name__ == '__main__':
+    main()
