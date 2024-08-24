@@ -33,7 +33,7 @@ def recommend_events(request_data):
     top_events = sorted(similarities, key=lambda x: x[1], reverse=True)[:3]
     return [{"event-id": event_id, "similarity": similarity} for event_id, similarity in top_events]
 
-@app.post("/recommend-events")
+@app.post("/recommendation")
 async def get_recommended_events(request: Request):
     request_data = await request.json()
     response = recommend_events(request_data)
