@@ -18,12 +18,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace MockServer.SwaggerEditor.PythonAi.Models
+namespace Zubin.Platform.WebApi.PythonAiApi.Models
 {
     /// <summary>
     /// 
-    public  class SendMessageResponse
+    public class SendToChatbotResponse
     {
-        public string Message { get; set; }
+        public List<Event> Events { get; set; }
     }
 }

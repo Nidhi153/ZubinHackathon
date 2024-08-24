@@ -16,16 +16,16 @@
 
 	<ItemGroup>
 		<!--<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="*" />-->
-		<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="*" />
-		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="*" />
+
+			<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+			<PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0" />
+
+			<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="*" />
+			<PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.4.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Zubin.Platform.Ai\Zubin.Platform.Ai.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Ai\Models\SendMessageResponse.cs\" />
 	</ItemGroup>
 	
 </Project>

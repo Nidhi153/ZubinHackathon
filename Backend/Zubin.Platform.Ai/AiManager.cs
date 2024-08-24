@@ -9,7 +9,7 @@ namespace Zubin.Platform.Ai
 {
     public class AiManager
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<AiManager> _logger;
         private readonly IAiService _aiService;
         public AiManager(ILogger<AiManager> logger, IAiService homeDeviceService)
         {

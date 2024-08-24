@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
@@ -15,12 +16,12 @@ namespace Zubin.Platform.WebApi.Ai.Controllers;
 [Route("[controller]")]
 [AllowAnonymous]
 
-public partial class AiController : ControllerBase
+public partial class TmpAiController : ControllerBase
 {
-    private readonly ILogger<AiController> _logger;
+    private readonly ILogger<TmpAiController> _logger;
     private readonly AiManager _aiManager;
-    public AiController(
-        ILogger<AiController> logger
+    public TmpAiController(
+        ILogger<TmpAiController> logger
         , AiManager manager
         )
     {
@@ -36,5 +37,14 @@ public partial class AiController : ControllerBase
     {
         var response = await _aiManager.SendMessageAsyc(body.UserId, body.Message);
         return new ObjectResult(response);
+    }
+
+    [HttpPost]
+    [Route("[action]/{placeholder}")]
+    [SwaggerOperation("SendMessage")]
+    [Produces("application/json")]
+    public async virtual Task<IActionResult> Some ()
+    {
+       return new ObjectResult(null);
     }
 }
