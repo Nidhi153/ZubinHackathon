@@ -44,7 +44,7 @@ namespace MockServer.SwaggerEditor.PythonAiApi.Controllers
                 {
                      new()
                     {
-                         Eventid="3",
+                         Eventid="finalTesting",
                          Skills=new(){"s1", "s2" }
                     },
                     new()
@@ -64,6 +64,7 @@ namespace MockServer.SwaggerEditor.PythonAiApi.Controllers
         {
             return new ObjectResult(new SendBroadcastResponse()
             {
+                Result="final testing"
             });
         }
 
@@ -75,8 +76,8 @@ namespace MockServer.SwaggerEditor.PythonAiApi.Controllers
         {
             return new ObjectResult(new SendToChatbotResponse()
             {
-                Title = "FAQ",
-                Text = "I think you are right"
+                Title = "testing",
+                Text = "I testing"
             });
         }
     }
