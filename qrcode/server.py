@@ -1,9 +1,11 @@
 import cv2 as cv
 import numpy as np
 from pyzbar.pyzbar import decode
-from fastapi import FastAPI
 import asyncio
-
+from fastapi import FastAPI, File, UploadFile
+import requests
+import qrcode
+import qrcode.image.svg
 app = FastAPI()
 
 # Global variables to control the video capture loop and store the current data
@@ -35,22 +37,21 @@ async def video_capture():
     cap.release()
     cv.destroyAllWindows()
 
-@app.on_event("startup")
-async def startup_event():
-    global running
-    if not running:
-        running = True
-        asyncio.create_task(video_capture())
+# @app.on_event("startup")
+# async def startup_event():
+#     global running
+#     if not running:
+#         running = True
+#         asyncio.create_task(video_capture())
 
 @app.get("/start")
 async def start_capture():
     global running
     if not running:
         running = True
-        await video_capture()
+        asyncio.create_task(video_capture())
         return {"message": "Video capture started"}
-    else:
-        return {"message": "Video capture is already running"}
+
 
 @app.get("/stop")
 def stop_capture():
@@ -69,6 +70,38 @@ def get_current_data():
     else:
         return {"message": "No data available"}
 
+@app.post("/upload-qrcode/")
+async def upload_qrcode(input: str):
+    # Generate QR code
+    # img = qrcode.make(input, image_factory=qrcode.image.svg.SvgImage)
+    img = qrcode.make(input)
+    
+    # Save the QR code to a file
+    img_file_path = "/tmp/qrcode.png"
+    with open(img_file_path, "wb") as f:
+        img.save(f)
+
+    # Prepare the file for upload
+    with open(img_file_path, "rb") as f:
+        files = {
+            'file': ("qrcode.svg", f, "image/png")
+        }
+        data = {
+            'type': "image/png",
+            'messaging_product': 'whatsapp'
+        }
+        headers = {
+            'Authorization': 'Bearer EABycHlgN6cgBOxh3AL5VnwML8PxXuS6821KKoUqR2ZAvJ77UwpMZBVGGhROZBvR4obtDuouZBB5iBGEKkHxnqTfZBqtyj8N7QfWy1yk08GgevnBfCW62v2ZAzU6lPZCkEg12dy0ZASZCXGKQnKZCLSb5HETVmR7OIcBZBcMlO6SgZCMvdYkvlLws29p5JuLBs87nWKnIrfhGcJ5XhBVzOQjJV0IZD'
+        }
+        url = 'https://graph.facebook.com/v20.0/423268137527656/media'
+
+        # Send the request
+        response = requests.post(url, headers=headers, files=files, data=data)
+
+    return {
+        "status_code": response.status_code,
+        "response": response.json()
+    }
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="localhost", port=2000)
