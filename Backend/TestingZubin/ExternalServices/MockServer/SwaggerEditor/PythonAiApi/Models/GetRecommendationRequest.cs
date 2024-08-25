@@ -32,6 +32,6 @@ namespace MockServer.SwaggerEditor.PythonAiApi.Models
         List<string> Skills { get; set; }
         [DataMember]
         [Required]
-        List<Event> Events { get; set; }
+        List<RequestEvent> Events { get; set; }
     }
 }

@@ -141,11 +141,87 @@
           }
         }
       }
+    },
+    "/ai/whatsapp/images": {
+      "post": {
+        "tags": [
+          "PythonAi"
+        ],
+        "summary": "sendImages",
+        "operationId": "sendImages",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendImagesRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendImagesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendImagesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendImagesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendImagesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "Event": {
+      "GetRecommendationRequest": {
+        "type": "object",
+        "properties": {
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequestEvent"
+            }
+          }
+        },
+        "nullable": true
+      },
+      "GetRecommendationResponse": {
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResponseEvent"
+            },
+            "nullable": true
+          }
+        },
+        "nullable": true
+      },
+      "RequestEvent": {
         "type": "object",
         "properties": {
           "eventid": {
@@ -162,33 +238,16 @@
         },
         "nullable": true
       },
-      "GetRecommendationRequest": {
+      "ResponseEvent": {
         "type": "object",
         "properties": {
-          "skills": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "events": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Event"
-            }
-          }
-        },
-        "nullable": true
-      },
-      "GetRecommendationResponse": {
-        "type": "object",
-        "properties": {
-          "events": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Event"
-            },
+          "eventid": {
+            "type": "string",
             "nullable": true
+          },
+          "similarity": {
+            "type": "number",
+            "format": "decimal"
           }
         },
         "nullable": true
@@ -211,6 +270,41 @@
         "nullable": true
       },
       "SendBroadcastResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "result": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "nullable": true
+      },
+      "SendImagesRequest": {
+        "type": "object",
+        "properties": {
+          "phonenumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "caption": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "nullable": true
+      },
+      "SendImagesResponse": {
         "type": "object",
         "properties": {
           "status": {
