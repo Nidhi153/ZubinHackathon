@@ -11,6 +11,12 @@ namespace Zubin.Controllers
     [Route("/ai")]
     public class PythonAiApiController : ControllerBase
     {
+        private readonly PythonAiApiClient _pythonAiApiClient;
+
+        public PythonAiApiController(PythonAiApiClient pythonAiApiClient)
+        {
+            _pythonAiApiClient = pythonAiApiClient;
+        }
         /// <summary>
         /// ControlDevice
         /// </summary>
@@ -20,36 +26,22 @@ namespace Zubin.Controllers
         [Route("recommendation")]
         [SwaggerOperation("GetRecommendation")]
         [SwaggerResponse(statusCode: 200, type: typeof(GetRecommendationResponse), description: "Success")]
-        public virtual IActionResult GetRecommendation([FromBody] GetRecommendationRequest body)
+        public virtual async Task<IActionResult> GetRecommendation([FromBody] GetRecommendationRequest body)
         {
-            return new ObjectResult(new GetRecommendationResponse()
-            {
-                Events = new List<ResponseEvent>()
-                {
-                     new()
-                    {
-                         Eventid="finalTesting",
-                         Similarity = 0.4m
-                    },
-                    new()
-                    {
-                        Eventid="2",
-                        Similarity = 0.8m,
-                    }
-                }
-            });
+            var response = await _pythonAiApiClient.GetRecommendationAsync(body);
+
+            return Ok(response);
         }
 
         [HttpPost]
         [Route("whatsapp/broadcast")]
         [SwaggerOperation("sendBroadcast")]
         [SwaggerResponse(statusCode: 200, type: typeof(SendBroadcastResponse), description: "Success")]
-        public virtual IActionResult SendBroadcast([FromBody] SendBroadcastRequest body)
+        public virtual async Task<IActionResult> SendBroadcast([FromBody] SendBroadcastRequest body)
         {
-            return new ObjectResult(new SendBroadcastResponse()
-            {
-                Result = "final testing"
-            });
+            var response = await _pythonAiApiClient.SendBroadcastAsync(body);
+
+            return Ok(response);
         }
 
         [HttpPost]
