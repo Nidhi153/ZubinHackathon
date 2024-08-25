@@ -1,4 +1,4 @@
-import PastEvent from "../components/PastEvent/PastEvent";
+import PastEvent from "../../components/PastEvent/PastEvent";
 
 const Page = () => {
   return (

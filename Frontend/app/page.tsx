@@ -1,12 +1,11 @@
 'use client'
 
-import Image from "next/image"
-import backgroundImage from './assets/homepageImage.png'
 import styles from './app.module.scss'
-import EventCard from "./components/Event/EventCard/EventCard"
-import RegisteredEventCard from "./components/Event/RegisteredEventCard/RegisteredEventCard"
 import Cookies from "js-cookie"
 import { useEffect, useState } from "react"
+import HomepageLayout from "./components/HomepageLayout/HomepageLayout"
+import RegisteredEventBox from "./components/Event/RegisteredEventBox/RegisteredEventBox"
+import EventCardGroup from './components/Event/EventCardGroup/EventCardGroup'
 
 export default function Home() {
   const [role, setRole] = useState<string>('')
@@ -19,36 +18,44 @@ export default function Home() {
   }, [])
 
   return (
-    <div className={styles.layout}>
-      <div className={styles.imageWrapper}>
-        <Image src={backgroundImage} alt="Homepage Image" />
-      </div>
-      <div className={styles.container}>
-        <div className={styles.header}>Upcoming Events</div>
-        <div className={styles.body}>
-          <div className={styles.cards}>
-            {role === 'volunteer'
-              ? <div className={styles.eventCardSection}>
-                <h1>Suggested Events</h1>
-                <div className={styles.eventCards}>
-                  <EventCard title="Gathering Event" date="10/09/2024" description="Everyone can join!" />
-                </div>
-              </div>
-              : ''}
+    <HomepageLayout header="Upcoming Events">
+      <div className={styles.body}>
+        <div className={styles.cards}>
 
-            <div className={styles.eventCardSection}>
-              {role === 'volunteer' ? <h1>Other Events</h1> : ''}
-              <div className={styles.eventCards}>
-                <EventCard title="Gathering Event" date="10/09/2024" description="Everyone can join!" />
-              </div>
+          {/* Suggested events for volunteers, only visible to volunteers */}
+          {role === 'volunteer'
+            ? <div className={styles.eventCardSection}>
+              <h1>Suggested Events</h1>
+              <EventCardGroup eventDetails={[
+                {
+                  title: 'Gathering Event',
+                  date: '10/09/2024',
+                  description: 'Everyone can join!',
+                }
+              ]} />
             </div>
-          </div>
-          <div className={styles.registeredEventsBox}>
-            <h1>Registered Events</h1>
-            <RegisteredEventCard title="Gathering Event" date="10/09/2024" />
+            : ''}
+
+          {/* All events for admin and participant, suggested events are filtered out for volunteers */}
+          <div className={styles.eventCardSection}>
+            {role === 'volunteer' ? <h1>Other Events</h1> : ''}
+            <EventCardGroup eventDetails={[
+              {
+                title: 'Gathering Event',
+                date: '10/09/2024',
+                description: 'Everyone can join!',
+              }
+            ]} />
           </div>
         </div>
+
+        <RegisteredEventBox eventDetails={[
+          {
+            title: 'Gathering Event',
+            date: '10/09/2024',
+          },
+        ]} />
       </div>
-    </div>
+    </HomepageLayout>
   );
 }
