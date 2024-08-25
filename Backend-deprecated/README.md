@@ -1,4 +1,4 @@
-# Backend API with ASP.NET for system integration
+# Backend API with ASP.NET for system integration (deprecated)
 
 1. This backend API is currently replaced by Nextjs. 
 2. This backend can system integrate the AI server (e.g. Chatbot, Whatsapp, Recommendation System) and the Nextjs together. 
