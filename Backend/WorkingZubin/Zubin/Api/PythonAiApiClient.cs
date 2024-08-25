@@ -511,14 +511,14 @@ namespace Zubin.Api.Python
         [Newtonsoft.Json.JsonProperty("events", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<RequestEvent> Events { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
@@ -528,14 +528,14 @@ namespace Zubin.Api.Python
         [Newtonsoft.Json.JsonProperty("events", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<ResponseEvent> Events { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
@@ -548,14 +548,14 @@ namespace Zubin.Api.Python
         [Newtonsoft.Json.JsonProperty("skills", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<string> Skills { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
@@ -568,14 +568,14 @@ namespace Zubin.Api.Python
         [Newtonsoft.Json.JsonProperty("similarity", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public decimal Similarity { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
@@ -588,14 +588,14 @@ namespace Zubin.Api.Python
         [Newtonsoft.Json.JsonProperty("broadcastmessage", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Broadcastmessage { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
@@ -608,14 +608,14 @@ namespace Zubin.Api.Python
         [Newtonsoft.Json.JsonProperty("result", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Result { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
@@ -631,14 +631,14 @@ namespace Zubin.Api.Python
         [Newtonsoft.Json.JsonProperty("imageid", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Imageid { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
@@ -651,14 +651,14 @@ namespace Zubin.Api.Python
         [Newtonsoft.Json.JsonProperty("result", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Result { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
@@ -668,14 +668,14 @@ namespace Zubin.Api.Python
         [Newtonsoft.Json.JsonProperty("input", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Input { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
@@ -688,14 +688,14 @@ namespace Zubin.Api.Python
         [Newtonsoft.Json.JsonProperty("text", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Text { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
