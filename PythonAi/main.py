@@ -52,7 +52,6 @@ def relay(item: Broadcast):
         send_message(get_text_message_input(phone_num, item.broadcastmessage))
     return item
 
-
 @app.post("/ai/whatsapp/images")
 def relay_images(item: Image):
     for phone_num in item.phonenumbers:

@@ -44,6 +44,7 @@ def get_text_message_input(recipient, text):
     )
 
 def send_message(data):
+    print(data)
     headers = {
         "Content-type": "application/json",
         "Authorization": f"Bearer {ACCESS_TOKEN}",
