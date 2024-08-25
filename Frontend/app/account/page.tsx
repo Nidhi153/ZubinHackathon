@@ -6,6 +6,7 @@ import styles from "./account.module.scss";
 import BadgeRow from "./Row/BadgeRow";
 import TextRow from "./Row/TextRow";
 import Cookies from "js-cookie";
+import { Badge } from "flowbite-react";
 import { useEffect, useState } from "react";
 const Account = () => {
   const [user, setUser] = useState(null);
@@ -49,20 +50,24 @@ const Account = () => {
           </>
         )}
       </div>
-
-      {/* Badges are only visible to volunteer */}
       {user && user.role === "volunteer" ? (
         <div className={styles.badges}>
           <div className={styles.subheading}>Badges</div>
 
-          {(user && user.skill && user.skill.length > 0 && (
-            <div className={styles.badgeRows}>
-              <BadgeRow property="Public speaking" level="none" />
-              <BadgeRow property="Public speaking" level="bronze" />
-              <BadgeRow property="Public speaking" level="silver" />
-              <BadgeRow property="Public speaking" level="gold" />
-            </div>
-          )) || (
+          {(user &&
+            user.skills.length > 0 &&
+            [...new Set(user.skills)].map((skill, index) => (
+              <Badge
+                key={index}
+                style={{
+                  width: "100px",
+                  display: "inline-block",
+                  marginRight: "5px",
+                }}
+              >
+                {skill}
+              </Badge>
+            ))) || (
             <div>
               No badges yet, do a training for badges at{" "}
               <Button>trainings page</Button>
