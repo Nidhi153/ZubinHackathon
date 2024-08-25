@@ -45,9 +45,9 @@ class Chatbot():
 
   
     
-    def query(self, prompt:dict, client :str, show_context:bool=False, context_length:int = 1) -> str:
+    def query(self, prompt:dict, client, show_context:bool=False, context_length:int = 1) -> str:
         
-        prompt = prompt.get("message")
+        prompt = prompt.get("input")
         standalone_prompt = prompt
             
         if self.chat_history != []:
@@ -232,12 +232,12 @@ doc_ids = ["0"]
 
 def main():
     chatbot_instance = Chatbot()
-
-    print(chatbot_instance.query("i wanna do my registration for an event on pottery"))
+    client = init_chatbot(HF_TOKEN)
+    print(chatbot_instance.query({"input":"i wanna do my registration for an event on pottery"}, client))
 
     print()
 
-    print(chatbot_instance.query("i need adult counselling"))
+    print(chatbot_instance.query({"input":"i need adult counselling"}, client))
 
 if __name__ == '__main__':
     main()

@@ -1,9 +1,9 @@
 {
     "skills": ["pottery", "painting"],
     "events": [
-        {"event-id": "1", "skills": ["public speaking", "painting", "pottery"]},
-        {"event-id": "2", "skills": ["cooking", "yoga", "dancing"]},
-        {"event-id": "3", "skills": ["painting", "singing", "dancing"]},
-        {"event-id": "4", "skills": ["archery", "pottery", "public speaking"]}
+        {"eventid": "1", "skills": ["public speaking", "painting", "pottery"]},
+        {"eventid": "2", "skills": ["cooking", "yoga", "dancing"]},
+        {"eventid": "3", "skills": ["painting", "singing", "dancing"]},
+        {"eventid": "4", "skills": ["archery", "pottery", "public speaking"]}
     ]
 }

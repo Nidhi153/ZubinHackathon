@@ -1,5 +1,6 @@
 import json
 import numpy as np
+    
 
 def recommend_events(request_data):
     # Extract skills and events from the request data
@@ -23,11 +24,11 @@ def recommend_events(request_data):
         event_skill_vectors.append(event_vector)
 
     # Calculate cosine similarities
-    similarities = [(event["event-id"], np.dot(volunteer_vector, event_vector) / (np.linalg.norm(volunteer_vector) * np.linalg.norm(event_vector))) for event_vector, event in zip(event_skill_vectors, events)]
+    similarities = [(event["eventid"], np.dot(volunteer_vector, event_vector) / (np.linalg.norm(volunteer_vector) * np.linalg.norm(event_vector))) for event_vector, event in zip(event_skill_vectors, events)]
 
     # Sort and return the top 3 events
     top_events = sorted(similarities, key=lambda x: x[1], reverse=True)[:3]
-    return [{"event-id": event_id, "similarity": similarity} for event_id, similarity in top_events]
+    return {"events": [{"eventid": eventid, "similarity": similarity} for eventid, similarity in top_events]}
 
 def main():
     # Read request data from a JSON file

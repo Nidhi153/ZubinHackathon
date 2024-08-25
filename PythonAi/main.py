@@ -16,7 +16,7 @@ chat = Chatbot()
 client = init_chatbot(HF_TOKEN)
 
 
-@app.post("/recommendation")
+@app.post("/ai/recommendation")
 async def get_recommended_events(request: Request):
     request_data = await request.json()
     response = recommendation.recommend_events(request_data)
@@ -33,6 +33,13 @@ async def get_chat_response(request: Request):
 
     # Return the response as a JSON response
     return JSONResponse(content=response)
+
+
+@app.get("/hello")
+async def hello():
+    return {"message": "Hello, World!"}
+
+    # Return the response as a JSON response
 
 
 @app.get("/helloworld")
