@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import styles from './EventCard.module.scss'
-import arrowIcon from '../../../assets/arrowIcon.svg'
+import arrowIcon from '../../../../assets/arrowIcon.svg'
 
 interface EventCardProps {
     title: string,

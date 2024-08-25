@@ -55,7 +55,7 @@ const Navbar = () => {
                 <a href="/create-event">Create Event </a>
               </Tab>
               <Tab>
-                <a href="/past-event">Past Events </a>
+                <a href="/past-events">Past Events </a>
               </Tab>
             </>
           )}
