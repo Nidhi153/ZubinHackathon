@@ -13,6 +13,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 
+import { Badge } from "flowbite-react";
 import buttonStyle from "../Button/Button.module.scss";
 import inputStyle from "../InputGroup/InputGroup.module.scss";
 
@@ -22,7 +23,7 @@ import Button from "../Button/Button";
 import { useRouter } from "next/navigation";
 // import Button from "../components/Button/Button";
 // import styles from "./account.module.scss";
-import BadgeRow from "./Row/BadgeRow";
+// import BadgeRow from "./Row/BadgeRow";
 import TextRow from "./Row/TextRow";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
@@ -120,12 +121,21 @@ const CentralisedMessage = () => {
                   <Td className={styles.phoneColumn}>{message.phonenumber}</Td>
                   <Td className={styles.tagColumn}>
                     {message.categories &&
-                      message.categories.map((category, index) => (
-                        <span key={index}>
-                          {category}
-                          <br />
-                        </span>
-                      ))}
+                      message.categories.map(
+                        (category: string, index: number) => (
+                          <Badge
+                            key={index}
+                            color={
+                              category.toLocaleLowerCase() == "emergency"
+                                ? "red"
+                                : "blue"
+                            }
+                            style={{ width: "100px", marginBottom: "10px" }}
+                          >
+                            {category}{" "}
+                          </Badge>
+                        )
+                      )}
                   </Td>
                   <Td className={styles.replyColumn}>
                     <form
