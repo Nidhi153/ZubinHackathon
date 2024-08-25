@@ -37,7 +37,7 @@ export default function Event({ filterFunction }) {
 
   return (
     <div>
-      <div className="styles.eventCards">
+      <div className={styles.eventCards}>
         {/* {events &&
           events.map((event) => <EventBox key={event._id} event={event} />)} */}
         {filteredEvents &&
