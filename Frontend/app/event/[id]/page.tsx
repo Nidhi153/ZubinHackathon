@@ -20,7 +20,9 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
   const searchParams = useSearchParams();
   const [role, setRole] = useState<Roles>("member");
   const [curEvent, setCurEvent] = useState<any>(null);
-  const [userEnrolledAs, setUserEnrolledAs] = useState<"not" | "member" | "volunteer">("not");
+  const [userEnrolledAs, setUserEnrolledAs] = useState<
+    "not" | "member" | "volunteer"
+  >("not");
   const router = useRouter();
 
   const [isTakingAttendance, setIsTakingAttendance] = useState(false);
@@ -139,13 +141,16 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
         body: JSON.stringify({ id: eventId }),
       });
 
-      const event = await res.json();
+      let event = await res.json();
       if (event) {
-        setCurEvent(event.event[0]);
-        if (event.event[0].registered_users.includes(userId)) {
+        event = event.event[0];
+
+        console.log(event);
+        setCurEvent(event);
+
+        if (event.registered_users.includes(userId)) {
           setUserEnrolledAs("member");
-        } 
-        else if (event.event[0].volunteers.includes(userId)) {
+        } else if (event.registered_volunteers.includes(userId)) {
           setUserEnrolledAs("volunteer");
         }
       }
@@ -184,37 +189,57 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
   };
 
   const memberUnregisterButtonOnClick = async () => {
-    // delete from registered_users and user's registered_events 
-    // TODO: MARCUS DO THIS
+    // delete from registered_users and user's registered_events
     const userId = Cookies.get("userId");
     const eventId = params.id;
 
     // get the user info
     // post the user info without this event id in registered_events
-
-    // get the event info
-    // post the event info without this user id in registered_members
-
-
+    const res = await fetch("/api/events/unregister", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        eventId: eventId,
+        userId: userId,
+      }),
+    });
+    if (res.status == 200) {
+      router.push("/successful-unregistration");
+    } else {
+      alert("Failed to unregister");
+      router.push("/");
+    }
     // redirect to successful-unregistration page
-    router.push("/successful-unregistration");
-  }
+  };
 
   const volunteerUnregisterButtonOnClick = async () => {
-    // delete from registered_volunteers and user's registered_events 
-    // TODO: MARCUS DO THIS
+    // delete from registered_volunteers and user's registered_events
+    console.log("Unregistering as volunteer");
     const userId = Cookies.get("userId");
     const eventId = params.id;
 
     // get the user info
     // post the user info without this event id in registered_events
+    const res = await fetch("/api/events/unregisterVolunteer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        eventId: eventId,
+        userId: userId,
+      }),
+    });
 
-    // get the event info
-    // post the event info without this user id in registered_volunteers
-
-    // redirect to successful-unregistration page
-    router.push("/successful-unregistration");
-  }
+    if (res.status == 200) {
+      router.push("/successful-unregistration");
+    } else {
+      alert("Failed to unregister");
+      router.push("/");
+    }
+  };
 
   const Badge = ({
     children,
@@ -264,9 +289,8 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       )}
       <Image src={posterImage} alt="Poster Image" height={260} />
 
-
       {/* Unregistered member and volunteer only */}
-      {(role !== "admin" && userEnrolledAs == "not") ? (
+      {role !== "admin" && userEnrolledAs == "not" ? (
         <div className={styles.horizontalButtonWrapper}>
           <Button onClick={() => memberButtonOnClick()}>Register</Button>
           {role === "volunteer" ? (
@@ -280,13 +304,15 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       ) : (
         ""
       )}
-      
+
       {/* Registered as member only */}
-      {(role !== "admin" && userEnrolledAs == "member") ? (
+      {role !== "admin" && userEnrolledAs == "member" ? (
         <div className={styles.horizontalButtonWrapper}>
-          <Button onClick={() => memberUnregisterButtonOnClick()}>Unregister</Button>
+          <Button onClick={() => memberUnregisterButtonOnClick()}>
+            Unregister
+          </Button>
           {role === "volunteer" ? (
-            <Button background="brown" disabled={true} onClick={() => volunteerButtonOnClick()}>
+            <Button background="brown" onClick={() => volunteerButtonOnClick()}>
               Register as volunteer
             </Button>
           ) : (
@@ -298,11 +324,14 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       )}
 
       {/* Registered as volunteer only */}
-      {(role !== "admin" && userEnrolledAs == "volunteer") ? (
+      {role !== "admin" && userEnrolledAs == "volunteer" ? (
         <div className={styles.horizontalButtonWrapper}>
-          <Button disabled={true} onClick={() => memberButtonOnClick()}>Register</Button>
+          <Button onClick={() => memberButtonOnClick()}>Register</Button>
           {role === "volunteer" ? (
-            <Button background="brown" disabled={true} onClick={() => volunteerUnregisterButtonOnClick()}>
+            <Button
+              background="brown"
+              onClick={() => volunteerUnregisterButtonOnClick()}
+            >
               Unregister as volunteer
             </Button>
           ) : (
@@ -312,7 +341,6 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       ) : (
         ""
       )}
-
 
       {role === "admin" ? (
         <div className={styles.verticalButtonWrapper}>

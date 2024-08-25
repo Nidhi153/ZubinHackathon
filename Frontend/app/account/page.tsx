@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 const Account = () => {
   const [user, setUser] = useState(null);
+  const [role, setRole] = useState(null);
   const router = useRouter();
   useEffect(() => {
     let init = async () => {
@@ -22,6 +23,11 @@ const Account = () => {
       });
       const data = await response.json();
       setUser(data);
+      const role = Cookies.get("role");
+      if (!role) {
+        router.push("/");
+      }
+      setRole(role);
     };
     init();
   }, []);
@@ -45,8 +51,8 @@ const Account = () => {
       </div>
 
       {/* Badges are only visible to volunteer */}
-      {user.role === 'volunteer'
-        ? <div className={styles.badges}>
+      {user && user.role === "volunteer" ? (
+        <div className={styles.badges}>
           <div className={styles.subheading}>Badges</div>
 
           {(user && user.skill && user.skill.length > 0 && (
@@ -57,13 +63,15 @@ const Account = () => {
               <BadgeRow property="Public speaking" level="gold" />
             </div>
           )) || (
-              <div>
-                No badges yet, do a training for badges at{" "}
-                <Button>trainings page</Button>
-              </div>
-            )}
+            <div>
+              No badges yet, do a training for badges at{" "}
+              <Button>trainings page</Button>
+            </div>
+          )}
         </div>
-        : ''}
+      ) : (
+        ""
+      )}
 
       <Button background="error" onClick={() => signout()}>
         Sign out
