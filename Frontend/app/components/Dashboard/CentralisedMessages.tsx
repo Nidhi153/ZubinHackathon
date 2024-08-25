@@ -10,6 +10,7 @@ import {
     Th,
     Td,
     TableContainer,
+    Select
   } from '@chakra-ui/react'
 
 import buttonStyle from '../Button/Button.module.scss';
@@ -28,7 +29,8 @@ import { useEffect, useState } from "react";
 import MemberFeedback from "./MemberFeedback"
 const CentralisedMessage = () => {
   const [messages, setMessages] = useState([]);
-  const [responses, setResponses] = useState({})
+  const [responses, setResponses] = useState({});
+  const [selectedTag, setSelectedTag] = useState('');
   useEffect(() => {
     let init = async () => {
       const data = await fetch("/api/whatsapp/messages");
@@ -44,6 +46,14 @@ const CentralisedMessage = () => {
       [id]: value
     }));
   };
+
+  const handleTagChange = (e) => {
+    setSelectedTag(e.target.value);
+  };
+
+  const filteredMessages = selectedTag
+  ? messages.filter((message) => message.categories.includes(selectedTag))
+  : messages;
 
   let submitResponse = async (id, num, e) => {
     e.preventDefault();
@@ -69,6 +79,11 @@ const CentralisedMessage = () => {
     <div>
           <div className={styles.body}>
             <div className={styles.heading}>Member Feedback</div>
+            <Select placeholder="Filter by tag" onChange={handleTagChange} value={selectedTag}>
+              <option value="emergency">emergency</option>
+              <option value="tag2">tag2</option>
+              <option value="tag3">tag3</option>
+            </Select>
             <TableContainer className={styles.table}>
                 <Table variant='simple'>
                     <Thead>
@@ -81,7 +96,7 @@ const CentralisedMessage = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {messages.map((message) => (
+                        {filteredMessages.map((message) => (
                             <Tr key={message._id}>
                                 <Td className={styles.indexColumn}>{message.id}</Td>
                                 <Td className={`${styles.messageCell} ${styles.messageColumn}`}>{message.message}</Td>
