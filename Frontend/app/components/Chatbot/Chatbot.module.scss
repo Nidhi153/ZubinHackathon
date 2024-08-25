@@ -1,49 +1,52 @@
 @import "../../global.module.scss";
 
 .chatbot {
-    border-radius: 20px;
-    width: 300px;
-    height: 450px;
-    background-color: $white;
-    filter: drop-shadow(0 4px 4px);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+  border-radius: 20px;
+  font-size: 13px;
+  width: 300px;
+  height: 450px;
+  background-color: $white;
+  filter: drop-shadow(0 4px 4px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
-    background-color: $blue;
-    color: $white;
-    padding: 16px 0;
-    display: flex;
-    justify-content: center;
-    font-weight: $emphasis-font-weight;
+  background-color: $blue;
+  color: $white;
+  padding: 16px 0;
+  display: flex;
+  justify-content: center;
+  font-weight: $emphasis-font-weight;
 }
 
 .body {
-    display: flex;
-    flex: 1;
-    padding: 0 20px;
-    background-color: $white;
-    flex-direction: column;
+  display: flex;
+  flex: 1;
+  padding: 0 20px;
+  background-color: $white;
+  flex-direction: column;
+  overflow: auto;
 }
 
 .messages {
-    flex: 1;
-    border-bottom: solid $gray 1px;
-    display: flex;
-    padding: 20px 0;
-    flex-direction: column;
-    gap: 10px;
+  flex: 1;
+  border-bottom: solid $gray 1px;
+  display: flex;
+  padding: 20px 0;
+  flex-direction: column;
+  overflow: auto;
+  gap: 10px;
 }
 
 .inputBox {
-    height: 80px;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 .input {
-    width: 100%;
+  width: 100%;
 }

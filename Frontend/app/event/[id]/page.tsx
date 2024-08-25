@@ -30,6 +30,7 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
     const interval = setInterval(async () => {
       if (!isTakingAttendance) {
         setStartedCamera(false);
+        if (!startedCamera) return;
         await fetch("/api/stop");
         return;
       }
@@ -215,6 +216,34 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
     router.push("/successful-unregistration");
   }
 
+  const Badge = ({
+    children,
+    onClick,
+  }: {
+    children: React.ReactNode;
+    onClick: () => void;
+  }) => (
+    <span
+      onClick={onClick}
+      style={{
+        cursor: "pointer",
+        margin: "5px",
+        padding: "5px",
+        // border: "1px solid black",
+        borderRadius: "5px",
+        backgroundColor: "#0ABAB5", // Tiffany Blue
+        color: "white",
+        transition: "transform 0.2s",
+      }}
+      onMouseEnter={(e) =>
+        (e.currentTarget.style.transform = "translateY(-5px)")
+      }
+      onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+    >
+      {children}
+    </span>
+  );
+
   return (
     <div className={styles.body}>
       <BreadCrumbContainer
@@ -226,6 +255,13 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
         {curEvent?.title || "Loading title.."}
       </div>
       <div>{curEvent?.date || "Loading date.."}</div>
+      {curEvent?.skills && (
+        <div className="flex flex-wrap gap-2">
+          {curEvent.skills.map((skill, index) => (
+            <Badge key={index}>{skill}</Badge>
+          ))}
+        </div>
+      )}
       <Image src={posterImage} alt="Poster Image" height={260} />
 
 

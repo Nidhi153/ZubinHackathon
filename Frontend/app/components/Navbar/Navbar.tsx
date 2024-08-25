@@ -54,6 +54,9 @@ const Navbar = () => {
               <Tab>
                 <a href="/create-event">Create Event </a>
               </Tab>
+              <Tab>
+                <a href="/past-events">Past Events </a>
+              </Tab>
             </>
           )}
           {userId ? (

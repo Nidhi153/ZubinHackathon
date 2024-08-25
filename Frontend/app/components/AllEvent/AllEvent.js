@@ -1,9 +1,5 @@
 import React from "react";
-// import Box from '@mui/material/Box';
-import { Card } from "flowbite-react";
-import { Box } from "@chakra-ui/react";
 
-import EventData from "../../data/event.json";
 import Event from "../Event/AllEvent";
 import RegisteredEvent from "./RegisteredEvent";
 

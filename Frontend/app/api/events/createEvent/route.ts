@@ -6,6 +6,7 @@ import connect from "../../../lib/database";
 export async function POST(req: Request) {
   console.log("create event post request called");
   const data = await req.json();
+  console.log(data);
   try {
     await connect();
   } catch (e) {
@@ -27,6 +28,7 @@ export async function POST(req: Request) {
     var combinedDateHK = new Date(combinedDateHKString);
     return combinedDateHK;
   };
+
   const startDate = new Date(
     combineDateAndTime(new Date(data.date), data.start_time)
   );

@@ -43,23 +43,28 @@ const Account = () => {
           </>
         )}
       </div>
-      <div className={styles.badges}>
-        <div className={styles.subheading}>Badges</div>
 
-        {(user && user.skill && user.skill.length > 0 && (
-          <div className={styles.badgeRows}>
-            <BadgeRow property="Public speaking" level="none" />
-            <BadgeRow property="Public speaking" level="bronze" />
-            <BadgeRow property="Public speaking" level="silver" />
-            <BadgeRow property="Public speaking" level="gold" />
-          </div>
-        )) || (
-          <div>
-            No badges yet, do a training for badges at{" "}
-            <Button>trainings page</Button>
-          </div>
-        )}
-      </div>
+      {/* Badges are only visible to volunteer */}
+      {user.role === 'volunteer'
+        ? <div className={styles.badges}>
+          <div className={styles.subheading}>Badges</div>
+
+          {(user && user.skill && user.skill.length > 0 && (
+            <div className={styles.badgeRows}>
+              <BadgeRow property="Public speaking" level="none" />
+              <BadgeRow property="Public speaking" level="bronze" />
+              <BadgeRow property="Public speaking" level="silver" />
+              <BadgeRow property="Public speaking" level="gold" />
+            </div>
+          )) || (
+              <div>
+                No badges yet, do a training for badges at{" "}
+                <Button>trainings page</Button>
+              </div>
+            )}
+        </div>
+        : ''}
+
       <Button background="error" onClick={() => signout()}>
         Sign out
       </Button>
