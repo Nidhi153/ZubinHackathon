@@ -43,13 +43,25 @@ export async function POST(req: Request) {
         status: 404,
       });
     }
+    const skills = event.skills;
+    console.log(skills);
+    if (!user.skills) {
+      user.skills = [];
+    }
+    if (skills.length > 0) {
+      for (let i = 0; i < skills.length; i++) {
+        user.skills.push(skills[i]);
+      }
+    }
     user.registered_events.push(eventId);
 
+    console.log(user);
     await user.save();
 
     event.registered_volunteers.push(userId);
     await event.save();
   } catch (e) {
+    console.log(e);
     return NextResponse.json({
       message: "Error registering event",
       status: 404,

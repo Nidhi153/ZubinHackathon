@@ -156,8 +156,8 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       }
       const role = Cookies.get("role");
       // const role = searchParams.get("role");
-      if (role && ALL_ROLES.includes(role as Roles)) {
-        setRole(role as Roles);
+      if (role) {
+        setRole(role);
         console.log("role is " + role);
       }
     };
@@ -368,13 +368,6 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       )}
 
       {/* Fixed on page, only show to volunteers and members */}
-      {role !== "admin" ? (
-        <div className={chatbotStyles.chatbotWrapper}>
-          <Chatbot />
-        </div>
-      ) : (
-        ""
-      )}
     </div>
   );
 };

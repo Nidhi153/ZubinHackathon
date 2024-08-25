@@ -12,6 +12,7 @@ const userSchema = new Schema({
   registered_events: [{ type: Schema.Types.ObjectId, ref: "Event" }],
   media_id: { type: String },
   phoneno: { type: String, required: true },
+  skills: [{ type: String }],
   // Add other fields as necessary
 });
 
