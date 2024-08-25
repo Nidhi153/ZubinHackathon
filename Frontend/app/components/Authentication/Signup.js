@@ -40,6 +40,7 @@ export default function Signup({ setUserId }) {
       password: e.target.password.value,
       phoneno: e.target.phoneno.value,
       name: e.target.name.value,
+      role: e.target.role.value,
     };
     console.log(user);
     let response = await fetch("/api/signup", {
@@ -87,7 +88,10 @@ export default function Signup({ setUserId }) {
             />
           );
         })}
-
+        <select name="role">
+          <option value="volunteer">Volunteer</option>
+          <option value="member">Participant</option>
+        </select>
         {/* <Button onClick={() => signup()}>Signup</Button> */}
         <Button type="submit">Signup</Button>
       </form>
