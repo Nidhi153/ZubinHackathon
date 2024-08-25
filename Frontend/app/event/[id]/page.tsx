@@ -155,7 +155,6 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
         }
       }
       const role = Cookies.get("role");
-      // const role = searchParams.get("role");
       if (role && ALL_ROLES.includes(role as Roles)) {
         setRole(role as Roles);
         console.log("role is " + role);
@@ -345,8 +344,12 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
 
       {role === "admin" ? (
         <div className={styles.verticalButtonWrapper}>
-          <Button>See registration data</Button>
-          <Button>Send message to participants</Button>
+          <Button onClick={() => {
+            router.push('/event-table')
+          }}>See registration data</Button>
+          <Button onClick={() => {
+            router.push('/send-message')
+          }}>Send message to participants</Button>
           <button onClick={() => setIsTakingAttendance(!isTakingAttendance)}>
             {isTakingAttendance ? "Stop Attendance" : "Start Attendance"}
           </button>
@@ -355,15 +358,6 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
             curEvent.attendees.map((attendee) => {
               return <div>{attendee}</div>;
             })}
-        </div>
-      ) : (
-        ""
-      )}
-
-      {/* Fixed on page, only show to volunteers and members */}
-      {role !== "admin" ? (
-        <div className={chatbotStyles.chatbotWrapper}>
-          <Chatbot />
         </div>
       ) : (
         ""
