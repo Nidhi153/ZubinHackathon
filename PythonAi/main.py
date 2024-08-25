@@ -37,6 +37,7 @@ async def hello_world():
 @app.post("/ai/recommendation")
 async def get_recommended_events(request: Request):
     request_data = await request.json()
+    print(request_data)
     response = recommendation.recommend_events(request_data)
     return JSONResponse(content=response)
 
@@ -45,12 +46,17 @@ async def get_chat_response(request: Request):
     request_data = await request.json()
     response = chat.query(request_data, client)
     return JSONResponse(content=response)
+    # return {"message": "Hello, World!"}
 
 @app.post("/ai/whatsapp/broadcast")
 def relay(item: Broadcast):
-    for phone_num in item.phonenumbers:
-        send_message(get_text_message_input(phone_num, item.broadcastmessage))
-    return item
+    try:
+        for phone_num in item.phonenumbers:
+            send_message(get_text_message_input(phone_num, item.broadcastmessage))
+        return {"status": 200}
+    except Exception as e:
+        return {"error": str(e), "status": 500}
+    
 
 @app.post("/ai/whatsapp/images")
 def relay_images(item: Image):

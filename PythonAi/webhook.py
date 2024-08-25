@@ -111,12 +111,13 @@ def send_message(data):
     This function sends the message, phone number and keywords to our Backend API Endpoint
     """
 
-    headers = {"Content-type": "application/json"}
+    # headers = {"Content-type": "application/json"}
 
-    url = f"http://172.29.3.57:5128/zubin-frontend/whatsapp/question"  # Ask Kohei to replace with link to endpoint
+    # url = f"http://localhost:3000/zubin-frontend/whatsapp/question"  # Ask Kohei to replace with link to endpoint
+    url = f"http://localhost:3000/api/ai/whatsapp/question"  # Ask Kohei to replace with link to endpoint
 
     response = requests.post(
-        url, data=data, headers=headers, timeout=10
+        url, data=data, timeout=10
     )  # 10 seconds timeout as an example
 
 

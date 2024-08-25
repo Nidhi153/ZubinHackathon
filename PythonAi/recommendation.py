@@ -1,5 +1,6 @@
 import json
 import numpy as np
+import math
     
 
 def recommend_events(request_data):
@@ -26,8 +27,12 @@ def recommend_events(request_data):
     # Calculate cosine similarities
     similarities = [(event["eventid"], np.dot(volunteer_vector, event_vector) / (np.linalg.norm(volunteer_vector) * np.linalg.norm(event_vector))) for event_vector, event in zip(event_skill_vectors, events)]
 
+    print("before:", similarities)
+    similarities = [(eventid, 0 if math.isnan(similarity) else similarity) for eventid, similarity in similarities]
+    print("after:", similarities)
     # Sort and return the top 3 events
     top_events = sorted(similarities, key=lambda x: x[1], reverse=True)[:3]
+    print(top_events)
     return {"events": [{"eventid": eventid, "similarity": similarity} for eventid, similarity in top_events]}
 
 def main():
