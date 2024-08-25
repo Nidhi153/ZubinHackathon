@@ -29,6 +29,7 @@ export async function POST(req: Request) {
   let url = `http://localhost:8000/ai/chatbot`;
   const res = await axios.post(url, data);
   const resData = res.data;
+  console.log(resData);
 
   if (resData) {
     return NextResponse.json(resData);

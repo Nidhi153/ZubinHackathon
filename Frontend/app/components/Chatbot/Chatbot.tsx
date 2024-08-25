@@ -16,18 +16,20 @@ const Chatbot = ({ setIsChatbotVisible, history, setHistory }) => {
       let newHistory = [...history, { text: curInput, from: "user" }];
       setHistory([newHistory]);
       setCurInput("");
-      let response = "This is a response from the bot.";
-      //   const response = await fetch("/api/ai/chatbot", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({ message: curInput }),
-      //   });
-      //   response = await response.json();
-      //   response = response.message;
-
-      newHistory = [...newHistory, { text: response, from: "bot" }];
+      // let response = "This is a response from the bot.";
+      let response = await fetch("/api/ai/chatbot", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ input: curInput }),
+      });
+      response = await response.json();
+      console.log(response);
+      let responseText = await response.text;
+      // let responseTitle = await response.title;
+      // let msg = `title: ${responseTitle}, text: ${responseText}`;
+      newHistory = [...newHistory, { text: responseText, from: "bot" }];
       setHistory(newHistory);
     }
   };
