@@ -6,7 +6,7 @@ namespace MockServer.SwaggerEditor.PythonAiApi.Models
     public class SendBroadcastRequest
     {
         [DataMember]
-        public List<string> phonenumbers { get; set; }
+        public List<string> Phonenumbers { get; set; }
         [DataMember]
         public string Broadcastmessage { get; set; }
     }

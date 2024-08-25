@@ -40,17 +40,17 @@ namespace MockServer.SwaggerEditor.PythonAiApi.Controllers
         {
             return new ObjectResult(new GetRecommendationResponse()
             {
-                Events = new List<Event>()
+                Events = new List<ResponseEvent>()
                 {
                      new()
                     {
                          Eventid="finalTesting",
-                         Skills=new(){"s1", "s2" }
+                         Similarity = 0.4m
                     },
                     new()
                     {
                         Eventid="2",
-                        Skills=new(){"s1", "s2"}
+                        Similarity = 0.8m,
                     }
                 }
             });
@@ -80,5 +80,19 @@ namespace MockServer.SwaggerEditor.PythonAiApi.Controllers
                 Text = "I testing"
             });
         }
+
+        [HttpPost]
+        [Route("whatsapp/images")]
+        [SwaggerOperation("sendImages")]
+        [SwaggerResponse(statusCode: 200, type: typeof(SendImagesResponse), description: "Success")]
+        public virtual IActionResult SendImages([FromBody] SendImagesRequest body)
+        {
+            return new ObjectResult(new SendImagesResponse()
+            {
+                Result = "suc",
+                Status = "200"
+            });
+        }
+
     }
 }

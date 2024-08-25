@@ -24,6 +24,6 @@ namespace MockServer.SwaggerEditor.PythonAiApi.Models
     /// 
     public class GetRecommendationResponse
     {
-        public List<Event> Events { get; set; }
+        public List<ResponseEvent> Events { get; set; }
     }
 }
