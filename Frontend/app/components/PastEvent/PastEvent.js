@@ -18,11 +18,11 @@ const PastEventPage = () => {
             <div className={styles.heading}>Member Feedback</div>
             <div
             style={{
-                display: "flex",
-                justifyContent: "space-between",
-                padding: "10px 10px",
-                marginLeft: "25%",
-                marginRight: "25%",
+                // display: "flex",
+                // justifyContent: "space-between",
+                // padding: "10px 10px",
+                // marginLeft: "20%",
+                // marginRight: "20%",
             }}
             >
             <Event filterFunction={filterPastEvents} />
