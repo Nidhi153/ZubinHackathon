@@ -48,26 +48,20 @@ namespace Zubin.Controllers
         [Route("chatbot")]
         [SwaggerOperation("sendToChatbot")]
         [SwaggerResponse(statusCode: 200, type: typeof(SendToChatbotResponse), description: "Success")]
-        public virtual IActionResult SendToChatbot([FromBody] SendToChatbotRequest body)
+        public virtual async Task<IActionResult> SendToChatbot([FromBody] SendToChatbotRequest body)
         {
-            return new ObjectResult(new SendToChatbotResponse()
-            {
-                Title = "testing",
-                Text = "I testing"
-            });
+            var response = await _pythonAiApiClient.SendToChatbotAsync(body);
+            return Ok(response);
         }
 
         [HttpPost]
         [Route("whatsapp/images")]
         [SwaggerOperation("sendImages")]
         [SwaggerResponse(statusCode: 200, type: typeof(SendImagesResponse), description: "Success")]
-        public virtual IActionResult SendImages([FromBody] SendImagesRequest body)
+        public virtual async Task<IActionResult> SendImages([FromBody] SendImagesRequest body)
         {
-            return new ObjectResult(new SendImagesResponse()
-            {
-                Result = "suc",
-                Status = "200"
-            });
+            var response = await _pythonAiApiClient.SendImagesAsync(body);
+            return Ok(response);
         }
 
     }
