@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import styles from './eventDetails.module.scss'
 // import Box from '@mui/material/Box';
 
 import Event from "../Event/AllEvent";
@@ -12,16 +13,21 @@ const PastEventPage = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "10px 10px",
-        marginLeft: "25%",
-        marginRight: "25%",
-      }}
-    >
-      <Event filterFunction={filterPastEvents} />
+    <div>
+        <div className={styles.body}>
+            <div className={styles.heading}>Member Feedback</div>
+            <div
+            style={{
+                display: "flex",
+                justifyContent: "space-between",
+                padding: "10px 10px",
+                marginLeft: "25%",
+                marginRight: "25%",
+            }}
+            >
+            <Event filterFunction={filterPastEvents} />
+            </div>
+        </div>
     </div>
   );
 };
