@@ -5,16 +5,16 @@
 3. This backend can remind users registered for an event a day before the event starts.
 
 # Code features
-
-1. Loosely coupled
-
-- The UI (controller) and the API client codes have separate models and are contained in separate projects. Hence, increase the maintainability. 
-
-2. Dependency injection
-
-- 3rd-party services are injected through dependency injection as per needed. This enables plug-and-play of 3rd party APIs. Therefore, the system integration is very horizontally scalable. 
+1. Dependency injection
+- 3rd-party services are injected through dependency injection as per needed. This enables plug-and-play of 3rd party APIs. Therefore, the system integration is very horizontally scalable.
+2. Written to easily generate Open API (Swagger) specification.
+- In the future, development can be eased because of the API specification developed. 
 
 # Advantage of using this backend
 
 1. Zubin can extend the capabilities of their platform by introducing more 3rd party APIs into this ASP.NET backend through dependency injection.
-2. Code can be maintained easily because the controllers are written in a way easy to generate Open API specification (Swagger).  
+
+# Future improvement
+1. Loosely coupled
+- The API client code, the controller, and the core business logic inside this ASP.NET can be broken down into 3 independent projects in the future, which is common in real world system integration.
+- Making this code even easier to maintain.
