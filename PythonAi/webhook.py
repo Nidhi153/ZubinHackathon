@@ -30,6 +30,7 @@ PHONE_NUMBER_ID = os.getenv("PHONE_NUMBER_ID")
 VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
 WEBHOOK_PORT = "60000"
 
+
 @app.route("/webhook", methods=["POST"])
 def webhook_post():
     print("Got a POST request!")
@@ -112,7 +113,7 @@ def send_message(data):
 
     headers = {"Content-type": "application/json"}
 
-    url = f"http://172.29.3.2/zubin-frontend/whatsapp/question"  # Ask Kohei to replace with link to endpoint
+    url = f"http://172.29.3.57:5128/zubin-frontend/whatsapp/question"  # Ask Kohei to replace with link to endpoint
 
     response = requests.post(
         url, data=data, headers=headers, timeout=10
