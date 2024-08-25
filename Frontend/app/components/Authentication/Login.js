@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import styles from './styles.module.scss'
 import Button from "../Button/Button";
 import InputGroup from "../InputGroup/InputGroup";
+import Link from "next/link";
 
 export default function Signup({ setUserId }) {
   const [email, setEmail] = useState("");
@@ -63,6 +64,9 @@ export default function Signup({ setUserId }) {
 
         <Button onClick={() => signup()} type="submit">Login</Button>
       </form>
+      <span>Don't have an account yet?{" "}
+        <Link href="/signup">Sign up</Link>
+      </span>
     </div>
   );
 }

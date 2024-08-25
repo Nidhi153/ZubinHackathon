@@ -6,6 +6,7 @@ import "./auth.css";
 import { useRouter } from "next/navigation";
 import InputGroup from "../InputGroup/InputGroup";
 import styles from './styles.module.scss'
+import Link from "next/link";
 
 export default function Signup({ setUserId }) {
   const [values, setValues] = useState([])
@@ -107,6 +108,9 @@ export default function Signup({ setUserId }) {
           <Button type="submit" onClick={() => signup()}>Signup</Button>
         </div>
       </form>
+      <span>Already have an account?{" "}
+        <Link href="/login">Log in</Link>
+      </span>
     </div>
   );
 }
