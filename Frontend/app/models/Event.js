@@ -11,10 +11,11 @@ const eventSchema = new Schema({
   start_datetime: { type: String, required: true },
   end_datetime: { type: String, required: true },
   created_at: { type: Date, default: Date.now },
-  required_skills: [{ type: Schema.Types.ObjectId, ref: "Skill" }],
+  // required_skills: [{ type: Schema.Types.ObjectId, ref: "Skill" }],
   registered_users: [{ type: Schema.Types.ObjectId, ref: "User" }],
   registered_volunteers: [{ type: Schema.Types.ObjectId, ref: "User" }],
   attendees: [{ type: String }],
+  skills: [{ type: String }],
   // Add other fields as necessary
 });
 
