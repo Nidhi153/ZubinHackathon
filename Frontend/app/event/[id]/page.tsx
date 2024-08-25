@@ -11,7 +11,7 @@ import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { set } from "mongoose";
+import { set, trusted } from "mongoose";
 /* Planning to migrate this to a type file */
 const ALL_ROLES = ["volunteer", "admin", "member"] as const;
 type Roles = (typeof ALL_ROLES)[number];
@@ -20,6 +20,7 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
   const searchParams = useSearchParams();
   const [role, setRole] = useState<Roles>("member");
   const [curEvent, setCurEvent] = useState<any>(null);
+  const [userEnrolledAs, setUserEnrolledAs] = useState<"not" | "member" | "volunteer">("not");
   const router = useRouter();
 
   const [isTakingAttendance, setIsTakingAttendance] = useState(false);
@@ -126,6 +127,7 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
   useEffect(() => {
     let init = async () => {
       const eventId = params.id;
+      const userId = Cookies.get("userId");
 
       console.log("eventId", eventId);
 
@@ -140,6 +142,12 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       const event = await res.json();
       if (event) {
         setCurEvent(event.event[0]);
+        if (event.event[0].registered_users.includes(userId)) {
+          setUserEnrolledAs("member");
+        } 
+        else if (event.event[0].volunteers.includes(userId)) {
+          setUserEnrolledAs("volunteer");
+        }
       }
       const role = Cookies.get("role");
       // const role = searchParams.get("role");
@@ -174,6 +182,40 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       router.push("/training-video/" + curEvent._id);
     }
   };
+
+  const memberUnregisterButtonOnClick = async () => {
+    // delete from registered_users and user's registered_events 
+    // TODO: MARCUS DO THIS
+    const userId = Cookies.get("userId");
+    const eventId = params.id;
+
+    // get the user info
+    // post the user info without this event id in registered_events
+
+    // get the event info
+    // post the event info without this user id in registered_members
+
+
+    // redirect to successful-unregistration page
+    router.push("/successful-unregistration");
+  }
+
+  const volunteerUnregisterButtonOnClick = async () => {
+    // delete from registered_volunteers and user's registered_events 
+    // TODO: MARCUS DO THIS
+    const userId = Cookies.get("userId");
+    const eventId = params.id;
+
+    // get the user info
+    // post the user info without this event id in registered_events
+
+    // get the event info
+    // post the event info without this user id in registered_volunteers
+
+    // redirect to successful-unregistration page
+    router.push("/successful-unregistration");
+  }
+
   const Badge = ({
     children,
     onClick,
@@ -201,6 +243,7 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       {children}
     </span>
   );
+
   return (
     <div className={styles.body}>
       <BreadCrumbContainer
@@ -221,8 +264,9 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       )}
       <Image src={posterImage} alt="Poster Image" height={260} />
 
-      {/* Member and volunteer only */}
-      {role !== "admin" ? (
+
+      {/* Unregistered member and volunteer only */}
+      {(role !== "admin" && userEnrolledAs == "not") ? (
         <div className={styles.horizontalButtonWrapper}>
           <Button onClick={() => memberButtonOnClick()}>Register</Button>
           {role === "volunteer" ? (
@@ -236,6 +280,39 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       ) : (
         ""
       )}
+      
+      {/* Registered as member only */}
+      {(role !== "admin" && userEnrolledAs == "member") ? (
+        <div className={styles.horizontalButtonWrapper}>
+          <Button onClick={() => memberUnregisterButtonOnClick()}>Unregister</Button>
+          {role === "volunteer" ? (
+            <Button background="brown" disabled={true} onClick={() => volunteerButtonOnClick()}>
+              Register as volunteer
+            </Button>
+          ) : (
+            ""
+          )}
+        </div>
+      ) : (
+        ""
+      )}
+
+      {/* Registered as volunteer only */}
+      {(role !== "admin" && userEnrolledAs == "volunteer") ? (
+        <div className={styles.horizontalButtonWrapper}>
+          <Button disabled={true} onClick={() => memberButtonOnClick()}>Register</Button>
+          {role === "volunteer" ? (
+            <Button background="brown" disabled={true} onClick={() => volunteerUnregisterButtonOnClick()}>
+              Unregister as volunteer
+            </Button>
+          ) : (
+            ""
+          )}
+        </div>
+      ) : (
+        ""
+      )}
+
 
       {role === "admin" ? (
         <div className={styles.verticalButtonWrapper}>
