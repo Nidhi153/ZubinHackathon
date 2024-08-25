@@ -6,18 +6,32 @@ import dotenv from "dotenv";
 
 interface Message {
   skills: [string];
-  events: [string];
+  events: [Event];
 }
-
+interface Event {
+  skills: [string];
+  eventid: string;
+}
+interface Response {
+  eventid: string;
+  similarity: number;
+}
+interface Responses {
+  responses: [Response];
+}
 dotenv.config();
 
 export async function POST(req: Request) {
   const data: Message = await req.json();
 
-  let port = process.env.CS_PORT || 5000;
-  const res = await axios.post(`http://localhost:${port}/api/ai/chatbot`, {
-    data,
-  });
+  let port = process.env.SERVER_PORT || 50;
+  let SERVER_DOMAIN = process.env.SERVER_DOMAIN || "localhost";
+  const res: Responses = await axios.post(
+    `http://${SERVER_DOMAIN}:${port}/api/ai/recommendation`,
+    {
+      data,
+    }
+  );
   const resData = res.json();
   if (resData) {
     return NextResponse.json(resData);

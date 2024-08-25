@@ -7,16 +7,24 @@ import dotenv from "dotenv";
 interface Message {
   input: string;
 }
+interface Response {
+  text: string;
+  title: string;
+}
 
 dotenv.config();
 
 export async function POST(req: Request) {
   const data: Message = await req.json();
 
-  let port = process.env.CS_PORT || 5000;
-  const res = await axios.post(`http://localhost:${port}/api/ai/chatbot`, {
-    data,
-  });
+  let port = process.env.SERVER_PORT || 50;
+  let SERVER_DOMAIN = process.env.SERVER_DOMAIN || "localhost";
+  const res = await axios.post(
+    `http://${SERVER_DOMAIN}:${port}/api/ai/chatbot`,
+    {
+      data,
+    }
+  );
   const resData = res.json();
   if (resData) {
     return NextResponse.json(resData);

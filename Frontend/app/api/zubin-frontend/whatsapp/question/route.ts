@@ -26,16 +26,13 @@ export async function POST(req: Request) {
     const res = await WhatsappResponse.create(data);
     if (res) {
       return NextResponse.json({
-        message: "Message updated to mongodb",
-        status: 200,
+        info: "Message updated to mongodb",
       });
     }
   } catch (e) {
     console.log("Error connecting to mongodb:", e);
     return NextResponse.json({
-      message: "Message not updated to mongodb",
-      error: e,
-      status: 404,
+      info: "Message not updated to mongodb",
     });
   }
 }

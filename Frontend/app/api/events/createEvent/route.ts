@@ -4,9 +4,20 @@ import User from "../../../models/User";
 import Event from "../../../models/Event";
 import connect from "../../../lib/database";
 export async function POST(req: Request) {
+  async function checkPrimaryKey() {
+    try {
+      await connect();
+      const indexes = await Event.collection.indexes();
+      console.log("Indexes for events collection:", indexes);
+    } catch (e) {
+      console.log("Error checking primary key:", e);
+    }
+  }
+
+  await checkPrimaryKey();
   console.log("create event post request called");
   const data = await req.json();
-  console.log(data);
+  // console.log(data);
   try {
     await connect();
   } catch (e) {
@@ -37,6 +48,11 @@ export async function POST(req: Request) {
   );
   data.start_datetime = startDate;
   data.end_datetime = endDate;
+  data.registered_users = [];
+  data.registered_volunteers = [];
+  data.attendees = [];
+  delete data.id;
+  console.log(data);
   const newEvent = await Event.create(data);
   console.log("newEvent", newEvent);
   if (!newEvent) {

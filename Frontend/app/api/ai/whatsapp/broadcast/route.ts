@@ -9,20 +9,25 @@ interface Message {
   broadcastmessage: string;
 }
 
+interface Response {
+  result: string;
+  status: number;
+}
 dotenv.config();
 
 export async function POST(req: Request) {
   const data: Message = await req.json();
 
   console.log(data);
-  let port = process.env.CS_PORT || 5000;
+  let port = process.env.SERVER_PORT || 50;
+  let SERVER_DOMAIN = process.env.SERVER_DOMAIN || "localhost";
   const res = await axios.post(
-    `http://localhost:${port}/api/ai/whatsapp/broadcast`,
+    `http://${SERVER_DOMAIN}:${port}/api/ai/whatsapp/broadcast`,
     {
       data,
     }
   );
-  const resData = res.json();
+  const resData: Response = res.json();
   if (resData.status === 200) {
     return NextResponse.json({
       message: "Message posted to server",
