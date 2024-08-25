@@ -32,6 +32,19 @@ const CentralisedMessage = () => {
   const [messages, setMessages] = useState([]);
   const [responses, setResponses] = useState({});
   const [selectedTag, setSelectedTag] = useState("");
+  const allTags = [
+    "Food",
+    "Location",
+    "Transport",
+    "Emergency",
+    "Feedback",
+    "Volunteer",
+    "Donation",
+    "Jobs",
+    "Training",
+    "Education",
+  ];
+
   useEffect(() => {
     const fetchMessages = async () => {
       const data = await fetch("/api/whatsapp/messages");
@@ -61,7 +74,11 @@ const CentralisedMessage = () => {
   };
 
   const filteredMessages = selectedTag
-    ? messages.filter((message) => message.categories.includes(selectedTag))
+    ? messages.filter((message) =>
+        message.categories
+          .map((category) => category.toLowerCase())
+          .includes(selectedTag.toLowerCase())
+      )
     : messages;
   let submitResponse = async (id, num, e) => {
     e.preventDefault();
@@ -93,9 +110,15 @@ const CentralisedMessage = () => {
           value={selectedTag}
           style={{ padding: "8px 15px" }}
         >
-          <option value="emergency">emergency</option>
-          <option value="tag2">tag2</option>
-          <option value="tag3">tag3</option>
+          {allTags.map((tag, index) => (
+            <option key={index} value={tag}>
+              {tag}
+            </option>
+          ))}
+          {/* <option value="emergency">Emergency</option>
+          <option value="feedback">Feedback</option>
+          <option value="FAQ">FAQ</option>
+          <option value="Location">Location</option> */}
         </Select>
         <TableContainer className={styles.table}>
           <Table variant="simple">

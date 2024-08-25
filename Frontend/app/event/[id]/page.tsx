@@ -165,13 +165,13 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
   }, [searchParams]);
   useEffect(() => {
     let init = async () => {
-      // await fetch("/api/events/deleteAllAttendance", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({ eventId: params.id }),
-      // });
+      await fetch("/api/events/deleteAllAttendance", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ eventId: params.id }),
+      });
     };
     init();
   }, []);
