@@ -3,7 +3,7 @@
 import Image from "next/image";
 import chatbotStyles from "../../chatbot/chatbotPage.module.scss";
 import BreadCrumbContainer from "../../components/Breadcrumb/BreadcrumbContainer";
-import Chatbot from "../../components/chatbot/Chatbot";
+import Chatbot from "../../components/Chatbot/Chatbot";
 import styles from "./eventDetails.module.scss";
 import posterImage from "../../assets/poster.png";
 import Button from "../../components/Button/Button";
@@ -18,7 +18,7 @@ type Roles = (typeof ALL_ROLES)[number];
 const EventDetails = ({ params }: { params: { id: string } }) => {
   const searchParams = useSearchParams();
   const [role, setRole] = useState<Roles>("member");
-  const [curEvent, setCurEvent] = useState(null);
+  const [curEvent, setCurEvent] = useState<any>(null);
   const router = useRouter();
 
   /* Update the role whenever the link refreshes */

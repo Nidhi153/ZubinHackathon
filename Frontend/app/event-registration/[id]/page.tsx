@@ -36,7 +36,7 @@ const EventRegistration = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   const [eventId, setEventId] = useState("");
   const [userId, setUserId] = useState("");
-  const buttonOnClick = async (e) => {
+  const buttonOnClick = async (e: any) => {
     e.preventDefault();
     const res = await fetch("/api/events/register", {
       method: "POST",
@@ -62,7 +62,7 @@ const EventRegistration = ({ params }: { params: { id: string } }) => {
       if (!userId) {
         router.push("/login");
       }
-      setUserId(userId);
+      setUserId(userId!);
       if (!params.id) {
         router.push("/");
       }

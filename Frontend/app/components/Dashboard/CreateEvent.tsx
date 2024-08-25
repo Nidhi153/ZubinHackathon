@@ -3,7 +3,7 @@ import InputGroup from "../InputGroup/InputGroup";
 import styles from "./Dashboard.module.scss";
 import Button from "../Button/Button";
 import { useRouter } from "next/navigation";
-export default function CreateEvent({ userId }) {
+export default function CreateEvent({ userId }: { userId: string }) {
   const [title, setTitle] = useState<string>("");
   const [date, setDate] = useState<string>("");
   const [startTime, setStartTime] = useState<string>("");
@@ -11,7 +11,7 @@ export default function CreateEvent({ userId }) {
   const [description, setDescription] = useState<string>("");
 
   const router = useRouter();
-  let handleSubmit = async (e) => {
+  let handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log("submit");
     const newEvent = {
