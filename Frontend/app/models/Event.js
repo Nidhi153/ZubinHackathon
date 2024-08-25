@@ -14,6 +14,7 @@ const eventSchema = new Schema({
   required_skills: [{ type: Schema.Types.ObjectId, ref: "Skill" }],
   registered_users: [{ type: Schema.Types.ObjectId, ref: "User" }],
   registered_volunteers: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  attendees: [{ type: String }],
   // Add other fields as necessary
 });
 
