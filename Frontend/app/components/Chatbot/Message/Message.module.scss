@@ -1,27 +1,28 @@
 @import "../../../global.module.scss";
 
 .wrapper {
-    width: 100%;
+  width: 100%;
 }
 
 .userWrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
 }
 
 .message {
-    width: fit-content;
-    max-width: 200px;
-    padding: 16px 20px;
-    border-radius: 4px;
-    color: $white;
+  width: fit-content;
+  max-width: 200px;
+  // padding: 16px 20px;
+  padding: 10px 10px;
+  border-radius: 4px;
+  color: $white;
 }
 
 .botMessage {
-    background-color: $brown;
+  background-color: $brown;
 }
 
 .userMessage {
-    background-color: $blue;
+  background-color: $blue;
 }
