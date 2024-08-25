@@ -279,7 +279,7 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       <div className={styles.heading}>
         {curEvent?.title || "Loading title.."}
       </div>
-      <div>{curEvent?.date || "Loading date.."}</div>
+      <div>{curEvent? new Date(curEvent?.date).toLocaleString('en-GB', { timeZone: 'Asia/Hong_Kong' }) : "Loading date.."}</div>
       {curEvent?.skills && (
         <div className="flex flex-wrap gap-2">
           {curEvent.skills.map((skill, index) => (
