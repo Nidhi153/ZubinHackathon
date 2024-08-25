@@ -3,8 +3,6 @@ using Swashbuckle.AspNetCore.Annotations;
 using Zubin.Api;
 using Zubin.Api.Nextjs;
 using Zubin.Api.Python;
-using Zubin.Models.Nextjs;
-using Zubin.Models.PythonAi;
 
 namespace Zubin.Controllers
 {
@@ -12,96 +10,32 @@ namespace Zubin.Controllers
     [Route("/zubin-frontend")]
     public class NextjsApiController : ControllerBase
     {
-        private readonly NextjsClient _nextjsClient;
-        public NextjsApiController(NextjsClient nextjsClient) 
+        NextjsApiClient _apiClient;
+
+        public NextjsApiController(NextjsApiClient apiClient)
         {
-            _nextjsClient = nextjsClient;
-        }
-        //[HttpGet]
-        //[Route("nextdayevents/")]
-        //[SwaggerOperation("GetNextDayEvents")]
-        //[SwaggerResponse(statusCode: 200, type: typeof(object), description: "Success")]
-        //public async virtual Task<IActionResult> GetNextDayEventsAsync()
-        //{
-        //    var response = await _nextjsClient.GetNextDayEventsAsync();
-
-        //    var events = response.Events.Select(g => new Models.Nextjs.Event()
-        //    {
-        //        Phonenumbers = g.Phonenumbers.ToList(),
-        //        Description = g.Description,
-        //    }).ToList();
-
-        //    var result = new Models.Nextjs.GetNextDayEventsResponse()
-        //    {
-        //        Events = events
-        //    };
-
-        //    return new ObjectResult(result);
-
-        //}
-
-        [HttpPost]
-        [Route("whatsapp/question")]
-        public async Task<InserQuestionResponse> InsertQuestion(InsertQuestionRequest body)
-        {
-            var request = new Api.Nextjs.InsertQuestionRequest()
-            {
-                Phonenumber = body.Phonenumber,
-                Message = body.Message,
-                Categories = body.Categories.ToList()
-            };
-
-            var response = await _nextjsClient.InserQuestionAsync(request);
-
-            return new InserQuestionResponse()
-            {
-                Info = response.Info,
-            };
+            _apiClient = apiClient;
         }
 
         [HttpGet]
         [Route("nextdayevents/")]
-        public async Task<object> GetNextDayEventsAsync()
+        [SwaggerOperation("GetNextDayEvents")]
+        [SwaggerResponse(statusCode: 200, type: typeof(GetNextDayEventsResponse), description: "Success")]
+        public virtual async Task<IActionResult> GetNextDayEvents()
         {
-            var response = await _nextjsClient.GetNextDayEventsAsync();
+            var response = await _apiClient.GetNextDayEventsAsync();
 
-            var events = response.Events.Select(g => new Event()
-            {
-                Phonenumbers = g.Phonenumbers.ToList(),
-                Description = g.Description,
-            }).ToList();
-
-            var result = new GetNextDayEventsResponse()
-            {
-                Events = events
-            };
-
-            return new ObjectResult(result );
+            return Ok(response);
         }
 
-        public class GetNextDayEventsResponse
+        [HttpPost]
+        [Route("whatsapp/question")]
+        [SwaggerOperation("InserQuestion")]
+        [SwaggerResponse(statusCode: 200, type: typeof(InserQuestionResponse), description: "Success")]
+        public virtual async Task<IActionResult> InsertQuestion(InsertQuestionRequest body)
         {
-            //public List<Event> Events = new List<Event>();
-            //public string Name { get; set; }
-            public List<Event> Events { get; set; }
+            var response = await _apiClient.InserQuestionAsync(body);
+            return Ok(response);
         }
-        public class Event
-        {
-            public List<string> Phonenumbers { get; set; }
-            public string Description { get; set; }
-        }
-
-        public class InsertQuestionRequest
-        {
-            public string Phonenumber { get; set; }
-            public string Message { get; set; }
-            public List<string> Categories { get; set; }
-        }
-
-        public class InserQuestionResponse
-        {
-            public string Info { get; set; }
-        }
-
     }
 }
