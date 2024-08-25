@@ -12,6 +12,7 @@ export async function POST(req: Request) {
   const data = await req.json();
 
   const userId = data.userId;
+  const eventId = data.eventId;
   let user = await User.find({ _id: userId });
   if (!user) {
     return NextResponse.json({
@@ -19,31 +20,43 @@ export async function POST(req: Request) {
       status: 404,
     });
   }
+  let event = await Event.find({ _id: eventId });
+  if (!event) {
+    return NextResponse.json({
+      message: "Event not found",
+      status: 404,
+    });
+  }
   if (user.length > 0) {
     user = user[0];
   }
-
+  if (event.length > 0) {
+    event = event[0];
+  }
   if (!user.registered_events) {
+    user.registered_events = [];
+  }
+  try {
+    if (user.registered_events.includes(eventId)) {
+      return NextResponse.json({
+        message: "User already registered for this event",
+        status: 404,
+      });
+    }
+    user.registered_events.push(eventId);
+
+    await user.save();
+
+    event.registered_users.push(userId);
+    await event.save();
+  } catch (e) {
     return NextResponse.json({
-      message: "User has not registered for any events",
+      message: "Error registering event",
       status: 404,
     });
   }
-  const eventIds = user.registered_events;
-
-  if (eventIds.length === 0) {
-    return NextResponse.json({
-      message: "User has not registered for any events",
-      status: 404,
-    });
-  }
-
-  const events = await Event.find({ _id: { $in: eventIds } }).sort({
-    created_at: -1,
-  });
-
   return NextResponse.json({
-    message: "Found events",
-    events: events,
+    message: "Event registered",
+    status: 200,
   });
 }

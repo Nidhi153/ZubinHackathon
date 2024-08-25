@@ -11,15 +11,30 @@ const Navbar = () => {
   const [role, setRole] = useState(null);
   const routes = [{ route: "/", name: "Home" }];
   useEffect(() => {
-    const userId = Cookies.get("userId");
-    if (userId) {
-      console.log("userid", userId);
-      setUserId(userId);
-    }
-    const role = Cookies.get("role");
-    console.log("role", role);
-    setRole(role);
+    const fetchData = () => {
+      const userId = Cookies.get("userId");
+      if (userId) {
+        // console.log("userid", userId);
+        setUserId(userId);
+      } else {
+        setUserId(null);
+      }
+      const role = Cookies.get("role");
+
+      // console.log("role", role);
+      if (role) {
+        setRole(role);
+      } else {
+        setRole(null);
+      }
+    };
+
+    fetchData(); // Initial fetch
+    const intervalId = setInterval(fetchData, 1000); // Fetch every 1 second
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
   }, []);
+
   return (
     <div className={styles.navbar}>
       <div className={styles.wrapper}>
@@ -32,12 +47,17 @@ const Navbar = () => {
             </Tab>
           ))}
           {role && role == "admin" && (
-            <Tab>
-              <a href="/dashboard">Dashboard </a>
-            </Tab>
+            <>
+              <Tab>
+                <a href="/dashboard">Dashboard </a>
+              </Tab>
+              <Tab>
+                <a href="/create-event">Create Event </a>
+              </Tab>
+            </>
           )}
           {userId ? (
-            <AccountButton username="Username" />
+            <AccountButton username="User" />
           ) : (
             <Tab>
               <a href="/login">Login</a>

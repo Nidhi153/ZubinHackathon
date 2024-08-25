@@ -1,0 +1,46 @@
+@import "../../global.module.scss";
+
+.messageCell {
+    word-wrap: break-word;
+    white-space: pre-wrap; /* This ensures that the text wraps and preserves whitespace */
+  }
+
+.body {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 60px 138px;
+}
+
+.heading {
+    font-size: $page-heading-font-size;
+    font-weight: $page-heading-font-weight;
+}
+
+.table {
+    border: 1px solid $gray;
+    padding: 20px;
+    border-radius: 20px;
+    table-layout: fixed; 
+    width: 100%; 
+}
+
+.indexColumn {
+    width: 10%; /* Adjust the width as needed */
+  }
+  
+.messageColumn {
+    width: 20%; /* Adjust the width as needed */
+  }
+  
+.phoneColumn {
+    width: 20%; /* Adjust the width as needed */
+  }
+  
+.tagColumn {
+    width: 20%; /* Adjust the width as needed */
+  }
+
+.replyColumn {
+    width: 30%;
+}

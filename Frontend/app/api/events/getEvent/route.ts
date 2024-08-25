@@ -3,17 +3,18 @@ import { NextResponse } from "next/server";
 import User from "../../../models/User";
 import Event from "../../../models/Event";
 import connect from "../../../lib/database";
-export async function GET() {
+export async function POST(req: Request) {
   try {
     await connect();
   } catch (e) {
     console.log("Error connecting to mongodb:", e);
   }
-
-  const events = await Event.find({}).sort({ created_at: -1 });
+  const data = await req.json();
+  const id = data.id;
+  const event = await Event.find({ _id: id });
 
   return NextResponse.json({
-    message: "Found events",
-    events: events,
+    message: "Found event",
+    event: event,
   });
 }
