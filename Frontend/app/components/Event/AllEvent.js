@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import EventBox from "./EventBox";
 import "./Event.css";
+import styles from "./EventCardGroup/EventCardGroup.module.scss";
+
 export default function Event({ filterFunction }) {
   const [events, setEvents] = useState([]);
   useEffect(() => {
@@ -35,11 +37,13 @@ export default function Event({ filterFunction }) {
 
   return (
     <div>
-      <div className="container">
+      <div className="styles.eventCards">
         {/* {events &&
           events.map((event) => <EventBox key={event._id} event={event} />)} */}
         {filteredEvents &&
-          filteredEvents.map((event) => <EventBox key={event._id} event={event} />)}
+          filteredEvents.map((event) => 
+          <EventBox key={event._id} event={event} 
+        />)}
       </div>
     </div>
   );

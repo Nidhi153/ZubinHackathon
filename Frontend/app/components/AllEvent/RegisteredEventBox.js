@@ -1,6 +1,7 @@
 import { Card } from "flowbite-react";
 import "./Event.css";
 import { Box } from "@chakra-ui/react";
+import styles from "../Event/RegisteredEventBox/RegisteredEventCard/RegisteredEventCard.module.scss";
 
 const registeredEventStyle = {
   backgroundColor: "#F0F0F0",
@@ -33,19 +34,24 @@ export default function RegisteredEventBox({ key, event }) {
     console.log("Displaying event detail with id: ", id);
     router.push(`/event/${id}`);
   };
+  const displayedDate = new Date(event.date).toDateString();
   return (
-    <div style={registeredEventStyle} key={key}>
-      <Box style={{ padding: "10px" }} onClick={() => displayEventDetail()}>
-        <div>
-          <div
-            className="text-center font-textfont font-bold"
-            style={titleStyle}
-          >
-            {event.title}
-          </div>
-          <div style={dateRegsiteredStyle}>{event.date}</div>
-        </div>
-      </Box>
+    <div className={styles.card}>
+        <em>{event.title}</em>
+        <span>{displayedDate}</span>
     </div>
+    // <div style={registeredEventStyle} key={key}>
+    //   <Box style={{ padding: "10px" }} onClick={() => displayEventDetail()}>
+    //     <div>
+    //       <div
+    //         className="text-center font-textfont font-bold"
+    //         style={titleStyle}
+    //       >
+    //         {event.title}
+    //       </div>
+    //       <div style={dateRegsiteredStyle}>{event.date}</div>
+    //     </div>
+    //   </Box>
+    // </div>
   );
 }

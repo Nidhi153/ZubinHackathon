@@ -1,3 +1,4 @@
+// THIS PAGE SHOULD NOT BE USED
 "use client";
 import { useState, useEffect } from "react";
 import { RegisteredEventBox } from "./RegisteredEventBox";
