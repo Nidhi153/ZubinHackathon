@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import EventBox from "./EventBox";
 import "./Event.css";
-export default function Event() {
+export default function Event({ filterFunction }) {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     let fetchEvents = async () => {
@@ -31,11 +31,15 @@ export default function Event() {
     fetchEvents();
   }, []);
 
+  const filteredEvents = filterFunction ? events.filter(filterFunction) : events;
+
   return (
     <div>
       <div className="container">
-        {events &&
-          events.map((event) => <EventBox key={event._id} event={event} />)}
+        {/* {events &&
+          events.map((event) => <EventBox key={event._id} event={event} />)} */}
+        {filteredEvents &&
+          filteredEvents.map((event) => <EventBox key={event._id} event={event} />)}
       </div>
     </div>
   );
