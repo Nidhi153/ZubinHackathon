@@ -175,7 +175,9 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
     };
     init();
   }, []);
-
+  const sendMessage = async () => {
+    router.push(`/send-message/${params.id}`);
+  };
   const memberButtonOnClick = () => {
     if (curEvent) {
       router.push("/event-registration/" + curEvent._id);
@@ -345,7 +347,13 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       {role === "admin" ? (
         <div className={styles.verticalButtonWrapper}>
           <Button>See registration data</Button>
-          <Button>Send message to participants</Button>
+          <Button
+            onClick={() => {
+              sendMessage();
+            }}
+          >
+            Send message to participants
+          </Button>
           <button onClick={() => setIsTakingAttendance(!isTakingAttendance)}>
             {isTakingAttendance ? "Stop Attendance" : "Start Attendance"}
           </button>

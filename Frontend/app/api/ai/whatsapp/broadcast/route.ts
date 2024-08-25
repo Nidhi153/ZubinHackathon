@@ -19,6 +19,7 @@ export async function POST(req: Request) {
   const data: Message = await req.json();
 
   console.log(data);
+
   // let port = process.env.SERVER_PORT || 50;
   // let SERVER_DOMAIN = process.env.SERVER_DOMAIN || "localhost";
   // let url = `http://${SERVER_DOMAIN}:${port}/api/ai/whatsapp/broadcast`;
