@@ -54,11 +54,11 @@ const CentralisedMessage = () => {
   const filteredMessages = selectedTag
   ? messages.filter((message) => message.categories.includes(selectedTag))
   : messages;
-
   let submitResponse = async (id, num, e) => {
     e.preventDefault();
     console.log("submitting response");
     console.log(responses[id]);
+    // const message = e.target.message.value;
     const message = responses[id]
     const res = await fetch("/api/ai/whatsapp/broadcast", {
       method: "POST",
@@ -96,6 +96,7 @@ const CentralisedMessage = () => {
                     </Thead>
                     <Tbody>
                         {filteredMessages.map((message) => (
+                       // {messages.map((message) => (
                             <Tr key={message._id}>
                                 <Td className={styles.indexColumn}>{message.id}</Td>
                                 <Td className={`${styles.messageCell} ${styles.messageColumn}`}>{message.message}</Td>

@@ -34,11 +34,12 @@ const Account = () => {
     <div className={styles.body}>
       <div className={styles.heading}>Account</div>
       <div className={styles.rowWrapper}>
-        <TextRow property="Name" value="Username" />
         {user && (
           <>
+            <TextRow property="Name" value={user.name} />
             <TextRow property="Role" value={user.role} />
             <TextRow property="Email" value={user.email} />
+            <TextRow property="Phone Number" value={user.phoneno} />
           </>
         )}
       </div>
