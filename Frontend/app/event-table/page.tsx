@@ -14,6 +14,7 @@ import {
     TableContainer,
   } from '@chakra-ui/react'
 import Button from '../components/Button/Button'
+import { useEffect, useState } from "react";
 
 const dummyParticipants = [
     {
@@ -34,6 +35,14 @@ const dummyParticipants = [
 ]
 
 const EventTable = () => {
+    const [highlightedRows, setHighlightedRows] = useState([]);
+
+    const handleRowClick = (userID) => {
+        setHighlightedRows((prev) => 
+            prev.includes(userID) ? prev.filter(id => id !== userID) : [...prev, userID]
+        );
+    };
+
     return (
         <div className={styles.body}>
             <BreadCrumbContainer role='admin' eventName='Gathering Event' eventLink='/event-details' />
@@ -50,7 +59,7 @@ const EventTable = () => {
                     </Thead>
                     <Tbody>
                         {dummyParticipants.map((person, i) => (
-                            <Tr key={person.userID}>
+                            <Tr key={person.userID} className={highlightedRows.includes(person.userID) ? styles.highlightedRow : ''} onClick={() => handleRowClick(person.userID)}>
                                 <Td>{i}</Td>
                                 <Td>{person.name}</Td>
                                 <Td>{person.phone}</Td>
@@ -62,7 +71,11 @@ const EventTable = () => {
             <div className={styles.buttonWrapper}>
                 <Button>Download Data</Button>
                 <Button>Print Data</Button>
+                {/* <Button onClick={() => setIsTakingAttendance(!isTakingAttendance)}>{isTakingAttendance ? "Stop Attendance" : "Start Attendance"}</Button> */}
             </div>
+          {/* {attendees.map((attendee) => {
+              return <div>{attendee}</div>;
+            })} */}
         </div>
     )
 }
