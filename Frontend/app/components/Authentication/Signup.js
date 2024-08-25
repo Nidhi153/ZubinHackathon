@@ -7,13 +7,47 @@ export default function Signup({ setUserId }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  let signup = async () => {
+  const fields = [
+    {
+      id: "email",
+      label: "Email",
+      type: "email",
+      // placeholder: "Enter email",
+    },
+    {
+      id: "password",
+      label: "Password",
+      type: "password",
+      // placeholder: "Enter password",
+    },
+    {
+      id: "phoneno",
+      label: "Phone Number",
+      type: "tel",
+      // placeholder: "Enter phone number",
+    },
+    {
+      id: "name",
+      label: "Name",
+      type: "text",
+      // placeholder: "Enter name",
+    },
+  ];
+  let signup = async (e) => {
+    e.preventDefault();
+    let user = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+      phoneno: e.target.phoneno.value,
+      name: e.target.name.value,
+    };
+    console.log(user);
     let response = await fetch("/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(user),
     });
 
     const data = await response.json();
@@ -41,21 +75,22 @@ export default function Signup({ setUserId }) {
   return (
     <div className="container">
       <h1>Signup</h1>
+      <form onSubmit={(e) => signup(e)}>
+        {fields.map((field) => {
+          return (
+            <FloatingLabel
+              variant="outlined"
+              label={field.label}
+              type={field.type}
+              placeholder={field.placeholder}
+              name={field.id}
+            />
+          );
+        })}
 
-      <FloatingLabel
-        variant="outlined"
-        label="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <FloatingLabel
-        variant="outlined"
-        label="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      <Button onClick={() => signup()}>Signup</Button>
+        {/* <Button onClick={() => signup()}>Signup</Button> */}
+        <Button type="submit">Signup</Button>
+      </form>
     </div>
   );
 }

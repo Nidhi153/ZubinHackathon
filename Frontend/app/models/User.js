@@ -7,11 +7,11 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   role: { type: String, default: "member" },
   // first_name: { type: String, required: true },
-  // last_name: { type: String, required: true },
+  name: { type: String, required: true },
   created_at: { type: Date, default: Date.now },
   registered_events: [{ type: Schema.Types.ObjectId, ref: "Event" }],
   media_id: { type: String },
-  // contact_number: { type: String, required: true },
+  phoneno: { type: String, required: true },
   // Add other fields as necessary
 });
 

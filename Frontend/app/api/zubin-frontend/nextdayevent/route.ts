@@ -25,7 +25,7 @@ export async function GET() {
     let phonenumber = [];
     if (res[i].registered_members && res[i].registered_members.length > 0) {
       for (let j = 0; j < res[i].registered_members.length; j++) {
-        phonenumber.push(res[i].registered_members[j].contact_number);
+        phonenumber.push(res[i].registered_members[j].phoneno);
       }
     } else {
       continue;

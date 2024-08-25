@@ -57,7 +57,7 @@ const Navbar = () => {
             </>
           )}
           {userId ? (
-            <AccountButton username="Username" />
+            <AccountButton username="User" />
           ) : (
             <Tab>
               <a href="/login">Login</a>

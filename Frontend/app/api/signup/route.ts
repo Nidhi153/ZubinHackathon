@@ -26,6 +26,14 @@ export async function POST(req: Request) {
       message: "Email and password are required",
     });
   }
+  let phoneno = data.phoneno;
+  phoneno = phoneno.replace(/\D/g, "");
+  if (phoneno.length !== 8) {
+    return NextResponse.json({
+      message: "Invalid phone number",
+    });
+  }
+
   try {
     await connect();
   } catch (e) {
@@ -44,6 +52,8 @@ export async function POST(req: Request) {
   //   }
 
   const result = await User.findOne({ email: data.email });
+
+  data.phoneno = "+852" + phoneno;
   if (result) {
     console.log("User already exists, please login");
     return NextResponse.json({
