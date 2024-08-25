@@ -1,0 +1,22 @@
+div.container {
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: row;
+  flex-wrap: wrap;
+}
+div.container > * {
+  margin: 30px;
+}
+.event-box {
+  width: 300px;
+}
+.event-card {
+  transition: transform 0.2s;
+}
+
+.event-card:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}

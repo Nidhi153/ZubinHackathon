@@ -18,10 +18,24 @@ export default function Signup({ setUserId }) {
     });
 
     const data = await response.json();
-    const token = data.token;
     const userId = data.userId;
-
-    document.cookie = `token=${token}; userId=${userId}; path=/`;
+    const role = data.role;
+    if (!userId) {
+      const message = data.message;
+      if (message) {
+        alert(message);
+      } else {
+        alert("Invalid email or password");
+      }
+      return;
+    }
+    if (!role) {
+      alert("Role not found");
+      return;
+    }
+    console.log(role);
+    document.cookie = `userId=${userId};  path=/`;
+    document.cookie = `role=${role}; path=/`;
     // router.push("/protected");
     router.push("/");
   };
@@ -43,7 +57,9 @@ export default function Signup({ setUserId }) {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <Button onClick={() => signup()}>Login</Button>
+      <Button color="warning" onClick={() => signup()}>
+        Login
+      </Button>
     </div>
   );
 }

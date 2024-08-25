@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 
 import Navbar from "./components/Navbar/Navbar";
+import Chatbot from "./components/Chatbot/Chatbot";
 const inter = Poppins({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
@@ -18,8 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar></Navbar>
-        {children}
+        <ChakraProvider>
+          <Navbar></Navbar>
+          {children}
+          <div className="chatbot">
+            <Chatbot />
+          </div>
+        </ChakraProvider>
       </body>
     </html>
   );

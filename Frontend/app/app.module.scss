@@ -1,0 +1,64 @@
+@import "./global.module.scss";
+
+.layout {
+    padding: 200px;
+    display: flex;
+    flex-direction: relative;
+    gap: 0;
+    position: relative;
+    background-color: $light;
+
+    h1 {
+        font-size: $section-heading-font-size;
+        font-weight: $section-heading-font-weight;
+    }
+}
+
+.imageWrapper {
+    height: 300px;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    left: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 100%;
+}
+
+.header {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $white;
+    font-size: $page-heading-font-size;
+    font-weight: $page-heading-font-weight;
+    color: $sky;
+    border-radius: 20px;
+    filter: drop-shadow(0 2px 2px $black);
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    flex: 2;
+}
+
+.eventCardSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

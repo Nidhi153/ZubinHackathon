@@ -1,21 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Authentication from "./components/Authentication";
-// import Event from "./components/Event";
-import Dashboard from "./components/Dashboard";
-import Navbar from "./components/Navbar/Navbar";
+import styles from "./app.module.scss";
 import Cookies from "js-cookie";
-import Event from "./components/Event/AllEvent";
-
+import { useEffect, useState } from "react";
+import HomepageLayout from "./components/HomepageLayout/HomepageLayout";
+import RegisteredEventBox from "./components/Event/RegisteredEventBox/RegisteredEventBox";
+import EventCardGroup from "./components/Event/EventCardGroup/EventCardGroup";
+import Event from "./components/AllEvent/AllEvent";
 export default function Home() {
+  const [role, setRole] = useState<string>("");
+
   useEffect(() => {
-    const userId = Cookies.get("userId");
-    console.log("userid", userId);
+    const role = Cookies.get("role");
+    if (role) {
+      setRole(role);
+    }
   }, []);
+
   return (
-    <div>
+    <HomepageLayout header="Upcoming Events">
+      {/* <div className={styles.body}> */}
+      {/* <div className={styles.cards}></div> */}
       <Event />
-    </div>
+      {/* </div> */}
+    </HomepageLayout>
   );
 }

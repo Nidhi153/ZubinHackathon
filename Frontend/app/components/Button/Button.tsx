@@ -2,15 +2,19 @@ import styles from './Button.module.scss'
 
 interface ButtonProps {
     children: string,
-    background?: 'blue' | 'brown',
+    background?: 'blue' | 'brown' | 'error',
+    onClick?: () => void,
+    type?: 'button' | 'submit' | 'reset',
+    disabled?: boolean
 }
 
-const Button = ({ children, background = 'blue' }: ButtonProps) => {
+const Button = ({ children, background = 'blue', onClick = () => { }, type = 'button', disabled = false }: ButtonProps) => {
     return (
-        <div className={[
-            styles.button,
-            background === 'brown' ? styles.buttonBrown : '',
-        ].join(' ')}>{children}</div>
+        <button onClick={(e) => { onClick() }} type={type} disabled={disabled}
+            className={[
+                styles.button,
+                background === 'brown' ? styles.buttonBrown : (background === 'error' ? styles.buttonError : ''),
+            ].join(' ')}>{children}</button>
     )
 }
 

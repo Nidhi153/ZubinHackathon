@@ -1,0 +1,14 @@
+div.container {
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: row;
+  flex-wrap: wrap;
+}
+div.container > * {
+  margin: 30px;
+}
+.event-box {
+  width: 300px;
+}
