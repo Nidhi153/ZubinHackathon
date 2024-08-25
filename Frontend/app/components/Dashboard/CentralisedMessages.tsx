@@ -59,7 +59,6 @@ const CentralisedMessage = () => {
     e.preventDefault();
     console.log("submitting response");
     console.log(responses[id]);
-    // const message = e.target.message.value;
     const message = responses[id]
     const res = await fetch("/api/ai/whatsapp/broadcast", {
       method: "POST",
