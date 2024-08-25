@@ -188,6 +188,13 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
     const userId = Cookies.get("userId");
     const eventId = params.id;
 
+    // get the user info
+    // post the user info without this event id in registered_events
+
+    // get the event info
+    // post the event info without this user id in registered_members
+
+
     // redirect to successful-unregistration page
     router.push("/successful-unregistration");
   }
@@ -195,6 +202,14 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
   const volunteerUnregisterButtonOnClick = async () => {
     // delete from registered_volunteers and user's registered_events 
     // TODO: MARCUS DO THIS
+    const userId = Cookies.get("userId");
+    const eventId = params.id;
+
+    // get the user info
+    // post the user info without this event id in registered_events
+
+    // get the event info
+    // post the event info without this user id in registered_volunteers
 
     // redirect to successful-unregistration page
     router.push("/successful-unregistration");
