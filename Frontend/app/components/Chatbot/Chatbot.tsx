@@ -11,10 +11,24 @@ const Chatbot = ({ setIsChatbotVisible, history, setHistory }) => {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (curInput.trim() !== "") {
-      setHistory([...history, { text: curInput, from: "user" }]);
+      let newHistory = [...history, { text: curInput, from: "user" }];
+      setHistory([newHistory]);
       setCurInput("");
+      let response = "This is a response from the bot.";
+      //   const response = await fetch("/api/ai/chatbot", {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({ message: curInput }),
+      //   });
+      //   response = await response.json();
+      //   response = response.message;
+
+      newHistory = [...newHistory, { text: response, from: "bot" }];
+      setHistory(newHistory);
     }
   };
 
@@ -51,7 +65,7 @@ const Chatbot = ({ setIsChatbotVisible, history, setHistory }) => {
             onKeyDown={handleKeyPress}
             placeholder="Enter your message..."
           />
-          <button onClick={() => addMessage()}>
+          <button onClick={() => handleSendMessage()}>
             <Image src={sendIcon} alt="Send Icon" />
           </button>
         </div>
