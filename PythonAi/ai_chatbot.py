@@ -10,12 +10,10 @@ from dotenv import load_dotenv
 
 
 load_dotenv()
-
-
 HF_TOKEN = os.getenv("HF_TOKEN")
 
-def init_chatbot(API_key:str):
-      API_TOKEN = HF_TOKEN
+def init_chatbot(API_KEY:str):
+      API_TOKEN = API_KEY
       repo_id = "meta-llama/Meta-Llama-3-8B-Instruct"
         
       
@@ -28,23 +26,20 @@ def init_chatbot(API_key:str):
     
 class Chatbot():
     def __init__(self):
-
-        #Initialize all variables
+        # Initialize all variables
         self.doc_chunks = []
 
-        #Initialize chat history
+        # Initialize chat history
         self.chat_history = []
 
-        #Create a persistent connection to the vector database's collection
+        # Create a persistent connection to the vector database's collection
         db = chromadb.PersistentClient(path="./chroma", settings=Settings(), tenant=DEFAULT_TENANT, database=DEFAULT_DATABASE)
 
         collection_name = "zubin-foundation"
 
-        #Might experiment with embedding_function
+        # Might experiment with embedding_function
         self.collection = db.get_or_create_collection(name=collection_name, embedding_function=chromadb.utils.embedding_functions.DefaultEmbeddingFunction())
 
-  
-    
     def query(self, prompt:dict, client, show_context:bool=False, context_length:int = 1) -> str:
         
         prompt = prompt.get("input")
@@ -87,8 +82,8 @@ class Chatbot():
             
             '''
             Chat History: 
-            Human: {self.chat_history[0]['content']}
-            AI: {self.chat_history[1]['content']}
+            Human: {self.chat_history[-2]['content']}
+            AI: {self.chat_history[-1]['content']}
             '''
             """
 
@@ -139,7 +134,6 @@ class Chatbot():
             stream=False,
         ).choices[0].message.content
 
-        self.chat_history = []
         self.chat_history.append({"role": "user", "content": standalone_prompt})
         self.chat_history.append({"role": "assistant", "content": chatbot_response})
 
@@ -151,84 +145,26 @@ class Chatbot():
         return {"title": title, "text": response_text}
 
     def delete_database(self):
-        '''
-        Only run if you would like to remove all information fed into the vector database!
-        '''
+        # Only run if you would like to remove all information fed into the vector database!
         db = chromadb.PersistentClient(path="./chroma", settings=Settings(), tenant=DEFAULT_TENANT, database=DEFAULT_DATABASE)
-
         collection_name = "zubin-foundation"
-
         db.delete_collection(name=collection_name)
 
-    '''
-    BELOW ARE DEBUGGING FUNCTIONS!!!
-    '''
-
     def show_chat_log(self):
-        '''
-        Just like the name, this function returns the chat logs for each phone number in the system.
-        '''
+        # Just like the name, this function returns the chat logs for each phone number in the system.
         return self.chat_history
 
-    def delete_chat_log(self, phone_number:str="+85298226209"):
-        '''
-        Just like the name, this function deletes all chat logs associated with a phone number in the system.
-        '''
-        self.chat_history[phone_number] = []
-
-
-
-doc_chunks = ["""
-The Zubin Foundation
-
-They are a small but dedicated team with a strong commitment to improving the lives in Hong Kong.
-
-Fundraising Comittee
-Objective:
-To raise funds for and increase awareness of The Zubin Foundation.
-
-Scholarships' Committee
-Objective:
-To independently select the candidates for The Zubin Foundation scholarships.
-
-SEN Centre Advisory Committee
-Objective:
-To provide advise on the workflow and protocols for the SEN Centre as well as recommend professionals who can help.
-
-EMWBC Committee
-Objective:
-To provide advice on the service protocol and other issues as related to the service provided by the Ethnic Minority Well-being Centre.
-
-When in need, community members can utilize these links for help:
-Call Mira: Helpline for Women and Girls in Crisis https://www.zubinfoundation.org/our-work/call-mira-helpline/
-
-When in need for counselling, go this page: Adult Counselling - Ethnic Minority Well-being Centre:
-https://api.whatsapp.com/send?phone=85296823100&text=Hello%20from%20The%20Zubin%20Foundation%20Ethnic%20Minority%20Well-being%20Centre.%20%0A%0AOur%20opening%20hours%20are%209-5pm%2C%20Monday%20to%20Friday.%20%0A%0APlease%20message%20us%20if%20you%20have%20any%20questions%20or%20if%20you%20would%20like%20to%20book%20an%20appointment.%20%0A
-
-Upcoming events:
-Event name: Summer Dance Fiesta
-Event Descriptions: Join us for an exhilarating summer dance festival featuring a variety of styles, from salsa to hip-hop. Learn new moves, meet fellow dance enthusiasts, and showcase your talent on the dance floor.
-Event Date: August 30 - September 3, 2024
-Event Venue: Hong Kong Convention and Exhibition Centre
-Food option: Food trucks and refreshment stalls on-site
-Registration Link: https://www.summerdanceevent.com
-
-Event name: Pottery Workshop Series
-Event Descriptions: Unleash your inner artist and learn the art of pottery making. Experienced instructors will guide you through the entire process, from shaping the clay to glazing and firing your unique creations.
-Event Date: September 7 - October 12, 2024 (Every Saturday)
-Event Venue: Hong Kong Arts Centre
-Food option: Light refreshments available
-Registration Link: https://www.potteryworkshopseries.com
-
-Event name: University Application Bootcamp
-Event Descriptions: Prepare for your university applications with this comprehensive bootcamp. Receive guidance on essay writing, interview skills, and navigating the admissions process from experienced counselors.
-Event Date: November 2 - 16, 2024 (Every Saturday and Sunday)
-Event Venue: Hong Kong University of Science and Technology
-Food option: Snacks and refreshments available
-Registration Link: https://www.universityapplicationbootcamp.com
-"""]
+with open("zubin_data.txt", "r", encoding="utf-8") as file:
+    doc_chunks = [file.read()]
 
 doc_ids = ["0"]
+
+'''This is for scalability of our LLM when new data is added to the zubin_data.txt'''
+# db = chromadb.PersistentClient(path="./chroma", settings=Settings(), tenant=DEFAULT_TENANT, database=DEFAULT_DATABASE)
+# collection_name = "zubin-foundation"
+# doc_metadatas=[{"About": "Zubin Foundation"}]
+# collection = db.get_or_create_collection(name=collection_name, embedding_function=chromadb.utils.embedding_functions.DefaultEmbeddingFunction())
+# collection.add(documents=doc_chunks, ids=doc_ids, metadatas=doc_metadatas)
 
 def main():
     chatbot_instance = Chatbot()
@@ -241,16 +177,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
-    
-    
-    
-    
-
-# db = chromadb.PersistentClient(path="./chroma", settings=Settings(), tenant=DEFAULT_TENANT, database=DEFAULT_DATABASE)
-
-# collection_name = "zubin-foundation"
-
-# doc_metadatas=[{"About": "Zubin Foundation"}]
-# collection = db.get_or_create_collection(name=collection_name, embedding_function=chromadb.utils.embedding_functions.DefaultEmbeddingFunction())
-# collection.add(documents=doc_chunks, ids=doc_ids, metadatas=doc_metadatas)
