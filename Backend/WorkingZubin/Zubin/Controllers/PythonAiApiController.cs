@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using Zubin.Api.Python;
-using Zubin.Models.PythonAi;
 
 namespace Zubin.Controllers
 {
@@ -12,13 +11,6 @@ namespace Zubin.Controllers
     [Route("/ai")]
     public class PythonAiApiController : ControllerBase
     {
-
-        private readonly PythonAiApiClient _apiClient;
-
-        public PythonAiApiController(PythonAiApiClient apiClient)
-        {
-            _apiClient = apiClient;
-        }
         /// <summary>
         /// ControlDevice
         /// </summary>
@@ -26,129 +18,65 @@ namespace Zubin.Controllers
         /// <response code="200">Success</response>
         [HttpPost]
         [Route("recommendation")]
-
         [SwaggerOperation("GetRecommendation")]
         [SwaggerResponse(statusCode: 200, type: typeof(GetRecommendationResponse), description: "Success")]
-        public async virtual Task<IActionResult> GetRecommendationAsync([FromBody] GetRecommendationRequest body)
+        public virtual IActionResult GetRecommendation([FromBody] GetRecommendationRequest body)
         {
-            var request = new Api.Python.GetRecommendationRequest()
+            return new ObjectResult(new GetRecommendationResponse()
             {
-                Skills = body.Skills,
-                Events = body.Events.Select(g=> new Api.Python.Event() 
-                { Eventid=g.Eventid, Skills=g.Skills})
-                .ToList(),
-            };
-            var response= await _apiClient.GetRecommendationAsync(request);
-
-            GetRecommendationResponse result = new()
-            {
-                Events = response.Events.Select(g => new Event()
+                Events = new List<ResponseEvent>()
                 {
-                    Eventid = g.Eventid,
-                    Skills = g.Skills.ToList(),
-                })
-                .ToList()
-            };
-
-            return new ObjectResult(result);
+                     new()
+                    {
+                         Eventid="finalTesting",
+                         Similarity = 0.4m
+                    },
+                    new()
+                    {
+                        Eventid="2",
+                        Similarity = 0.8m,
+                    }
+                }
+            });
         }
 
         [HttpPost]
         [Route("whatsapp/broadcast")]
-
         [SwaggerOperation("sendBroadcast")]
         [SwaggerResponse(statusCode: 200, type: typeof(SendBroadcastResponse), description: "Success")]
-        public async virtual Task<IActionResult> SendBroadcastAsync([FromBody] SendBroadcastRequest body)
+        public virtual IActionResult SendBroadcast([FromBody] SendBroadcastRequest body)
         {
-            var request = new Api.Python.SendBroadcastRequest()
+            return new ObjectResult(new SendBroadcastResponse()
             {
-                Phonenumbers = body.Phonenumbers,
-                Broadcastmessage = body.Broadcastmessage,
-            };
-
-            var response = await _apiClient.SendBroadcastAsync(request);
-
-            var result = new SendBroadcastResponse()
-            {
-                Status = response.Status,
-                Result = response.Result,
-            };
-            return new ObjectResult(result);
+                Result = "final testing"
+            });
         }
 
         [HttpPost]
         [Route("chatbot")]
-
         [SwaggerOperation("sendToChatbot")]
         [SwaggerResponse(statusCode: 200, type: typeof(SendToChatbotResponse), description: "Success")]
-        public virtual async Task<IActionResult> SendToChatbotAsync([FromBody] SendToChatbotRequest body)
+        public virtual IActionResult SendToChatbot([FromBody] SendToChatbotRequest body)
         {
-            SendToChatbotResponse result;
-
-            var request = new Api.Python.SendToChatbotRequest()
+            return new ObjectResult(new SendToChatbotResponse()
             {
-                Input=body.Input,
-            };
+                Title = "testing",
+                Text = "I testing"
+            });
+        }
 
-            var response = await _apiClient.SendToChatbotAsync(request);
-
-            result = new SendToChatbotResponse()
+        [HttpPost]
+        [Route("whatsapp/images")]
+        [SwaggerOperation("sendImages")]
+        [SwaggerResponse(statusCode: 200, type: typeof(SendImagesResponse), description: "Success")]
+        public virtual IActionResult SendImages([FromBody] SendImagesRequest body)
+        {
+            return new ObjectResult(new SendImagesResponse()
             {
-                Title = response.Title,
-                Text = response.Text
-            };
-
-            return new ObjectResult(result);
+                Result = "suc",
+                Status = "200"
+            });
         }
 
-        public class Event
-        {
-            public string Eventid { get; set; }
-            public List<string> Skills { get; set; }
-        }
-
-        [DataContract]
-        public class GetRecommendationRequest
-        {
-            [DataMember]
-            [Required]
-            public List<string> Skills { get; set; }
-            [DataMember]
-            [Required]
-            public List<Event> Events { get; set; }
-        }
-
-        public class GetRecommendationResponse
-        {
-            public List<Event> Events { get; set; }
-        }
-
-        [DataContract]
-        public class SendBroadcastRequest
-        {
-            [DataMember]
-            public List<string> Phonenumbers { get; set; }
-            [DataMember]
-            public string Broadcastmessage { get; set; }
-        }
-
-        public class SendBroadcastResponse
-        {
-            public string Status { get; set; } = "200";
-            public string Result { get; set; } = "Success";
-        }
-
-        [DataContract]
-        public class SendToChatbotRequest
-        {
-            [DataMember]
-            public string Input { get; set; }
-        }
-
-        public class SendToChatbotResponse
-        {
-            public string Title { get; set; }
-            public string Text { get; set; }
-        }
     }
 }

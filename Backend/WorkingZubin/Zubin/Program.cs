@@ -25,7 +25,7 @@ namespace Zubin
                 client.BaseAddress = new Uri(uri);
             });
 
-            builder.Services.AddHttpClient<NextjsClient>(client =>
+            builder.Services.AddHttpClient<NextjsApiClient>(client =>
             {
                 string uri = "https://localhost:7120/";
                 string uri2 = "";

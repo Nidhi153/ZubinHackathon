@@ -23,14 +23,14 @@ namespace Zubin.Api.Nextjs
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class NextjsClient
+    public partial class NextjsApiClient
     {
         private System.Net.Http.HttpClient _httpClient;
         private static System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(CreateSerializerSettings, true);
         private Newtonsoft.Json.JsonSerializerSettings _instanceSettings;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public NextjsClient(System.Net.Http.HttpClient httpClient)
+        public NextjsApiClient(System.Net.Http.HttpClient httpClient)
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             _httpClient = httpClient;
@@ -339,14 +339,14 @@ namespace Zubin.Api.Nextjs
         [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
@@ -356,14 +356,14 @@ namespace Zubin.Api.Nextjs
         [Newtonsoft.Json.JsonProperty("events", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<Event> Events { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
@@ -373,14 +373,14 @@ namespace Zubin.Api.Nextjs
         [Newtonsoft.Json.JsonProperty("info", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Info { get; set; }
 
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+        //private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
 
-        [Newtonsoft.Json.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
+        //[Newtonsoft.Json.JsonExtensionData]
+        //public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+        //{
+        //    get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
+        //    set { _additionalProperties = value; }
+        //}
 
     }
 
