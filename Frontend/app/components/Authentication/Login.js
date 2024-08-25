@@ -57,7 +57,9 @@ export default function Signup({ setUserId }) {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <Button onClick={() => signup()}>Login</Button>
+      <Button color="warning" onClick={() => signup()}>
+        Login
+      </Button>
     </div>
   );
 }

@@ -69,8 +69,8 @@ const Account = () => {
               </Badge>
             ))) || (
             <div>
-              No badges yet, do a training for badges at{" "}
-              <Button>trainings page</Button>
+              No badges yet, do a training for badges at by registering as
+              volunteers in the events
             </div>
           )}
         </div>

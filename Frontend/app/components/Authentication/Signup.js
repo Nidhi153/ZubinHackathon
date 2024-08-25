@@ -1,5 +1,5 @@
 "use client";
-import { Button, FloatingLabel } from "flowbite-react";
+import { Button, FloatingLabel, Dropdown } from "flowbite-react";
 import { useState, useEffect } from "react";
 import "./auth.css";
 import { useRouter } from "next/navigation";
@@ -7,6 +7,11 @@ export default function Signup({ setUserId }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const [selectedRole, setSelectedRole] = useState("member");
+
+  const handleSelect = (value) => {
+    setSelectedRole(value);
+  };
   const fields = [
     {
       id: "email",
@@ -40,7 +45,7 @@ export default function Signup({ setUserId }) {
       password: e.target.password.value,
       phoneno: e.target.phoneno.value,
       name: e.target.name.value,
-      role: e.target.role.value,
+      role: selectedRole,
     };
     console.log(user);
     let response = await fetch("/api/signup", {
@@ -88,12 +93,30 @@ export default function Signup({ setUserId }) {
             />
           );
         })}
-        <select name="role">
+        {/* <select name="role">
           <option value="volunteer">Volunteer</option>
           <option value="member">Participant</option>
-        </select>
+        </select> */}
+        <div style={{ marginBottom: "10px" }}>
+          <Dropdown label={selectedRole || "Select role"}>
+            <Dropdown.Item
+              value="volunteer"
+              onClick={() => handleSelect("volunteer")}
+            >
+              Volunteer
+            </Dropdown.Item>
+            <Dropdown.Item
+              value="member"
+              onClick={() => handleSelect("member")}
+            >
+              Member
+            </Dropdown.Item>
+          </Dropdown>
+        </div>
         {/* <Button onClick={() => signup()}>Signup</Button> */}
-        <Button type="submit">Signup</Button>
+        <Button color="warning" type="submit">
+          Signup
+        </Button>
       </form>
     </div>
   );
