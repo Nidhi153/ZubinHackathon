@@ -19,15 +19,16 @@ export async function POST(req: Request) {
   const data: Message = await req.json();
 
   console.log(data);
-  let port = process.env.SERVER_PORT || 50;
-  let SERVER_DOMAIN = process.env.SERVER_DOMAIN || "localhost";
-  const res = await axios.post(
-    `http://${SERVER_DOMAIN}:${port}/api/ai/whatsapp/broadcast`,
-    {
-      data,
-    }
-  );
-  const resData: Response = res.json();
+  // let port = process.env.SERVER_PORT || 50;
+  // let SERVER_DOMAIN = process.env.SERVER_DOMAIN || "localhost";
+  // let url = `http://${SERVER_DOMAIN}:${port}/api/ai/whatsapp/broadcast`;
+  // let url = `http://${SERVER_DOMAIN}:${port}/ai/whatsapp/broadcast`;
+  let url = `http://localhost:8000/ai/whatsapp/broadcast`;
+
+  const res = await axios.post(url, data);
+
+  const resData = res.data;
+  console.log(resData);
   if (resData.status === 200) {
     return NextResponse.json({
       message: "Message posted to server",
