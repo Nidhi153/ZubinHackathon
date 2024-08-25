@@ -74,8 +74,8 @@ const CentralisedMessage = () => {
     }
   };
 
-  // const listTags = ["Food", "Location", "Transport", "Emergency", "Feedback", "Volunteer", "Donation", "Jobs", "Training", "Education"];
-  const listTags = ['emergency', 'tag2', 'tag3']
+  const listTags = ["Food", "Location", "Transport", "Emergency", "Feedback", "Volunteer", "Donation", "Jobs", "Training", "Education", "tag2", "tag3"];
+  // const listTags = ['emergency', 'tag2', 'tag3']
 
   return (
     <div>
