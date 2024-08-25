@@ -1,0 +1,16 @@
+{
+  "events": [
+    {
+      "eventid": "1",
+      "similarity": 0.8164965809277259
+    },
+    {
+      "eventid": "3",
+      "similarity": 0.40824829046386296
+    },
+    {
+      "eventid": "4",
+      "similarity": 0.40824829046386296
+    }
+  ]
+}
