@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import User from "../../models/User";
 import dotenv from "dotenv";
 import connect from "../../lib/database";
+import axios from "axios";
 const bcrypt = require("bcryptjs");
 dotenv.config();
 
@@ -96,6 +97,7 @@ export async function POST(req: Request) {
 
     data.media_id = res.response.id;
     const user = await User.create(data);
+
     return NextResponse.json({
       message: "User created successfully",
       userId: user._id,
