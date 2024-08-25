@@ -51,18 +51,19 @@ import json
 #     data = res.json()
 #     print(data)
 
-# def test6():
+def test6():
 
-#     url = "http://localhost:3000/api/ai/whatsapp/images"
-#     data = {
-#         "phonenumbers": ["+85298226209"],
-#         "caption": "Hello from Zubin",
-#         # "imageid": "3828433507389017"
-#         # "imageid":"851422080388100"
-#         # "imageid":"490776113888285"
-#     };
-#     res = requests.post(url, json=data)
-#     data = res.json()
-#     print(data)
-
+    url = "http://localhost:3000/api/ai/whatsapp/images"
+    data = {
+        "phonenumbers": ["+85296035568"],
+        "caption": "Hello from Zubin",
+        # "imageid":"851422080388100"
+        # "imageid": "877915077574452"
+        "imageid": "939204351347272"
+        # "link": "https://lookaside.fbsbx.com/whatsapp_business/attachments/?mid=877915077574452&ext=1724592754&hash=ATvNSZ0DDP_ZZcscYv0zAhiB5aj5ZSlGsaSjRp-ZPPFLiw"
+    }
+    res = requests.post(url, json=data)
+    data = res.json()
+    print(data)
+test6()
 # test3()

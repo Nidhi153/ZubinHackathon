@@ -72,9 +72,7 @@ export async function POST(req: Request) {
     );
 
     const response = await fetch(
-      `http://localhost:${
-        process.env.PY_PORT
-      }/upload-qrcode?input=${encodeURIComponent(data.email)}`,
+      `http://localhost:${process.env.PY_PORT}/upload-qrcode?input=${data.email}`,
       {
         method: "POST",
       }

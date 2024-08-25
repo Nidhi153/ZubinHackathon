@@ -1,7 +1,7 @@
 import qrcode
 import qrcode.image.svg
 
-img = qrcode.make('c.com')
+img = qrcode.make('c.com', image_factory=qrcode.image.svg.SvgImage)
 with open('3.png', 'wb') as qr:
     img.save(qr)
 

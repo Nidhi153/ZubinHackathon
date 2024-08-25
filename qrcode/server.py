@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 import cv2 as cv
 import numpy as np
 from pyzbar.pyzbar import decode
@@ -6,11 +8,15 @@ from fastapi import FastAPI, File, UploadFile
 import requests
 import qrcode
 import qrcode.image.svg
+import time
+import subprocess
+from PIL import Image
 app = FastAPI()
 
 # Global variables to control the video capture loop and store the current data
 running = False
 current_data = None
+load_dotenv()
 
 async def video_capture():
     global running, current_data
@@ -75,19 +81,57 @@ def get_current_data():
     # else:
     #     return {"message": "No data available"}
 
+
+# @app.post("/upload-qrcode/")
+# async def upload_qrcode(input: str):
+#     # Generate QR code
+#     try:
+#         img = qrcode.make(input)
+#         # Save the QR code to a file
+#         img_file_path = "./qrcode.png"
+#         with open(img_file_path, "wb") as f:
+#             img.save(f)
+        
+#         # Prepare the curl command
+#         token = os.getenv("ACCESS_TOKEN")
+#         phone_number_id = os.getenv("PHONE_NUMBER_ID")
+#         command = f"""
+#         curl -X POST 'https://graph.facebook.com/v20.0/{phone_number_id}/media' \
+#         -H 'Authorization: Bearer {token}' \
+#         -F 'file=@{img_file_path}' \
+#         -F 'type="image/jpeg"' \
+#         -F 'messaging_product="whatsapp"'
+#         """
+
+#         # Run the curl command using subprocess
+#         result = subprocess.run(command, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+#         output = result.stdout.decode()
+#         error = result.stderr.decode()
+
+#         return {
+#             "status": result.returncode,
+#             "output": output,
+#             "error": error
+#         }
+
+#     except Exception as e:
+#         return {
+#             "status": 500,
+#             "response": str(e)
+#         }
 @app.post("/upload-qrcode/")
 async def upload_qrcode(input: str):
     # Generate QR code
-    # img = qrcode.make(input, image_factory=qrcode.image.svg.SvgImage)
 
     try:
-        img = qrcode.make(input)
+        img = qrcode.make(input, image_factory=qrcode.image.svg.SvgImage)
+        # desired_size = (400, 400)  # Set desired dimensions
+        # img = img.resize(desired_size)
         # Save the QR code to a file
-        img_file_path = "/tmp/qrcode.png"
+        img_file_path = "./qrcode.png"
         with open(img_file_path, "wb") as f:
             img.save(f)
         
-        # Prepare the file for upload
         with open(img_file_path, "rb") as f:
             files = {
                 'file': ("qrcode.png", f, "image/png")
@@ -96,8 +140,9 @@ async def upload_qrcode(input: str):
                 'type': "image/png",
                 'messaging_product': 'whatsapp'
             }
+            token = os.getenv("ACCESS_TOKEN")
             headers = {
-                'Authorization': 'Bearer EABycHlgN6cgBOxh3AL5VnwML8PxXuS6821KKoUqR2ZAvJ77UwpMZBVGGhROZBvR4obtDuouZBB5iBGEKkHxnqTfZBqtyj8N7QfWy1yk08GgevnBfCW62v2ZAzU6lPZCkEg12dy0ZASZCXGKQnKZCLSb5HETVmR7OIcBZBcMlO6SgZCMvdYkvlLws29p5JuLBs87nWKnIrfhGcJ5XhBVzOQjJV0IZD'
+                'Authorization': f'Bearer {token}'
             }
             url = 'https://graph.facebook.com/v20.0/423268137527656/media'
 
