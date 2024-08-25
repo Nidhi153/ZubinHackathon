@@ -346,7 +346,13 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
 
       {role === "admin" ? (
         <div className={styles.verticalButtonWrapper}>
-          <Button>See registration data</Button>
+          <Button
+            onClick={() => {
+              router.push(`/event-table/${params.id}`);
+            }}
+          >
+            See registration data
+          </Button>
           <Button
             onClick={() => {
               sendMessage();
