@@ -165,13 +165,13 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
   }, [searchParams]);
   useEffect(() => {
     let init = async () => {
-      await fetch("/api/events/deleteAllAttendance", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ eventId: params.id }),
-      });
+      // await fetch("/api/events/deleteAllAttendance", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ eventId: params.id }),
+      // });
     };
     init();
   }, []);
@@ -270,7 +270,13 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       {children}
     </span>
   );
-
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+  };
   return (
     <div className={styles.body}>
       <BreadCrumbContainer
@@ -281,7 +287,7 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       <div className={styles.heading}>
         {curEvent?.title || "Loading title.."}
       </div>
-      <div>{curEvent?.date || "Loading date.."}</div>
+      <div>{curEvent?.date ? formatDate(curEvent.date) : "Loading date.."}</div>
       {curEvent?.skills && (
         <div className="flex flex-wrap gap-2">
           {curEvent.skills.map((skill, index) => (
@@ -360,14 +366,14 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
           >
             Send message to participants
           </Button>
-          <button onClick={() => setIsTakingAttendance(!isTakingAttendance)}>
+          {/* <button onClick={() => setIsTakingAttendance(!isTakingAttendance)}>
             {isTakingAttendance ? "Stop Attendance" : "Start Attendance"}
           </button>
           {curEvent &&
             curEvent.attendees &&
             curEvent.attendees.map((attendee) => {
               return <div>{attendee}</div>;
-            })}
+            })} */}
         </div>
       ) : (
         ""
