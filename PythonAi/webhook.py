@@ -17,32 +17,18 @@ from flask import Flask, request, jsonify
 import sys, os, requests, json
 from huggingface_hub import InferenceClient
 from whatsapp_api.run_server import run_server
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-"""
-Constants
-"""
-
-# Please update API Token daily!
-ACCESS_TOKEN = "EABycHlgN6cgBOxh3AL5VnwML8PxXuS6821KKoUqR2ZAvJ77UwpMZBVGGhROZBvR4obtDuouZBB5iBGEKkHxnqTfZBqtyj8N7QfWy1yk08GgevnBfCW62v2ZAzU6lPZCkEg12dy0ZASZCXGKQnKZCLSb5HETVmR7OIcBZBcMlO6SgZCMvdYkvlLws29p5JuLBs87nWKnIrfhGcJ5XhBVzOQjJV0IZD"
-
-APP_ID = "8052953488157128"
-
-APP_SECRET = "adce737c3c4faa7191aedf206448a7a4"
-
-VERSION = "v20.0"
-
-PHONE_NUMBER_ID = "423268137527656"
-
-VERIFY_TOKEN = "12345"  # Token is used to verify static domain security.
-
+load_dotenv()
+ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
+APP_ID = os.getenv("APP_ID")
+APP_SECRET = os.getenv("APP_SECRET")
+VERSION = os.getenv("VERSION")
+PHONE_NUMBER_ID = os.getenv("PHONE_NUMBER_ID")
+VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
 WEBHOOK_PORT = "60000"
-
-"""
-Train Chatbot with latest information
-"""
-
 
 @app.route("/webhook", methods=["POST"])
 def webhook_post():
