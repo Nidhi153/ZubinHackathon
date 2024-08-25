@@ -12,3 +12,11 @@ div.container > * {
 .event-box {
   width: 300px;
 }
+.event-card {
+  transition: transform 0.2s;
+}
+
+.event-card:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}

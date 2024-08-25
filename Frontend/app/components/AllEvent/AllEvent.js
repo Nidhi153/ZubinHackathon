@@ -40,10 +40,8 @@ const EventPage = () => {
         >
           <h1 className="text-center">Registered Events</h1>
           <RegisteredEvent />
+          <Recommendation />
         </div>
-      </div>
-      <div>
-        <Recommendation />
       </div>
     </div>
   );

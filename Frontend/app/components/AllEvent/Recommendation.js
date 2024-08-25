@@ -2,10 +2,19 @@
 import { useState, useEffect } from "react";
 import cookies from "js-cookie";
 import { set } from "mongoose";
+import { Card } from "flowbite-react";
+import Image from "next/image";
+import "./Event.css";
+import unmutePic from "../../assets/recommendation.png";
+import diversityPic from "../../assets/diversity.jpg";
+import { useRouter } from "next/navigation";
+import cookPic from "../../assets/cookOff.png";
+// import logo from "../../assets/logo.png";
 const EventPage = () => {
   const [userId, setUserId] = useState("");
   const [role, setRole] = useState("");
   const [recommendation, setRecommendation] = useState([]);
+  const router = useRouter();
   useEffect(() => {
     const userId = cookies.get("userId");
     setUserId(userId);
@@ -28,22 +37,55 @@ const EventPage = () => {
         setRecommendation(data.recommendedEvents);
       }
     };
+
     if (role && role == "volunteer") init();
   }, []);
+
+  const imageMapping = [unmutePic, cookPic, diversityPic];
   return (
     <div>
       {userId ? (
         role === "volunteer" && (
           <div>
-            <h1>Recommendation for user</h1>
-            {recommendation.map((event) => (
-              <div key={event._id}>
-                <h1>{event.title}</h1>
-                <p>{event.description}</p>
-                <p>{event.date}</p>
-                <p>{event.time}</p>
-                <p>{event.location}</p>
-                <p>{event.organizer}</p>
+            <h1
+              style={{
+                textAlign: "center",
+              }}
+            >
+              Recommendation for user
+            </h1>
+            {recommendation.map((event, idx) => (
+              <div
+                key={event._id}
+                onClick={() => {
+                  router.push(`/event/${event._id}`);
+                }}
+                className="event-card"
+              >
+                <Card
+                  renderImage={() => (
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100%",
+                        marginTop: "20px",
+                      }}
+                    >
+                      <Image
+                        width={200}
+                        height={200}
+                        src={imageMapping[idx]}
+                        alt="image 1"
+                      />
+                    </div>
+                  )}
+                  style={{ marginBottom: "20px" }}
+                >
+                  <h1>{event.title}</h1>
+                  <p>{event.description}</p>
+                </Card>
               </div>
             ))}
           </div>
