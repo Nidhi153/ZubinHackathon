@@ -53,8 +53,20 @@
 .cards {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 40px;
     flex: 2;
+}
+
+.eventCardSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.eventCards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .registeredEventsBox {
