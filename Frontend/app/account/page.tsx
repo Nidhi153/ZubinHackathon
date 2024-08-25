@@ -22,7 +22,7 @@ const Account = () => {
         body: JSON.stringify({ userId }),
       });
       const data = await response.json();
-      setUser(data);
+      setUser(data.user);
       const role = Cookies.get("role");
       if (!role) {
         router.push("/");
