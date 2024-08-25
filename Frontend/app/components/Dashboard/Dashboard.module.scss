@@ -6,13 +6,25 @@
     gap: 50px;
     padding: 60px 138px;
 
-    >h1 {
+    h1 {
         font-size: $page-heading-font-size;
         font-weight: $page-heading-font-weight;
     }
 
-    >h2 {
+    h2 {
         font-size: $section-heading-font-size;
         font-weight: $section-heading-font-weight;
     }
+}
+
+.rowWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.postEvents {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
 }
