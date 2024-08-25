@@ -47,9 +47,14 @@ const Navbar = () => {
             </Tab>
           ))}
           {role && role == "admin" && (
-            <Tab>
-              <a href="/dashboard">Dashboard </a>
-            </Tab>
+            <>
+              <Tab>
+                <a href="/dashboard">Dashboard </a>
+              </Tab>
+              <Tab>
+                <a href="/create-event">Create Event </a>
+              </Tab>
+            </>
           )}
           {userId ? (
             <AccountButton username="Username" />
