@@ -78,7 +78,7 @@ const CentralisedMessage = () => {
     <div>
           <div className={styles.body}>
             <div className={styles.heading}>Member Feedback</div>
-            <Select placeholder="Filter by Tag" onChange={handleTagChange} value={selectedTag}>
+            <Select placeholder="Filter by Tag" onChange={handleTagChange} value={selectedTag} style={{ padding: '8px 15px' }}>
               <option value="emergency">emergency</option>
               <option value="tag2">tag2</option>
               <option value="tag3">tag3</option>
