@@ -49,12 +49,15 @@ export default function Home() {
           </div>
         </div>
 
-        <RegisteredEventBox eventDetails={[
-          {
-            title: 'Gathering Event',
-            date: '10/09/2024',
-          },
-        ]} />
+        {/* Only visible to member and volunteer */}
+        {role !== 'admin'
+          ? <RegisteredEventBox eventDetails={[
+            {
+              title: 'Gathering Event',
+              date: '10/09/2024',
+            },
+          ]} />
+          : ''}
       </div>
     </HomepageLayout>
   );
