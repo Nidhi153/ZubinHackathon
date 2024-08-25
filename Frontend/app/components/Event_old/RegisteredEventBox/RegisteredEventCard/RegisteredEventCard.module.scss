@@ -1,0 +1,21 @@
+@import "../../../../global.module.scss";
+
+.card {
+    background-color: $light;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px 20px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    em {
+        font-weight: $emphasis-font-weight;
+        font-style: normal;
+    }
+}
+
+.card:hover {
+    background-color: $gray;
+}

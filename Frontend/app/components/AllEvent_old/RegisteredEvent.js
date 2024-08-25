@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import RegisteredEventBox from "./RegisteredEventBox";
 import "./Event.css";
 import Cookies from "js-cookie";
-import styles from '../Event/RegisteredEventBox/RegisteredEventBox.module.scss';
 import getAllEvents from "../../api/event";
 
 export default function RegisteredEvent() {
@@ -33,12 +32,14 @@ export default function RegisteredEvent() {
   }, []);
 
   return (
-    <div className="">
-      {registeredEvents &&
-        registeredEvents.length > 0 &&
-        registeredEvents.map((event) => (
-          <RegisteredEventBox key={event._id} event={event} />
-        ))}
+    <div>
+      <div className="container">
+        {registeredEvents &&
+          registeredEvents.length > 0 &&
+          registeredEvents.map((event) => (
+            <RegisteredEventBox key={event._id} event={event} />
+          ))}
+      </div>
     </div>
   );
 }
