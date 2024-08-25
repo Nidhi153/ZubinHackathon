@@ -1,11 +1,14 @@
 "use client";
-import { Button, FloatingLabel } from "flowbite-react";
+import { FloatingLabel } from "flowbite-react";
+import Button from "../Button/Button";
 import { useState, useEffect } from "react";
 import "./auth.css";
 import { useRouter } from "next/navigation";
+import InputGroup from "../InputGroup/InputGroup";
+import styles from './styles.module.scss'
+
 export default function Signup({ setUserId }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [values, setValues] = useState([])
   const router = useRouter();
   const fields = [
     {
@@ -36,10 +39,10 @@ export default function Signup({ setUserId }) {
   let signup = async (e) => {
     e.preventDefault();
     let user = {
-      email: e.target.email.value,
-      password: e.target.password.value,
-      phoneno: e.target.phoneno.value,
-      name: e.target.name.value,
+      email: values[0],
+      password: values[1],
+      phoneno: values[2],
+      name: values[3],
     };
     console.log(user);
     let response = await fetch("/api/signup", {
@@ -73,23 +76,36 @@ export default function Signup({ setUserId }) {
   };
 
   return (
-    <div className="container">
-      <h1>Signup</h1>
-      <form onSubmit={(e) => signup(e)}>
-        {fields.map((field) => {
+    <div className={styles.container}>
+      <form onSubmit={(e) => signup(e)} className={styles.form}>
+        {fields.map((field, i) => {
           return (
-            <FloatingLabel
-              variant="outlined"
-              label={field.label}
+            <InputGroup
+              text={field.label}
+              placeholder={field.label}
               type={field.type}
-              placeholder={field.placeholder}
-              name={field.id}
+              value={values[i]}
+              onChange={(e) => {
+                const newValue = e.target.value
+                const newValues = [...values]
+                newValues[i] = newValue
+                setValues(newValues)
+              }}
             />
+            // <FloatingLabel
+            //   variant="outlined"
+            //   label={field.label}
+            //   type={field.type}
+            //   placeholder={field.placeholder}
+            //   name={field.id}
+            // />
           );
         })}
 
         {/* <Button onClick={() => signup()}>Signup</Button> */}
-        <Button type="submit">Signup</Button>
+        <div className={styles.buttonWrapper}>
+          <Button type="submit" onClick={() => signup()}>Signup</Button>
+        </div>
       </form>
     </div>
   );

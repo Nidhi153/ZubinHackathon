@@ -1,8 +1,11 @@
 "use client";
-import { Button, FloatingLabel } from "flowbite-react";
-import { useState, useEffect } from "react";
+import { FloatingLabel } from "flowbite-react";
+import { useState } from "react";
 import "./auth.css";
 import { useRouter } from "next/navigation";
+import styles from './styles.module.scss'
+import Button from "../Button/Button";
+import InputGroup from "../InputGroup/InputGroup";
 
 export default function Signup({ setUserId }) {
   const [email, setEmail] = useState("");
@@ -41,23 +44,25 @@ export default function Signup({ setUserId }) {
   };
 
   return (
-    <div className="container">
-      <h1>Login</h1>
+    <div className={styles.container}>
+      <form className={styles.form}>
+        <InputGroup text="Email" placeholder="Email" value={email} onChange={(e) => {setEmail(e.target.value)}} />
+        <InputGroup text="Password" placeholder="Password" value={password} onChange={(e) => {setPassword(e.target.value)}} />
+        {/* <FloatingLabel
+          variant="outlined"
+          label="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <FloatingLabel
+          variant="outlined"
+          label="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        /> */}
 
-      <FloatingLabel
-        variant="outlined"
-        label="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <FloatingLabel
-        variant="outlined"
-        label="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-
-      <Button onClick={() => signup()}>Login</Button>
+        <Button onClick={() => signup()} type="submit">Login</Button>
+      </form>
     </div>
   );
 }

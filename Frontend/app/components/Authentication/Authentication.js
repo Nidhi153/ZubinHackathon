@@ -5,8 +5,8 @@ import Login from "./Login";
 
 export default function Authentication({ setUserId }) {
   return (
-    <div className="auth-container">
-      <Signup setUserId={setUserId} />
+    <div>
+      {/* <Signup setUserId={setUserId} /> */}
       <Login setUserId={setUserId} />
     </div>
   );
