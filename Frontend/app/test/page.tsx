@@ -1,6 +1,5 @@
 "use client";
-import { set } from "mongoose";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Page() {
   const [isTakingAttendance, setIsTakingAttendance] = useState(false);
@@ -17,16 +16,8 @@ export default function Page() {
       if (!startedCamera) {
         console.log("Starting camera...");
         await fetch("/api/start");
-        // await fetch("http://localhost:2000/start", {
-        //   mode: "no-cors",
-        // });
 
         setStartedCamera(true);
-        // console.log(response);
-        // if (response.status === 200) {
-        //   console.log("Camera started");
-
-        // }
       }
 
       const fetchData = async () => {
@@ -37,10 +28,6 @@ export default function Page() {
           const response = await fetch("/api/data", {
             signal: controller.signal,
           });
-          //   const response = await fetch("http://localhost:2000/data", {
-          //     signal: controller.signal,
-          //     mode: "no-cors",
-          //   });
 
           console.log(response);
           if (response.ok) {
@@ -64,8 +51,7 @@ export default function Page() {
           clearTimeout(timeoutId);
         }
       };
-
-      //   if (startedCamera) await fetchData();
+      
       await fetchData();
     }, 1000);
 

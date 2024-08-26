@@ -1,13 +1,12 @@
 "use client";
 
+import { Badge } from "flowbite-react";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import Button from "../components/Button/Button";
 import styles from "./account.module.scss";
-import BadgeRow from "./Row/BadgeRow";
 import TextRow from "./Row/TextRow";
-import Cookies from "js-cookie";
-import { Badge } from "flowbite-react";
-import { useEffect, useState } from "react";
 const Account = () => {
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);

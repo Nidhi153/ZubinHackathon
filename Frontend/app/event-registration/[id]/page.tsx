@@ -1,12 +1,11 @@
 "use client";
 
-import BreadCrumbContainer from "../../components/Breadcrumb/BreadcrumbContainer";
-import styles from "./eventRegistration.module.scss";
-import InputGroup from "../../components/InputGroup/InputGroup";
-import { useCallback, useState, useEffect } from "react";
-import Button from "../../components/Button/Button";
-import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import Button from "../../components/Button/Button";
+import InputGroup from "../../components/InputGroup/InputGroup";
+import styles from "./eventRegistration.module.scss";
 interface formMetaDataEntry {
   text: string;
   inputType:
@@ -73,12 +72,6 @@ const EventRegistration = ({ params }: { params: { id: string } }) => {
   });
   return (
     <form className={styles.body} onClick={(e) => buttonOnClick(e)}>
-      {/* <BreadCrumbContainer
-        role="member"
-        eventName="Gathering Event"
-        eventLink="/event-details"
-      /> */}
-      {/* <h1>Gathering Event</h1> */}
       {formMetaData.map((entry, i) => (
         <InputGroup
           text={entry.text}

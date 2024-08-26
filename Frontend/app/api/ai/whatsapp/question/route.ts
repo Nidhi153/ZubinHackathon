@@ -1,7 +1,6 @@
-import { MongoClient } from "mongodb";
 import { NextResponse } from "next/server";
-import WhatsappResponse from "../../../../models/WhatsappResponse";
 import connect from "../../../../lib/database";
+import WhatsappResponse from "../../../../models/WhatsappResponse";
 
 interface Message {
   message: string;

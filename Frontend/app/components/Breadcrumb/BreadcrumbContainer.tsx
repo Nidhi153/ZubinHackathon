@@ -7,10 +7,10 @@ interface BreadCrumbContainerProps {
     eventLink: string,
 }
 
-const BreadCrumbContainer = ({ role, eventName, eventLink }: BreadCrumbContainerProps) => {
+const BreadCrumbContainer = ({ eventName, eventLink }: BreadCrumbContainerProps) => {
     return (
         <div className={styles.breadcrumbContainer}>
-            <Breadcrumb text={role === 'admin' ? 'All Events' : 'Upcoming Events'} href='/' />
+            <Breadcrumb text="Upcoming Events" href='/' />
             <div>{'>'}</div>
             <Breadcrumb text={eventName} href={eventLink} />
         </div>

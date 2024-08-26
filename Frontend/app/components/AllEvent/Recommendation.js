@@ -1,15 +1,14 @@
 "use client";
-import { useState, useEffect } from "react";
-import cookies from "js-cookie";
-import { set } from "mongoose";
 import { Card } from "flowbite-react";
+import cookies from "js-cookie";
 import Image from "next/image";
-import "./Event.css";
-import unmutePic from "../../assets/recommendation.png";
-import diversityPic from "../../assets/diversity.jpg";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import cookPic from "../../assets/cookOff.png";
-// import logo from "../../assets/logo.png";
+import diversityPic from "../../assets/diversity.jpg";
+import unmutePic from "../../assets/recommendation.png";
+import "./Event.css";
+
 const EventPage = () => {
   const [userId, setUserId] = useState("");
   const [role, setRole] = useState("");
@@ -32,7 +31,6 @@ const EventPage = () => {
 
       console.log(data);
 
-      //   alert(data.message);
       if (data.status == 200) {
         setRecommendation(data.recommendedEvents);
       }

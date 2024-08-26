@@ -1,9 +1,8 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Button from "../Button/Button";
 import InputGroup from "../InputGroup/InputGroup";
 import styles from "./Dashboard.module.scss";
-import Button from "../Button/Button";
-import { useRouter } from "next/navigation";
-import { Badge } from "flowbite-react";
 
 export default function CreateEvent({ userId }: { userId: string }) {
   const [title, setTitle] = useState<string>("");
@@ -55,7 +54,6 @@ export default function CreateEvent({ userId }: { userId: string }) {
         cursor: "pointer",
         margin: "5px",
         padding: "5px",
-        // border: "1px solid black",
         borderRadius: "5px",
         backgroundColor: "#0ABAB5", // Tiffany Blue
         color: "white",

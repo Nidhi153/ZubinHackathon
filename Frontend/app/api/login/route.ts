@@ -1,9 +1,8 @@
-import { MongoClient } from "mongodb";
-import { NextResponse } from "next/server";
-import User from "../../models/User";
 import dotenv from "dotenv";
-import connect from "../../lib/database";
 import jwt from "jsonwebtoken";
+import { NextResponse } from "next/server";
+import connect from "../../lib/database";
+import User from "../../models/User";
 
 const bcrypt = require("bcryptjs");
 dotenv.config();

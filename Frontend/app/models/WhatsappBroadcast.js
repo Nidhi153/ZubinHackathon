@@ -1,5 +1,4 @@
 import { Schema, model, models } from "mongoose";
-//extending User model: Volunteer, Participant, Admin
 const whatsappBroadcastSchema = new Schema({
     broadcast_id: { type: String, required: true, unique: true },
     message: { type: String, required: true },

@@ -1,9 +1,9 @@
-import styles from './Row.module.scss'
 import Image from 'next/image'
-import noneBadge from '../../assets/noneBadge.svg'
 import bronzeBadge from '../../assets/bronzeBadge.svg'
-import silverBadge from '../../assets/silverBadge.svg'
 import goldBadge from '../../assets/goldBadge.svg'
+import noneBadge from '../../assets/noneBadge.svg'
+import silverBadge from '../../assets/silverBadge.svg'
+import styles from './Row.module.scss'
 
 interface BadgeRowProps {
     property: string,

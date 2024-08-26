@@ -11,7 +11,6 @@ import Cookies from "js-cookie";
 const trainingVideo = ({ params }: { params: { id: string } }) => {
   const [checked, setChecked] = useState<boolean>(false);
   const router = useRouter();
-  const [showWarning, setShowWarning] = useState<boolean>(false);
   const [eventId, setEventId] = useState("");
   const [userId, setUserId] = useState("");
   useEffect(() => {
@@ -34,13 +33,6 @@ const trainingVideo = ({ params }: { params: { id: string } }) => {
     console.log("Checkbox state: " + checked);
   }, [checked]);
 
-  // const buttonOnClick = useCallback(() => {
-  //   if (checked) {
-  //     router.push("/successful-registration");
-  //   } else {
-  //     setShowWarning(true);
-  //   }
-  // }, [checked, router]);
   const buttonOnClick = async (e) => {
     e.preventDefault();
     const res = await fetch("/api/events/registerVolunteer", {
@@ -75,14 +67,6 @@ const trainingVideo = ({ params }: { params: { id: string } }) => {
         </Checkbox>
         <div className={styles.buttonWrapper}>
           <Button type="submit">Confirm</Button>
-          {showWarning ? (
-            <span>
-              Warning: please tick the checkbox to confirm that you have
-              finished the training.
-            </span>
-          ) : (
-            ""
-          )}
         </div>
       </form>
     </div>

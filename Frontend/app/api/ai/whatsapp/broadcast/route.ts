@@ -1,8 +1,6 @@
-import { MongoClient } from "mongodb";
-import { NextResponse } from "next/server";
-import connect from "../../../../lib/database";
 import axios from "axios";
 import dotenv from "dotenv";
+import { NextResponse } from "next/server";
 
 interface Message {
   phonenumbers: [string];
@@ -20,10 +18,6 @@ export async function POST(req: Request) {
 
   console.log(data);
 
-  // let port = process.env.SERVER_PORT || 50;
-  // let SERVER_DOMAIN = process.env.SERVER_DOMAIN || "localhost";
-  // let url = `http://${SERVER_DOMAIN}:${port}/api/ai/whatsapp/broadcast`;
-  // let url = `http://${SERVER_DOMAIN}:${port}/ai/whatsapp/broadcast`;
   let url = `http://localhost:8000/ai/whatsapp/broadcast`;
 
   const res = await axios.post(url, data);

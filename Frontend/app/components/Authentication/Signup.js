@@ -1,9 +1,9 @@
 "use client";
-import { Button, FloatingLabel, Dropdown } from "flowbite-react";
-import { useState, useEffect } from "react";
-import "./auth.css";
+import { Button, Dropdown, FloatingLabel } from "flowbite-react";
 import { useRouter } from "next/navigation";
-export default function Signup({ setUserId }) {
+import { useState } from "react";
+import "./auth.css";
+export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -17,25 +17,21 @@ export default function Signup({ setUserId }) {
       id: "email",
       label: "Email",
       type: "email",
-      // placeholder: "Enter email",
     },
     {
       id: "password",
       label: "Password",
       type: "password",
-      // placeholder: "Enter password",
     },
     {
       id: "phoneno",
       label: "Phone Number",
       type: "tel",
-      // placeholder: "Enter phone number",
     },
     {
       id: "name",
       label: "Name",
       type: "text",
-      // placeholder: "Enter name",
     },
   ];
   let signup = async (e) => {
@@ -74,7 +70,6 @@ export default function Signup({ setUserId }) {
     }
     document.cookie = `userId=${userId};  path=/`;
     document.cookie = `role=${role}; path=/`;
-    // router.push("/protected");
     router.push("/");
   };
 
@@ -93,10 +88,6 @@ export default function Signup({ setUserId }) {
             />
           );
         })}
-        {/* <select name="role">
-          <option value="volunteer">Volunteer</option>
-          <option value="member">Participant</option>
-        </select> */}
         <div style={{ marginBottom: "10px" }}>
           <Dropdown label={selectedRole || "Select role"}>
             <Dropdown.Item
@@ -113,7 +104,6 @@ export default function Signup({ setUserId }) {
             </Dropdown.Item>
           </Dropdown>
         </div>
-        {/* <Button onClick={() => signup()}>Signup</Button> */}
         <Button color="warning" type="submit">
           Signup
         </Button>

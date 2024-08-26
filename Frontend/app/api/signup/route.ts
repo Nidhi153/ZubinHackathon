@@ -1,9 +1,7 @@
-import { MongoClient } from "mongodb";
-import { NextResponse } from "next/server";
-import User from "../../models/User";
 import dotenv from "dotenv";
+import { NextResponse } from "next/server";
 import connect from "../../lib/database";
-import axios from "axios";
+import User from "../../models/User";
 const bcrypt = require("bcryptjs");
 dotenv.config();
 
@@ -40,17 +38,6 @@ export async function POST(req: Request) {
   } catch (e) {
     console.log("Error connecting to mongodb:", e);
   }
-  // try {
-  //   await User.deleteMany({});
-  // } catch (e) {
-  //   console.log("Error deleting users", e);
-  // }
-
-  //   if (!validateEmail(data.email)) {
-  //     return NextResponse.json({
-  //       message: "Invalid email",
-  //     });
-  //   }
 
   const result = await User.findOne({ email: data.email });
 
@@ -78,7 +65,7 @@ export async function POST(req: Request) {
       }
     );
 
-    if (!response.status === 200) {
+    if (!(response.status === 200)) {
       return NextResponse.json({
         message: "Error creating user media id",
         status: 404,

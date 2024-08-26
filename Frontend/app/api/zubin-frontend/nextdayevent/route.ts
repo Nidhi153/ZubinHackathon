@@ -1,6 +1,4 @@
-import { MongoClient } from "mongodb";
 import { NextResponse } from "next/server";
-import Events from "../../models/Event";
 import connect from "../../lib/database";
 
 import * as moment from "moment";

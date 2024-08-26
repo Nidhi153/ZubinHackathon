@@ -1,8 +1,8 @@
 "use client";
 import { Button, FloatingLabel } from "flowbite-react";
-import { useState, useEffect } from "react";
-import "./auth.css";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import "./auth.css";
 
 export default function Signup({ setUserId }) {
   const [email, setEmail] = useState("");
@@ -36,7 +36,6 @@ export default function Signup({ setUserId }) {
     console.log(role);
     document.cookie = `userId=${userId};  path=/`;
     document.cookie = `role=${role}; path=/`;
-    // router.push("/protected");
     router.push("/");
   };
 

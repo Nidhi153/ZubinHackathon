@@ -16,7 +16,6 @@ const Chatbot = ({ setIsChatbotVisible, history, setHistory }) => {
       let newHistory = [...history, { text: curInput, from: "user" }];
       setHistory([newHistory]);
       setCurInput("");
-      // let response = "This is a response from the bot.";
       let response = await fetch("/api/ai/chatbot", {
         method: "POST",
         headers: {
@@ -27,8 +26,6 @@ const Chatbot = ({ setIsChatbotVisible, history, setHistory }) => {
       response = await response.json();
       console.log(response);
       let responseText = await response.text;
-      // let responseTitle = await response.title;
-      // let msg = `title: ${responseTitle}, text: ${responseText}`;
       newHistory = [...newHistory, { text: responseText, from: "bot" }];
       setHistory(newHistory);
     }
@@ -55,9 +52,6 @@ const Chatbot = ({ setIsChatbotVisible, history, setHistory }) => {
             <Message key={index} text={message.text} from={message.from} />
           ))}
           <div ref={messagesEndRef} />
-          {/* <Message text="This is a very long message." from="bot" />
-          <Message text="This is a very long message." from="user" />
-          <Message text="Short message." from="bot" /> */}
         </div>
         <div className={styles.inputBox}>
           <input

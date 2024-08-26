@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import { Skills } from "./skills";
 import { User } from "./user";

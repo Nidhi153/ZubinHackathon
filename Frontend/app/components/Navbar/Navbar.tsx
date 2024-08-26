@@ -14,14 +14,12 @@ const Navbar = () => {
     const fetchData = () => {
       const userId = Cookies.get("userId");
       if (userId) {
-        // console.log("userid", userId);
         setUserId(userId);
       } else {
         setUserId(null);
       }
       const role = Cookies.get("role");
 
-      // console.log("role", role);
       if (role) {
         setRole(role);
       } else {
