@@ -1,4 +1,3 @@
-import { ChangeEventHandler } from "react"
 import styles from './InputGroup.module.scss'
 
 interface InputGroupProps {
@@ -15,7 +14,7 @@ const InputGroup = ({ text, placeholder, value, onChange, type = 'text', isTextA
         <div className={styles.inputGroup}>
             <label htmlFor={text}>{text}</label>
             {!isTextArea
-                ? <input id={text} value={value} placeholder={placeholder} onChange={onChange} type={type} />
+                ? <input id={text} value={value} placeholder={placeholder} onChange={onChange} type={type} name={text} required />
                 : <textarea id={text} value={value} placeholder={placeholder} onChange={onChange} />
             }
         </div>
