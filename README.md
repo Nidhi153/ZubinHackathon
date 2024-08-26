@@ -37,6 +37,10 @@ For running the webhook run this code:
 ```
 ngrok http <port_number> --domain <domain>
 ```
+You should also run another server in another terminal. Move to the qrcode directory and run:
+```
+uvicorn server:app --reload --host localhost --port 2000
+```
 
 And then open another terminal, move to the same PythonAI directory and run this code:
 ```
