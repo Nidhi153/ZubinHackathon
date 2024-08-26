@@ -130,8 +130,8 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
         }
       }
       const role = Cookies.get("role");
-      if (role) {
-        setRole(role);
+      if (role && ALL_ROLES.includes(role as Roles)) {
+        setRole(role as Roles);
         console.log("role is " + role);
       }
     };
@@ -260,7 +260,8 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       <div className={styles.heading}>
         {curEvent?.title || "Loading title.."}
       </div>
-      <div>{curEvent?.date ? formatDate(curEvent.date) : "Loading date.."}</div>
+      <div>{curEvent? new Date(curEvent?.date).toLocaleString('en-GB', { timeZone: 'Asia/Hong_Kong' }) : "Loading date.."}</div>
+      <div>{curEvent?.description}</div>
       {curEvent?.skills && (
         <div className="flex flex-wrap gap-2">
           {curEvent.skills.map((skill, index) => (
@@ -325,26 +326,24 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
 
       {role === "admin" ? (
         <div className={styles.verticalButtonWrapper}>
-          <Button
-            onClick={() => {
-              router.push(`/event-table/${params.id}`);
-            }}
-          >
-            See registration data
-          </Button>
-          <Button
-            onClick={() => {
-              sendMessage();
-            }}
-          >
-            Send message to participants
-          </Button>
+          <Button onClick={() => {
+            router.push('/event-table')
+          }}>See registration data</Button>
+          <Button onClick={() => {
+            router.push('/send-message')
+          }}>Send message to participants</Button>
+          <button onClick={() => setIsTakingAttendance(!isTakingAttendance)}>
+            {isTakingAttendance ? "Stop Attendance" : "Start Attendance"}
+          </button>
+          {curEvent &&
+            curEvent.attendees &&
+            curEvent.attendees.map((attendee) => {
+              return <div>{attendee}</div>;
+            })}
         </div>
       ) : (
         ""
       )}
-
-      {/* Fixed on page, only show to volunteers and members */}
     </div>
   );
 };
