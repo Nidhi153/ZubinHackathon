@@ -11,33 +11,11 @@ const registerStyle = {
 const EventPage = () => {
   return (
     <div>
-      <div
-        className={styles.body}
-        // style={{
-        //   display: "flex",
-        //   justifyContent: "space-between",
-        //   padding: "10px 10px",
-        //   marginLeft: "5%",
-        //   marginRight: "5%",
-        // }}
-      >
-        {/* <br></br> */}
-        <div
-          className={styles.cards}
-          // style={{ width: "60%", borderRadius: "5px", padding: "10px" }}
-        >
+      <div className={styles.body}>
+        <div className={styles.cards}>
           <Event />
         </div>
-        <div
-          className={registerStyles.box}
-          // style={{
-          //   flex: "1",
-          //   border: "1px solid #ccc",
-          //   borderRadius: "5px",
-          //   padding: "10px",
-          //   // transform: "translate(35%, 3%)",
-          // }}
-        >
+        <div className={registerStyles.box}>
           <h1 className="text-center">Registered Events</h1>
           <RegisteredEvent />
           <Recommendation />

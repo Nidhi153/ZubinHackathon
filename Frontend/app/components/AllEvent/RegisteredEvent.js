@@ -1,10 +1,8 @@
 "use client";
-import { useState, useEffect } from "react";
-import RegisteredEventBox from "./RegisteredEventBox";
-import "./Event.css";
 import Cookies from "js-cookie";
-import styles from '../Event/RegisteredEventBox/RegisteredEventBox.module.scss';
-import getAllEvents from "../../api/event";
+import { useEffect, useState } from "react";
+import "./Event.css";
+import RegisteredEventBox from "./RegisteredEventBox";
 
 export default function RegisteredEvent() {
   const [registeredEvents, setRegisteredEvents] = useState([]);

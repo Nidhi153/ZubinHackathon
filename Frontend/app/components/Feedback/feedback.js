@@ -1,4 +1,3 @@
-import { Datepicker, FloatingLabel } from "flowbite-react";
 import React, { useState } from 'react';
 
 export default function Feedback({ userId }) {
@@ -63,11 +62,7 @@ export default function Feedback({ userId }) {
           >
             Submit Another Feedback
           </button>
-        </div>
-        
-        }
-    
-      
+        </div>}
     </div>
   );
 }

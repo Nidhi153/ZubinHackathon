@@ -1,8 +1,6 @@
-import { MongoClient } from "mongodb";
 import { NextResponse } from "next/server";
-import User from "../../../models/User";
-import Event from "../../../models/Event";
 import connect from "../../../lib/database";
+import Event from "../../../models/Event";
 export async function POST(req: Request) {
   async function checkPrimaryKey() {
     try {

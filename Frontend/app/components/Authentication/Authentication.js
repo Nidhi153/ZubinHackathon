@@ -1,7 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
-import Signup from "./Signup";
 import Login from "./Login";
+import Signup from "./Signup";
 
 export default function Authentication({ setUserId }) {
   return (

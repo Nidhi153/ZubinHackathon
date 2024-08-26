@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-// import Box from '@mui/material/Box';
 
 import Event from "../Event/AllEvent";
 

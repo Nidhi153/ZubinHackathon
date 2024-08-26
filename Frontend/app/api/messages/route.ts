@@ -1,8 +1,6 @@
-import { MongoClient } from "mongodb";
+import axios from "axios";
 import { NextResponse } from "next/server";
 import connect from "../../lib/database";
-import axios from "axios";
-import dotenv from "dotenv";
 import Event from "../../models/Event";
 import User from "../../models/User";
 

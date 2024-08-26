@@ -1,18 +1,10 @@
 "use client";
 
-import {
-  createWhatsappBroadcast,
-  WhatsappBroadcast,
-} from "../../api/whatsappMessages";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import BreadCrumbContainer from "../../components/Breadcrumb/BreadcrumbContainer";
-import styles from "./sendMessage.module.scss";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { ChangeEvent, FormEvent } from "react";
 import Button from "../../components/Button/Button";
-import { useRouter } from "next/navigation";
-import { PathParamsContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime";
-// import { v4 as uuid } from 'uuid'
+import styles from "./sendMessage.module.scss";
 
 // to create a form
 
@@ -47,22 +39,6 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       alert("Message not sent");
     }
     router.push("/");
-    // const broadcast: WhatsappBroadcast = {
-    //   broadcast_id: "1234",
-    //   message,
-    //   contacts,
-    // };
-    // try {
-    //   const status = await createWhatsappBroadcast(broadcast);
-    //   if (status === 200) {
-    //     // take to success page
-    //     console.log("Whatsapp broadcast created successfully");
-    //   } else {
-    //     console.error("Error creating Whatsapp broadcast:", status);
-    //   }
-    // } catch (error) {
-    //   console.error("Error creating Whatsapp broadcast:", error);
-    // }
   };
 
   /* Update the role whenever the link refreshes */

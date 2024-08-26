@@ -1,33 +1,21 @@
 "use client";
 
-import styles from "./EventTable.module.scss";
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
   Select,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr
 } from "@chakra-ui/react";
-
+import styles from "./EventTable.module.scss";
 import { Badge } from "flowbite-react";
 import buttonStyle from "../Button/Button.module.scss";
-import inputStyle from "../InputGroup/InputGroup.module.scss";
-
 import InputGroup from "../InputGroup/InputGroup";
-import Button from "../Button/Button";
-
-import { useRouter } from "next/navigation";
-// import Button from "../components/Button/Button";
-// import styles from "./account.module.scss";
-// import BadgeRow from "./Row/BadgeRow";
-import TextRow from "./Row/TextRow";
-import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
-import MemberFeedback from "./MemberFeedback";
+
 const CentralisedMessage = () => {
   const [messages, setMessages] = useState([]);
   const [responses, setResponses] = useState({});
@@ -84,7 +72,6 @@ const CentralisedMessage = () => {
     e.preventDefault();
     console.log("submitting response");
     console.log(responses[id]);
-    // const message = e.target.message.value;
     const message = responses[id];
     const res = await fetch("/api/ai/whatsapp/broadcast", {
       method: "POST",
@@ -115,10 +102,6 @@ const CentralisedMessage = () => {
               {tag}
             </option>
           ))}
-          {/* <option value="emergency">Emergency</option>
-          <option value="feedback">Feedback</option>
-          <option value="FAQ">FAQ</option>
-          <option value="Location">Location</option> */}
         </Select>
         <TableContainer className={styles.table}>
           <Table variant="simple">
@@ -133,7 +116,6 @@ const CentralisedMessage = () => {
             </Thead>
             <Tbody>
               {filteredMessages.map((message) => (
-                // {messages.map((message) => (
                 <Tr key={message._id}>
                   <Td className={styles.indexColumn}>{message.id}</Td>
                   <Td
@@ -166,7 +148,6 @@ const CentralisedMessage = () => {
                         submitResponse(message._id, message.phonenumber, e)
                       }
                     >
-                      {/* <input type="text" placeholder="Response" name="message" className={inputStyle.inputGroup}></input> */}
                       <InputGroup
                         placeholder="Response"
                         name="respond"
@@ -185,8 +166,6 @@ const CentralisedMessage = () => {
           </Table>
         </TableContainer>
       </div>
-
-      {/* <MemberFeedback messages={messages}/> */}
     </div>
   );
 };

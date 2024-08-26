@@ -1,17 +1,14 @@
 "use client";
 
-import Image from "next/image";
-import chatbotStyles from "../../chatbot/chatbotPage.module.scss";
-import BreadCrumbContainer from "../../components/Breadcrumb/BreadcrumbContainer";
-import Chatbot from "../../components/Chatbot/Chatbot";
-import styles from "./eventDetails.module.scss";
-import posterImage from "../../assets/poster.png";
-import Button from "../../components/Button/Button";
-import { useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { set, trusted } from "mongoose";
+import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import posterImage from "../../assets/poster.png";
+import BreadCrumbContainer from "../../components/Breadcrumb/BreadcrumbContainer";
+import Button from "../../components/Button/Button";
+import styles from "./eventDetails.module.scss";
+
 /* Planning to migrate this to a type file */
 const ALL_ROLES = ["volunteer", "admin", "member"] as const;
 type Roles = (typeof ALL_ROLES)[number];
@@ -39,18 +36,8 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
 
       if (!startedCamera) {
         console.log("Starting camera...");
-
         await fetch("/api/start");
-        // await fetch("http://localhost:2000/start", {
-        //   mode: "no-cors",
-        // });
-
         setStartedCamera(true);
-        // console.log(response);
-        // if (response.status === 200) {
-        //   console.log("Camera started");
-
-        // }
       }
 
       const fetchData = async () => {
@@ -61,16 +48,11 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
           const response = await fetch("/api/data", {
             signal: controller.signal,
           });
-          //   const response = await fetch("http://localhost:2000/data", {
-          //     signal: controller.signal,
-          //     mode: "no-cors",
-          //   });
 
           if (response.ok) {
             const data = await response.json();
             if ("current_data" in data) {
               if (data.current_data) {
-                // console.log(`Received QR Code data: ${data.current_data}`);
                 const res = await fetch("/api/events/updateAttendance", {
                   method: "POST",
                   headers: {
@@ -93,12 +75,6 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
                   const event = await res.json();
                   console.log(event.event);
                   setCurEvent(event.event[0]);
-
-                  // const newEvent = {
-                  //   ...curEvent,
-                  //   attendees: [...curEvent.attendees, data.current_data],
-                  // };
-                  // setCurEvent(newEvent);
                 }
               }
             } else {
@@ -118,7 +94,6 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
         }
       };
 
-      //   if (startedCamera) await fetchData();
       await fetchData();
     }, 1000);
 
@@ -155,7 +130,6 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
         }
       }
       const role = Cookies.get("role");
-      // const role = searchParams.get("role");
       if (role) {
         setRole(role);
         console.log("role is " + role);
@@ -256,7 +230,6 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
         cursor: "pointer",
         margin: "5px",
         padding: "5px",
-        // border: "1px solid black",
         borderRadius: "5px",
         backgroundColor: "#0ABAB5", // Tiffany Blue
         color: "white",
@@ -366,14 +339,6 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
           >
             Send message to participants
           </Button>
-          {/* <button onClick={() => setIsTakingAttendance(!isTakingAttendance)}>
-            {isTakingAttendance ? "Stop Attendance" : "Start Attendance"}
-          </button>
-          {curEvent &&
-            curEvent.attendees &&
-            curEvent.attendees.map((attendee) => {
-              return <div>{attendee}</div>;
-            })} */}
         </div>
       ) : (
         ""

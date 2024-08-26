@@ -1,8 +1,6 @@
-import { MongoClient } from "mongodb";
-import { NextResponse } from "next/server";
-import connect from "../../../../lib/database";
 import axios from "axios";
 import dotenv from "dotenv";
+import { NextResponse } from "next/server";
 
 interface Message {
   phonenumbers: [string];
@@ -26,17 +24,7 @@ export async function POST(req: Request) {
   const resData = res.data;
 
   console.log(resData);
-  //   if (resData.status === 200) {
-  //     return NextResponse.json({
-  //       message: "Message posted to server",
-  //       status: 200,
-  //     });
-  //   } else {
-  //     return NextResponse.json({
-  //       message: "Message post to server failed",
-  //       status: 404,
-  //     });
-  //   }
+  
   return NextResponse.json({
     message: "Message posted to server",
     status: 200,

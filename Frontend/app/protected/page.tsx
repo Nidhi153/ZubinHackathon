@@ -1,8 +1,7 @@
 "use client";
 import Cookies from "js-cookie";
-import jwt from "jsonwebtoken";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 function ProtectedPage() {
   const router = useRouter();

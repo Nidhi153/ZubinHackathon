@@ -1,10 +1,9 @@
-import { MongoClient } from "mongodb";
-import { NextResponse } from "next/server";
-import connect from "../../../lib/database";
+import Event from "@/app/models/Event";
+import User from "@/app/models/User";
 import axios from "axios";
 import dotenv from "dotenv";
-import User from "@/app/models/User";
-import Event from "@/app/models/Event";
+import { NextResponse } from "next/server";
+import connect from "../../../lib/database";
 
 interface Message {
   skills: [string]; // the skills of the volunteer

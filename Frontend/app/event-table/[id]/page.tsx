@@ -1,20 +1,18 @@
 "use client";
 
-import styles from "./EventTable.module.scss";
-import BreadCrumbContainer from "../../components/Breadcrumb/BreadcrumbContainer";
 import {
   Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
   TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr
 } from "@chakra-ui/react";
-import Button from "../../components/Button/Button";
 import { useEffect, useState } from "react";
+import BreadCrumbContainer from "../../components/Breadcrumb/BreadcrumbContainer";
+import Button from "../../components/Button/Button";
+import styles from "./EventTable.module.scss";
 const dummyParticipants = [
   {
     userID: "1",

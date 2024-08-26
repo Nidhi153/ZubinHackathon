@@ -20,9 +20,6 @@ export interface User {
 
   role: Role;
   contact_number: string; // Check that it's in the right format
-
-//   hkid: string; // I don't think we should store this
-//   DOB: Date // I don't think we should store this
 }
 
 export interface Volunteer extends User {

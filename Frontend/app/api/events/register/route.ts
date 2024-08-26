@@ -1,9 +1,8 @@
-import { MongoClient } from "mongodb";
-import { NextResponse } from "next/server";
-import User from "../../../models/User";
-import Event from "../../../models/Event";
-import connect from "../../../lib/database";
 import axios from "axios";
+import { NextResponse } from "next/server";
+import connect from "../../../lib/database";
+import Event from "../../../models/Event";
+import User from "../../../models/User";
 export async function POST(req: Request) {
   console.log(">>>>Registering event");
   try {
@@ -53,11 +52,6 @@ export async function POST(req: Request) {
     event.registered_users.push(userId);
     await event.save();
     let url = `http://localhost:8000/ai/whatsapp/images`;
-    // let imageData = {
-    //   phonenumbers: ["+85296035568"],
-    //   caption: "Hello from Zubin",
-    //   imageid: "851422080388100",
-    // };
     let imageData = {
       phonenumbers: [user.phoneno],
       caption: `You have successfully registered for the event ${event.title}. Below is your qr code for the event attendance`,
@@ -65,8 +59,6 @@ export async function POST(req: Request) {
     };
 
     let imageResponse = await axios.post(url, imageData);
-    let imageResData = imageResponse.imageData;
-    // console.log(resData);
   } catch (e) {
     console.log("error registering event", e);
     return NextResponse.json({
