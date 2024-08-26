@@ -260,7 +260,7 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       <div className={styles.heading}>
         {curEvent?.title || "Loading title.."}
       </div>
-      <div>{curEvent? new Date(curEvent?.date).toLocaleString('en-GB', { timeZone: 'Asia/Hong_Kong' }) : "Loading date.."}</div>
+      <div>{curEvent ? new Date(curEvent?.date).toLocaleString('en-GB', { timeZone: 'Asia/Hong_Kong' }) : "Loading date.."}</div>
       <div>{curEvent?.description}</div>
       {curEvent?.skills && (
         <div className="flex flex-wrap gap-2">
@@ -324,26 +324,29 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
         ""
       )}
 
+
       {role === "admin" ? (
         <div className={styles.verticalButtonWrapper}>
-          <Button onClick={() => {
-            router.push('/event-table')
-          }}>See registration data</Button>
-          <Button onClick={() => {
-            router.push('/send-message')
-          }}>Send message to participants</Button>
-          <button onClick={() => setIsTakingAttendance(!isTakingAttendance)}>
-            {isTakingAttendance ? "Stop Attendance" : "Start Attendance"}
-          </button>
-          {curEvent &&
-            curEvent.attendees &&
-            curEvent.attendees.map((attendee) => {
-              return <div>{attendee}</div>;
-            })}
+          <Button
+            onClick={() => {
+              router.push(`/event-table/${params.id}`);
+            }}
+          >
+            See registration data
+          </Button>
+          <Button
+            onClick={() => {
+              sendMessage();
+            }}
+          >
+            Send message to participants
+          </Button>
         </div>
       ) : (
         ""
       )}
+
+      {/* Fixed on page, only show to volunteers and members */}
     </div>
   );
 };
