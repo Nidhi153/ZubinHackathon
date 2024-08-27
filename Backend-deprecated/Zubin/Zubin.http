@@ -1,6 +1,0 @@
-@Zubin_HostAddress = http://localhost:5128
-
-GET {{Zubin_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
