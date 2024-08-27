@@ -1,0 +1,359 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Python FastAPI",
+    "description": "Python FastAPI",
+    "termsOfService": "http://swagger.io/terms/",
+    "version": "1"
+  },
+  "paths": {
+    "/ai/recommendation": {
+      "post": {
+        "tags": [
+          "PythonAi"
+        ],
+        "summary": "GetRecommendation",
+        "operationId": "GetRecommendation",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRecommendationRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRecommendationRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRecommendationRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRecommendationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRecommendationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/whatsapp/broadcast": {
+      "post": {
+        "tags": [
+          "PythonAi"
+        ],
+        "summary": "sendBroadcast",
+        "operationId": "sendBroadcast",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendBroadcastRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendBroadcastRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendBroadcastRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendBroadcastRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendBroadcastResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/chatbot": {
+      "post": {
+        "tags": [
+          "PythonAi"
+        ],
+        "summary": "sendToChatbot",
+        "operationId": "sendToChatbot",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendToChatbotRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendToChatbotRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendToChatbotRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendToChatbotRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendToChatbotResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ai/whatsapp/images": {
+      "post": {
+        "tags": [
+          "PythonAi"
+        ],
+        "summary": "sendImages",
+        "operationId": "sendImages",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendImagesRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendImagesRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendImagesRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendImagesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendImagesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GetRecommendationRequest": {
+        "type": "object",
+        "properties": {
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequestEvent"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "nullable": true
+      },
+      "GetRecommendationResponse": {
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResponseEvent"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "nullable": true
+      },
+      "RequestEvent": {
+        "type": "object",
+        "properties": {
+          "eventid": {
+            "type": "string",
+            "nullable": true
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "nullable": true
+      },
+      "ResponseEvent": {
+        "type": "object",
+        "properties": {
+          "eventid": {
+            "type": "string",
+            "nullable": true
+          },
+          "similarity": {
+            "type": "number",
+            "format": "decimal"
+          }
+        },
+        "additionalProperties": false,
+        "nullable": true
+      },
+      "SendBroadcastRequest": {
+        "type": "object",
+        "properties": {
+          "phonenumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "broadcastmessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "nullable": true
+      },
+      "SendBroadcastResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "result": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "nullable": true
+      },
+      "SendImagesRequest": {
+        "type": "object",
+        "properties": {
+          "phonenumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "caption": {
+            "type": "string",
+            "nullable": true
+          },
+          "imageid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "nullable": true
+      },
+      "SendImagesResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "result": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "nullable": true
+      },
+      "SendToChatbotRequest": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "nullable": true
+      },
+      "SendToChatbotResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "nullable": true
+      }
+    }
+  }
+}
