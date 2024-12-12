@@ -87,7 +87,7 @@ const ChatbotContainer = () => {
           onMouseEnter={() => setIsChatbotVisible(true)}
           className="chatbotButton"
         >
-          AI Chatbot
+          🤖 AI Chatbot
         </button>
       )}
     </div>

@@ -1,11 +1,14 @@
 "use client";
-import { Button, Dropdown, FloatingLabel } from "flowbite-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Button from "../Button/Button";
+import InputGroup from "../InputGroup/InputGroup";
 import "./auth.css";
+import styles from './styles.module.scss';
+
 export default function Signup() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [values, setValues] = useState([])
   const router = useRouter();
   const [selectedRole, setSelectedRole] = useState("member");
 
@@ -37,11 +40,10 @@ export default function Signup() {
   let signup = async (e) => {
     e.preventDefault();
     let user = {
-      email: e.target.email.value,
-      password: e.target.password.value,
-      phoneno: e.target.phoneno.value,
-      name: e.target.name.value,
-      role: selectedRole,
+      email: values[0],
+      password: values[1],
+      phoneno: values[2],
+      name: values[3],
     };
     console.log(user);
     let response = await fetch("/api/signup", {
@@ -74,40 +76,32 @@ export default function Signup() {
   };
 
   return (
-    <div className="container">
-      <h1>Signup</h1>
-      <form onSubmit={(e) => signup(e)}>
-        {fields.map((field) => {
+    <div className={styles.container}>
+      <form onSubmit={(e) => signup(e)} className={styles.form}>
+        {fields.map((field, i) => {
           return (
-            <FloatingLabel
-              variant="outlined"
-              label={field.label}
+            <InputGroup
+              text={field.label}
+              placeholder={field.label}
               type={field.type}
-              placeholder={field.placeholder}
-              name={field.id}
+              value={values[i]}
+              onChange={(e) => {
+                const newValue = e.target.value
+                const newValues = [...values]
+                newValues[i] = newValue
+                setValues(newValues)
+              }}
             />
           );
         })}
-        <div style={{ marginBottom: "10px" }}>
-          <Dropdown label={selectedRole || "Select role"}>
-            <Dropdown.Item
-              value="volunteer"
-              onClick={() => handleSelect("volunteer")}
-            >
-              Volunteer
-            </Dropdown.Item>
-            <Dropdown.Item
-              value="member"
-              onClick={() => handleSelect("member")}
-            >
-              Member
-            </Dropdown.Item>
-          </Dropdown>
+
+        <div className={styles.buttonWrapper}>
+          <Button type="submit" onClick={() => signup()}>Signup</Button>
         </div>
-        <Button color="warning" type="submit">
-          Signup
-        </Button>
       </form>
+      <span>Already have an account?{" "}
+        <Link href="/login">Log in</Link>
+      </span>
     </div>
   );
 }

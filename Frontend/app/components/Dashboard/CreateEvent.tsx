@@ -1,8 +1,16 @@
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import Button from "../Button/Button";
+import { useCallback, useEffect, useState } from "react";
 import InputGroup from "../InputGroup/InputGroup";
 import styles from "./Dashboard.module.scss";
+import Button from "../Button/Button";
+import { useRouter } from "next/navigation";
+import TextRow from "@/app/account/Row/TextRow";
+import QuestionRow from "../QuestionRow/QuestionRow";
+import { Checkbox, Stack } from "@chakra-ui/react";
+
+export interface Question {
+  question: string,
+  inputType: string,
+}
 
 export default function CreateEvent({ userId }: { userId: string }) {
   const [title, setTitle] = useState<string>("");
@@ -11,6 +19,35 @@ export default function CreateEvent({ userId }: { userId: string }) {
   const [endTime, setEndTime] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+
+  const [presetQuestions, setPresetQuestions] = useState<Question[]>([]) // Questions previously set by admin
+  const [finalQuestions, setFinalQuestions] = useState<Question[]>([]) // Final questions to be submitted
+
+  /* Post event checkboxes */
+  const [checkedItems, setCheckedItems] = useState([false, false, false])
+  const allChecked = checkedItems.every(Boolean)
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked
+
+
+  /* Fills in preset and final questions at the beginning */
+  useEffect(() => {
+    const questions = [
+      { question: 'Name', inputType: 'short answer' },
+      { question: 'Phone number', inputType: 'short answer' },
+    ]
+
+    setPresetQuestions(questions)
+    setFinalQuestions(questions)
+  }, [])
+
+  const handleAddQuestion = useCallback(() => {
+    const newFinalQuestions = [...finalQuestions]
+    newFinalQuestions.push({
+      question: '',
+      inputType: 'short answer'
+    })
+    setFinalQuestions(newFinalQuestions)
+  }, [finalQuestions])
 
   const handleSkillChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (selectedSkills.includes(e.target.value)) {
@@ -35,6 +72,11 @@ export default function CreateEvent({ userId }: { userId: string }) {
     "fundraising",
   ];
   const router = useRouter();
+
+  const handleEditTemplate = useCallback(() => {
+    router.push('/create-event/edit-template')
+  }, [])
+
   const removeSkill = (skillToRemove: string) => {
     console.log("remove skill", skillToRemove);
     setSelectedSkills(
@@ -161,6 +203,71 @@ export default function CreateEvent({ userId }: { userId: string }) {
           setDescription(e.target.value);
         }}
       />
+      <div className={styles.rowWrapper}>
+        <h2>Questions to Participants</h2>
+        <Button onClick={handleEditTemplate}>Edit template</Button>
+      </div>
+      {presetQuestions.map((question) => (
+        <TextRow property={question.question} value={question.inputType} />
+      ))}
+      {finalQuestions.filter((question, i) => (i >= presetQuestions.length)).map((question, i) => (
+        <QuestionRow
+          questionValue={question.question}
+          selectValue={question.inputType}
+          questionOnChange={(e) => {
+            const newFinalQuestions = [...finalQuestions]
+            newFinalQuestions[presetQuestions.length + i] = {
+              question: e.target.value,
+              inputType: newFinalQuestions[presetQuestions.length + i].inputType,
+            }
+            setFinalQuestions(newFinalQuestions)
+          }}
+          selectOnChange={(e) => {
+            const newFinalQuestions = [...finalQuestions]
+            newFinalQuestions[presetQuestions.length + i] = {
+              question: newFinalQuestions[presetQuestions.length + i].question,
+              inputType: e.target.value,
+            }
+            setFinalQuestions(newFinalQuestions)
+          }}
+        />
+      ))}
+      <Button onClick={handleAddQuestion}>Add question</Button>
+
+      {/* Dummy checkboxes */}
+      <div className={styles.postEvents}>
+        <h2>Post to</h2>
+        <Stack spacing={2} mt={2}>
+          <Checkbox
+            isChecked={allChecked}
+            isIndeterminate={isIndeterminate}
+            onChange={(e) => setCheckedItems([e.target.checked, e.target.checked, e.target.checked])}
+          >
+            Select all
+          </Checkbox>
+          <Stack pl={6} mt={1} spacing={2}>
+            <Checkbox
+              isChecked={checkedItems[0]}
+              onChange={(e) => setCheckedItems([e.target.checked, checkedItems[1], checkedItems[2]])}
+            >
+              WhatsApp
+            </Checkbox>
+            <Checkbox
+              isChecked={checkedItems[1]}
+              onChange={(e) => setCheckedItems([checkedItems[0], e.target.checked, checkedItems[2]])}
+            >
+              Facebook
+            </Checkbox>
+            <Checkbox
+              isChecked={checkedItems[2]}
+              onChange={(e) => setCheckedItems([checkedItems[0], checkedItems[1], e.target.checked])}
+            >
+              Instagram
+            </Checkbox>
+          </Stack>
+        </Stack>
+      </div>
+
       <Button type="submit">Create event</Button>
     </form>
   );

@@ -4,9 +4,6 @@ import Event from "../Event/AllEvent";
 import RegisteredEvent from "./RegisteredEvent";
 import registerStyles from "../Event/RegisteredEventBox/RegisteredEventBox.module.scss";
 import Recommendation from "./Recommendation";
-const registerStyle = {
-  fontSize: "25px",
-};
 
 const EventPage = () => {
   return (
